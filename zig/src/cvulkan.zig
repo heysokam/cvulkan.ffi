@@ -17096,7 +17096,7 @@ pub const struct__G_fpos64_t = extern struct {
 };
 pub const __fpos64_t = struct__G_fpos64_t;
 pub const struct__IO_marker = opaque {};
-// /usr/include/bits/types/struct_FILE.h:74:7: warning: struct demoted to opaque type - has bitfield
+// /usr/include/bits/types/struct_FILE.h:75:7: warning: struct demoted to opaque type - has bitfield
 pub const struct__IO_FILE = opaque {};
 pub const __FILE = struct__IO_FILE;
 pub const FILE = struct__IO_FILE;
@@ -17216,82 +17216,13 @@ pub extern fn ftrylockfile(__stream: ?*FILE) c_int;
 pub extern fn funlockfile(__stream: ?*FILE) void;
 pub extern fn __uflow(?*FILE) c_int;
 pub extern fn __overflow(?*FILE, c_int) c_int;
-pub fn cvk_min_u32(val: u32, m: u32) callconv(.c) u32 {
-    _ = &val;
-    _ = &m;
-    return if (val < m) m else val;
-}
-pub fn cvk_max_u32(val: u32, M: u32) callconv(.c) u32 {
-    _ = &val;
-    _ = &M;
-    return if (val > M) M else val;
-}
-pub fn cvk_clamp_u32(val: u32, m: u32, M: u32) callconv(.c) u32 {
-    _ = &val;
-    _ = &m;
-    _ = &M;
-    return cvk_max_u32(cvk_min_u32(val, m), M);
-}
-pub export fn cvk_result_toString_default(arg_status: VkResult) cvk_String {
-    var status = arg_status;
-    _ = &status;
-    while (true) {
-        switch (status) {
-            @as(c_int, 0) => return "[cvulkan.Ok]",
-            @as(c_int, 1) => return "[cvulkan.Warn](Not Ready)",
-            @as(c_int, 2) => return "[cvulkan.Warn](Timeout)",
-            @as(c_int, 3) => return "[cvulkan.Warn](Event Set)",
-            @as(c_int, 4) => return "[cvulkan.Warn](Event Reset)",
-            @as(c_int, 5) => return "[cvulkan.Warn](Incomplete)",
-            @as(c_int, -1) => return "[cvulkan.Error](Out of Host Memory)",
-            @as(c_int, -2) => return "[cvulkan.Error](Out of Device Memory)",
-            @as(c_int, -3) => return "[cvulkan.Error](Initialization Failed)",
-            @as(c_int, -4) => return "[cvulkan.Error](Device Lost)",
-            @as(c_int, -5) => return "[cvulkan.Error](Memory Map Failed)",
-            @as(c_int, -6) => return "[cvulkan.Error](Layer not Present)",
-            @as(c_int, -7) => return "[cvulkan.Error](Extension not Present)",
-            @as(c_int, -8) => return "[cvulkan.Error](Feature not Present)",
-            @as(c_int, -9) => return "[cvulkan.Error](Incompatible Driver)",
-            @as(c_int, -10) => return "[cvulkan.Error](Too Many Objects)",
-            @as(c_int, -11) => return "[cvulkan.Error](Format not Supported)",
-            @as(c_int, -12) => return "[cvulkan.Error](Fragmented Pool)",
-            @as(c_int, -13) => return "[cvulkan.Error](Unknown)",
-            @as(c_int, -1000069000) => return "[cvulkan.Error](Out of Pool Memory)",
-            @as(c_int, -1000072003) => return "[cvulkan.Error](Invalid External Handle)",
-            @as(c_int, -1000161000) => return "[cvulkan.Error](Fragmentation)",
-            @as(c_int, -1000257000) => return "[cvulkan.Error](Invalid Opaque Capture Address)",
-            @as(c_int, 1000297000) => return "[cvulkan.Error](Pipeline Compile Required)",
-            @as(c_int, -1000174001) => return "[cvulkan.Error](Not Permitted)",
-            @as(c_int, -1000000000) => return "[cvulkan.Error](Surface Lost)",
-            @as(c_int, -1000000001) => return "[cvulkan.Error](Native Window in Use)",
-            @as(c_int, 1000001003) => return "[cvulkan.Error](Suboptimal)",
-            @as(c_int, -1000001004) => return "[cvulkan.Error](Out of Date)",
-            @as(c_int, -1000003001) => return "[cvulkan.Error](Incompatible Display)",
-            @as(c_int, -1000011001) => return "[cvulkan.Error](Validation Failed)",
-            @as(c_int, -1000012000) => return "[cvulkan.Error](Invalid Shader)",
-            @as(c_int, -1000023000) => return "[cvulkan.Error](Image usage not Supported)",
-            @as(c_int, -1000023001) => return "[cvulkan.Error](Video.Picture Layout Not Supported)",
-            @as(c_int, -1000023002) => return "[cvulkan.Error](Video.Profile Operation Not Supported)",
-            @as(c_int, -1000023003) => return "[cvulkan.Error](Video.Profile Format Not Supported)",
-            @as(c_int, -1000023004) => return "[cvulkan.Error](Video.Profile Codec Not Supported)",
-            @as(c_int, -1000023005) => return "[cvulkan.Error](Video.STD Version Not Supported)",
-            @as(c_int, -1000158000) => return "[cvulkan.Error](Invalid DRM Format Modifier Plane Layout)",
-            @as(c_int, -1000255000) => return "[cvulkan.Error](Full Screen Exclusive Mode Lost)",
-            @as(c_int, 1000268000) => return "[cvulkan.Warn](Thread Idle)",
-            @as(c_int, 1000268001) => return "[cvulkan.Info](Thread Done)",
-            @as(c_int, 1000268002) => return "[cvulkan.Warn](Operation Deferred)",
-            @as(c_int, 1000268003) => return "[cvulkan.Warn](Operation Not Deferred)",
-            @as(c_int, -1000299000) => return "[cvulkan.Error](Video.STD Invalid Parameters)",
-            @as(c_int, -1000338000) => return "[cvulkan.Error](Compression Exhausted)",
-            @as(c_int, 1000482000) => return "[cvulkan.Warn](Incompatible Shader Binary)",
-            @as(c_int, 1000483000) => return "[cvulkan.Error](Pipeline Binary Missing)",
-            @as(c_int, -1000483000) => return "[cvulkan.Error](Not Enough Space)",
-            else => return "[cvulkan.UnknownStatus]",
-        }
-        break;
-    }
-    return @import("std").mem.zeroes(cvk_String);
-}
+pub extern fn cvk_min_u32(val: u32, m: u32) u32;
+pub extern fn cvk_max_u32(val: u32, M: u32) u32;
+pub extern fn cvk_clamp_u32(val: u32, m: u32, M: u32) u32;
+pub extern fn cvk_min_f32(val: f32, m: f32) f32;
+pub extern fn cvk_max_f32(val: f32, M: f32) f32;
+pub extern fn cvk_clamp_f32(val: f32, m: f32, M: f32) f32;
+pub extern fn cvk_result_toString_default(status: VkResult) cvk_String;
 pub const cvk_Allocator_CPU_t = struct_cvk_Allocator_CPU_s;
 pub const cvk_Fn_allocator_alloc = ?*const fn ([*c]cvk_Allocator_CPU_t, usize, usize) callconv(.c) cvk_Slice_t;
 pub const cvk_Fn_allocator_allocZ = ?*const fn ([*c]cvk_Allocator_CPU_t, usize, usize) callconv(.c) cvk_Slice_t;
@@ -17383,9 +17314,12 @@ pub const cvk_device_swapchain_Support = struct_cvk_device_swapchain_Support;
 pub const struct_cvk_device_Physical = extern struct {
     ct: VkPhysicalDevice = @import("std").mem.zeroes(VkPhysicalDevice),
     id: u32 = @import("std").mem.zeroes(u32),
-    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
+    priv_pad1: [4]u8 = @import("std").mem.zeroes([4]u8),
     queueFamilies: cvk_QueueFamilies = @import("std").mem.zeroes(cvk_QueueFamilies),
     swapchainSupport: cvk_device_swapchain_Support = @import("std").mem.zeroes(cvk_device_swapchain_Support),
+    priv_pad2: [4]u8 = @import("std").mem.zeroes([4]u8),
+    features: VkPhysicalDeviceFeatures = @import("std").mem.zeroes(VkPhysicalDeviceFeatures),
+    properties: VkPhysicalDeviceProperties = @import("std").mem.zeroes(VkPhysicalDeviceProperties),
     memory: VkPhysicalDeviceMemoryProperties = @import("std").mem.zeroes(VkPhysicalDeviceMemoryProperties),
 };
 pub const cvk_device_Physical = struct_cvk_device_Physical;
@@ -17432,6 +17366,8 @@ pub const struct_cvk_device_Swapchain = extern struct {
     ct: VkSwapchainKHR = @import("std").mem.zeroes(VkSwapchainKHR),
     cfg: VkSwapchainCreateInfoKHR = @import("std").mem.zeroes(VkSwapchainCreateInfoKHR),
     images: cvk_device_swapchain_image_List = @import("std").mem.zeroes(cvk_device_swapchain_image_List),
+    attachment_cfg: VkAttachmentDescription = @import("std").mem.zeroes(VkAttachmentDescription),
+    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
 };
 pub const cvk_device_Swapchain = struct_cvk_device_Swapchain;
 pub const struct_cvk_device_Features = extern struct {
@@ -17517,520 +17453,53 @@ pub const struct_cvk_Memory = extern struct {
     ct: VkDeviceMemory = @import("std").mem.zeroes(VkDeviceMemory),
     cfg: VkMemoryAllocateInfo = @import("std").mem.zeroes(VkMemoryAllocateInfo),
     data: cvk_pointer = @import("std").mem.zeroes(cvk_pointer),
+    persistent: cvk_bool = @import("std").mem.zeroes(cvk_bool),
+    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
 };
 pub const cvk_Memory = struct_cvk_Memory;
-pub const struct_cvk_buffer_Memory = extern struct {
+pub const struct_cvk_memory_Properties = extern struct {
     requirements: VkMemoryRequirements = @import("std").mem.zeroes(VkMemoryRequirements),
     kind: u32 = @import("std").mem.zeroes(u32),
     priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
 };
-pub const cvk_buffer_Memory = struct_cvk_buffer_Memory;
+pub const cvk_memory_Properties = struct_cvk_memory_Properties;
 pub const struct_cvk_Buffer = extern struct {
     ct: VkBuffer = @import("std").mem.zeroes(VkBuffer),
     cfg: VkBufferCreateInfo = @import("std").mem.zeroes(VkBufferCreateInfo),
-    memory: cvk_buffer_Memory = @import("std").mem.zeroes(cvk_buffer_Memory),
+    memory: cvk_memory_Properties = @import("std").mem.zeroes(cvk_memory_Properties),
 };
 pub const cvk_Buffer = struct_cvk_Buffer;
-pub export fn cvk_allocator_alloc_stdlib(A: [*c]cvk_Allocator_CPU_t, count: usize, itemsize: usize) cvk_Slice_t {
-    _ = &A;
-    _ = &count;
-    _ = &itemsize;
-    _ = &A;
-    return cvk_Slice_t{
-        .len = count,
-        .itemsize = itemsize,
-        .ptr = malloc(count *% itemsize),
-    };
-}
-pub export fn cvk_allocator_allocZ_stdlib(A: [*c]cvk_Allocator_CPU_t, count: usize, itemsize: usize) cvk_Slice_t {
-    _ = &A;
-    _ = &count;
-    _ = &itemsize;
-    _ = &A;
-    return cvk_Slice_t{
-        .len = count,
-        .itemsize = itemsize,
-        .ptr = calloc(count, itemsize),
-    };
-}
-pub export fn cvk_allocator_free_stdlib(A: [*c]cvk_Allocator_CPU_t, data: [*c]cvk_Slice_t) void {
-    _ = &A;
-    _ = &data;
-    if (data.*.ptr == @as(?*anyopaque, @ptrFromInt(@as(c_int, 0)))) return;
-    _ = &A;
-    data.*.itemsize = 0;
-    data.*.len = 0;
-    free(data.*.ptr);
-}
-pub export fn cvk_allocator_copy_stdlib(A: [*c]cvk_Allocator_CPU_t, src: [*c]const cvk_Slice_t, trg: [*c]cvk_Slice_t) void {
-    _ = &A;
-    _ = &src;
-    _ = &trg;
-    if (src.*.ptr == @as(?*anyopaque, @ptrFromInt(@as(c_int, 0)))) return;
-    if (src.*.len > trg.*.len) return;
-    _ = &A;
-    _ = memcpy(trg.*.ptr, src.*.ptr, src.*.len *% src.*.itemsize);
-}
-pub export fn cvk_allocator_duplicate_stdlib(A: [*c]cvk_Allocator_CPU_t, data: [*c]const cvk_Slice_t) cvk_Slice_t {
-    _ = &A;
-    _ = &data;
-    if (data.*.ptr == @as(?*anyopaque, @ptrFromInt(@as(c_int, 0)))) return cvk_Slice_t{
-        .len = @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))),
-        .itemsize = @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))),
-        .ptr = @as(?*anyopaque, @ptrFromInt(@as(c_int, 0))),
-    };
-    _ = &A;
-    var result: cvk_Slice_t = A.*.allocZ.?(A, data.*.len, data.*.itemsize);
-    _ = &result;
-    A.*.copy.?(A, data, &result);
-    return result;
-}
-pub export fn cvk_allocator_cpu_stdlib() cvk_Allocator_CPU_t {
-    return cvk_Allocator_CPU_t{
-        .alloc = &cvk_allocator_alloc_stdlib,
-        .allocZ = &cvk_allocator_allocZ_stdlib,
-        .free = &cvk_allocator_free_stdlib,
-        .copy = &cvk_allocator_copy_stdlib,
-        .duplicate = &cvk_allocator_duplicate_stdlib,
-    };
-}
-pub export fn cvk_Allocator_defaults() cvk_Allocator {
-    return cvk_Allocator{
-        .gpu = @as([*c]VkAllocationCallbacks, @ptrCast(@alignCast(@as(?*anyopaque, @ptrFromInt(@as(c_int, 0)))))),
-        .cpu = cvk_allocator_cpu_stdlib(),
-    };
-}
-pub const div_t = extern struct {
-    quot: c_int = @import("std").mem.zeroes(c_int),
-    rem: c_int = @import("std").mem.zeroes(c_int),
+pub const struct_cvk_image_Data = extern struct {
+    ct: VkImage = @import("std").mem.zeroes(VkImage),
+    cfg: VkImageCreateInfo = @import("std").mem.zeroes(VkImageCreateInfo),
+    memory: cvk_memory_Properties = @import("std").mem.zeroes(cvk_memory_Properties),
 };
-pub const ldiv_t = extern struct {
-    quot: c_long = @import("std").mem.zeroes(c_long),
-    rem: c_long = @import("std").mem.zeroes(c_long),
+pub const cvk_image_Data = struct_cvk_image_Data;
+pub const struct_cvk_image_View = extern struct {
+    ct: VkImageView = @import("std").mem.zeroes(VkImageView),
+    cfg: VkImageViewCreateInfo = @import("std").mem.zeroes(VkImageViewCreateInfo),
 };
-pub const lldiv_t = extern struct {
-    quot: c_longlong = @import("std").mem.zeroes(c_longlong),
-    rem: c_longlong = @import("std").mem.zeroes(c_longlong),
+pub const cvk_image_View = struct_cvk_image_View;
+pub const struct_cvk_image_Sampler = extern struct {
+    ct: VkSampler = @import("std").mem.zeroes(VkSampler),
+    cfg: VkSamplerCreateInfo = @import("std").mem.zeroes(VkSamplerCreateInfo),
 };
-pub extern fn __ctype_get_mb_cur_max() usize;
-pub extern fn atof(__nptr: [*c]const u8) f64;
-pub extern fn atoi(__nptr: [*c]const u8) c_int;
-pub extern fn atol(__nptr: [*c]const u8) c_long;
-pub extern fn atoll(__nptr: [*c]const u8) c_longlong;
-pub extern fn strtod(__nptr: [*c]const u8, __endptr: [*c][*c]u8) f64;
-pub extern fn strtof(__nptr: [*c]const u8, __endptr: [*c][*c]u8) f32;
-pub extern fn strtold(__nptr: [*c]const u8, __endptr: [*c][*c]u8) c_longdouble;
-pub extern fn strtol(__nptr: [*c]const u8, __endptr: [*c][*c]u8, __base: c_int) c_long;
-pub extern fn strtoul(__nptr: [*c]const u8, __endptr: [*c][*c]u8, __base: c_int) c_ulong;
-pub extern fn strtoq(noalias __nptr: [*c]const u8, noalias __endptr: [*c][*c]u8, __base: c_int) c_longlong;
-pub extern fn strtouq(noalias __nptr: [*c]const u8, noalias __endptr: [*c][*c]u8, __base: c_int) c_ulonglong;
-pub extern fn strtoll(__nptr: [*c]const u8, __endptr: [*c][*c]u8, __base: c_int) c_longlong;
-pub extern fn strtoull(__nptr: [*c]const u8, __endptr: [*c][*c]u8, __base: c_int) c_ulonglong;
-pub extern fn l64a(__n: c_long) [*c]u8;
-pub extern fn a64l(__s: [*c]const u8) c_long;
-pub const u_char = __u_char;
-pub const u_short = __u_short;
-pub const u_int = __u_int;
-pub const u_long = __u_long;
-pub const quad_t = __quad_t;
-pub const u_quad_t = __u_quad_t;
-pub const fsid_t = __fsid_t;
-pub const loff_t = __loff_t;
-pub const ino_t = __ino_t;
-pub const dev_t = __dev_t;
-pub const gid_t = __gid_t;
-pub const mode_t = __mode_t;
-pub const nlink_t = __nlink_t;
-pub const uid_t = __uid_t;
-pub const pid_t = __pid_t;
-pub const id_t = __id_t;
-pub const daddr_t = __daddr_t;
-pub const caddr_t = __caddr_t;
-pub const key_t = __key_t;
-pub const clock_t = __clock_t;
-pub const clockid_t = __clockid_t;
-pub const time_t = __time_t;
-pub const timer_t = __timer_t;
-pub const ulong = c_ulong;
-pub const ushort = c_ushort;
-pub const uint = c_uint;
-pub const u_int8_t = __uint8_t;
-pub const u_int16_t = __uint16_t;
-pub const u_int32_t = __uint32_t;
-pub const u_int64_t = __uint64_t;
-pub const register_t = c_long;
-pub fn __bswap_16(arg___bsx: __uint16_t) callconv(.c) __uint16_t {
-    var __bsx = arg___bsx;
-    _ = &__bsx;
-    return @as(__uint16_t, @bitCast(@as(c_short, @truncate(((@as(c_int, @bitCast(@as(c_uint, __bsx))) >> @intCast(8)) & @as(c_int, 255)) | ((@as(c_int, @bitCast(@as(c_uint, __bsx))) & @as(c_int, 255)) << @intCast(8))))));
-}
-pub fn __bswap_32(arg___bsx: __uint32_t) callconv(.c) __uint32_t {
-    var __bsx = arg___bsx;
-    _ = &__bsx;
-    return ((((__bsx & @as(c_uint, 4278190080)) >> @intCast(24)) | ((__bsx & @as(c_uint, 16711680)) >> @intCast(8))) | ((__bsx & @as(c_uint, 65280)) << @intCast(8))) | ((__bsx & @as(c_uint, 255)) << @intCast(24));
-}
-pub fn __bswap_64(arg___bsx: __uint64_t) callconv(.c) __uint64_t {
-    var __bsx = arg___bsx;
-    _ = &__bsx;
-    return @as(__uint64_t, @bitCast(@as(c_ulong, @truncate(((((((((@as(c_ulonglong, @bitCast(@as(c_ulonglong, __bsx))) & @as(c_ulonglong, 18374686479671623680)) >> @intCast(56)) | ((@as(c_ulonglong, @bitCast(@as(c_ulonglong, __bsx))) & @as(c_ulonglong, 71776119061217280)) >> @intCast(40))) | ((@as(c_ulonglong, @bitCast(@as(c_ulonglong, __bsx))) & @as(c_ulonglong, 280375465082880)) >> @intCast(24))) | ((@as(c_ulonglong, @bitCast(@as(c_ulonglong, __bsx))) & @as(c_ulonglong, 1095216660480)) >> @intCast(8))) | ((@as(c_ulonglong, @bitCast(@as(c_ulonglong, __bsx))) & @as(c_ulonglong, 4278190080)) << @intCast(8))) | ((@as(c_ulonglong, @bitCast(@as(c_ulonglong, __bsx))) & @as(c_ulonglong, 16711680)) << @intCast(24))) | ((@as(c_ulonglong, @bitCast(@as(c_ulonglong, __bsx))) & @as(c_ulonglong, 65280)) << @intCast(40))) | ((@as(c_ulonglong, @bitCast(@as(c_ulonglong, __bsx))) & @as(c_ulonglong, 255)) << @intCast(56))))));
-}
-pub fn __uint16_identity(arg___x: __uint16_t) callconv(.c) __uint16_t {
-    var __x = arg___x;
-    _ = &__x;
-    return __x;
-}
-pub fn __uint32_identity(arg___x: __uint32_t) callconv(.c) __uint32_t {
-    var __x = arg___x;
-    _ = &__x;
-    return __x;
-}
-pub fn __uint64_identity(arg___x: __uint64_t) callconv(.c) __uint64_t {
-    var __x = arg___x;
-    _ = &__x;
-    return __x;
-}
-pub const __sigset_t = extern struct {
-    __val: [16]c_ulong = @import("std").mem.zeroes([16]c_ulong),
-};
-pub const sigset_t = __sigset_t;
-pub const struct_timeval = extern struct {
-    tv_sec: __time_t = @import("std").mem.zeroes(__time_t),
-    tv_usec: __suseconds_t = @import("std").mem.zeroes(__suseconds_t),
-};
-pub const struct_timespec = extern struct {
-    tv_sec: __time_t = @import("std").mem.zeroes(__time_t),
-    tv_nsec: __syscall_slong_t = @import("std").mem.zeroes(__syscall_slong_t),
-};
-pub const suseconds_t = __suseconds_t;
-pub const __fd_mask = c_long;
-pub const fd_set = extern struct {
-    __fds_bits: [16]__fd_mask = @import("std").mem.zeroes([16]__fd_mask),
-};
-pub const fd_mask = __fd_mask;
-pub extern fn select(__nfds: c_int, noalias __readfds: [*c]fd_set, noalias __writefds: [*c]fd_set, noalias __exceptfds: [*c]fd_set, noalias __timeout: [*c]struct_timeval) c_int;
-pub extern fn pselect(__nfds: c_int, noalias __readfds: [*c]fd_set, noalias __writefds: [*c]fd_set, noalias __exceptfds: [*c]fd_set, noalias __timeout: [*c]const struct_timespec, noalias __sigmask: [*c]const __sigset_t) c_int;
-pub const blksize_t = __blksize_t;
-pub const blkcnt_t = __blkcnt_t;
-pub const fsblkcnt_t = __fsblkcnt_t;
-pub const fsfilcnt_t = __fsfilcnt_t;
-const struct_unnamed_4 = extern struct {
-    __low: c_uint = @import("std").mem.zeroes(c_uint),
-    __high: c_uint = @import("std").mem.zeroes(c_uint),
-};
-pub const __atomic_wide_counter = extern union {
-    __value64: c_ulonglong,
-    __value32: struct_unnamed_4,
-};
-pub const struct___pthread_internal_list = extern struct {
-    __prev: [*c]struct___pthread_internal_list = @import("std").mem.zeroes([*c]struct___pthread_internal_list),
-    __next: [*c]struct___pthread_internal_list = @import("std").mem.zeroes([*c]struct___pthread_internal_list),
-};
-pub const __pthread_list_t = struct___pthread_internal_list;
-pub const struct___pthread_internal_slist = extern struct {
-    __next: [*c]struct___pthread_internal_slist = @import("std").mem.zeroes([*c]struct___pthread_internal_slist),
-};
-pub const __pthread_slist_t = struct___pthread_internal_slist;
-pub const struct___pthread_mutex_s = extern struct {
-    __lock: c_int = @import("std").mem.zeroes(c_int),
-    __count: c_uint = @import("std").mem.zeroes(c_uint),
-    __owner: c_int = @import("std").mem.zeroes(c_int),
-    __nusers: c_uint = @import("std").mem.zeroes(c_uint),
-    __kind: c_int = @import("std").mem.zeroes(c_int),
-    __spins: c_short = @import("std").mem.zeroes(c_short),
-    __elision: c_short = @import("std").mem.zeroes(c_short),
-    __list: __pthread_list_t = @import("std").mem.zeroes(__pthread_list_t),
-};
-pub const struct___pthread_rwlock_arch_t = extern struct {
-    __readers: c_uint = @import("std").mem.zeroes(c_uint),
-    __writers: c_uint = @import("std").mem.zeroes(c_uint),
-    __wrphase_futex: c_uint = @import("std").mem.zeroes(c_uint),
-    __writers_futex: c_uint = @import("std").mem.zeroes(c_uint),
-    __pad3: c_uint = @import("std").mem.zeroes(c_uint),
-    __pad4: c_uint = @import("std").mem.zeroes(c_uint),
-    __cur_writer: c_int = @import("std").mem.zeroes(c_int),
-    __shared: c_int = @import("std").mem.zeroes(c_int),
-    __rwelision: i8 = @import("std").mem.zeroes(i8),
-    __pad1: [7]u8 = @import("std").mem.zeroes([7]u8),
-    __pad2: c_ulong = @import("std").mem.zeroes(c_ulong),
-    __flags: c_uint = @import("std").mem.zeroes(c_uint),
-};
-pub const struct___pthread_cond_s = extern struct {
-    __wseq: __atomic_wide_counter = @import("std").mem.zeroes(__atomic_wide_counter),
-    __g1_start: __atomic_wide_counter = @import("std").mem.zeroes(__atomic_wide_counter),
-    __g_size: [2]c_uint = @import("std").mem.zeroes([2]c_uint),
-    __g1_orig_size: c_uint = @import("std").mem.zeroes(c_uint),
-    __wrefs: c_uint = @import("std").mem.zeroes(c_uint),
-    __g_signals: [2]c_uint = @import("std").mem.zeroes([2]c_uint),
-    __unused_initialized_1: c_uint = @import("std").mem.zeroes(c_uint),
-    __unused_initialized_2: c_uint = @import("std").mem.zeroes(c_uint),
-};
-pub const __tss_t = c_uint;
-pub const __thrd_t = c_ulong;
-pub const __once_flag = extern struct {
-    __data: c_int = @import("std").mem.zeroes(c_int),
-};
-pub const pthread_t = c_ulong;
-pub const pthread_mutexattr_t = extern union {
-    __size: [4]u8,
-    __align: c_int,
-};
-pub const pthread_condattr_t = extern union {
-    __size: [4]u8,
-    __align: c_int,
-};
-pub const pthread_key_t = c_uint;
-pub const pthread_once_t = c_int;
-pub const union_pthread_attr_t = extern union {
-    __size: [56]u8,
-    __align: c_long,
-};
-pub const pthread_attr_t = union_pthread_attr_t;
-pub const pthread_mutex_t = extern union {
-    __data: struct___pthread_mutex_s,
-    __size: [40]u8,
-    __align: c_long,
-};
-pub const pthread_cond_t = extern union {
-    __data: struct___pthread_cond_s,
-    __size: [48]u8,
-    __align: c_longlong,
-};
-pub const pthread_rwlock_t = extern union {
-    __data: struct___pthread_rwlock_arch_t,
-    __size: [56]u8,
-    __align: c_long,
-};
-pub const pthread_rwlockattr_t = extern union {
-    __size: [8]u8,
-    __align: c_long,
-};
-pub const pthread_spinlock_t = c_int;
-pub const pthread_barrier_t = extern union {
-    __size: [32]u8,
-    __align: c_long,
-};
-pub const pthread_barrierattr_t = extern union {
-    __size: [4]u8,
-    __align: c_int,
-};
-pub extern fn random() c_long;
-pub extern fn srandom(__seed: c_uint) void;
-pub extern fn initstate(__seed: c_uint, __statebuf: [*c]u8, __statelen: usize) [*c]u8;
-pub extern fn setstate(__statebuf: [*c]u8) [*c]u8;
-pub const struct_random_data = extern struct {
-    fptr: [*c]i32 = @import("std").mem.zeroes([*c]i32),
-    rptr: [*c]i32 = @import("std").mem.zeroes([*c]i32),
-    state: [*c]i32 = @import("std").mem.zeroes([*c]i32),
-    rand_type: c_int = @import("std").mem.zeroes(c_int),
-    rand_deg: c_int = @import("std").mem.zeroes(c_int),
-    rand_sep: c_int = @import("std").mem.zeroes(c_int),
-    end_ptr: [*c]i32 = @import("std").mem.zeroes([*c]i32),
-};
-pub extern fn random_r(noalias __buf: [*c]struct_random_data, noalias __result: [*c]i32) c_int;
-pub extern fn srandom_r(__seed: c_uint, __buf: [*c]struct_random_data) c_int;
-pub extern fn initstate_r(__seed: c_uint, noalias __statebuf: [*c]u8, __statelen: usize, noalias __buf: [*c]struct_random_data) c_int;
-pub extern fn setstate_r(noalias __statebuf: [*c]u8, noalias __buf: [*c]struct_random_data) c_int;
-pub extern fn rand() c_int;
-pub extern fn srand(__seed: c_uint) void;
-pub extern fn rand_r(__seed: [*c]c_uint) c_int;
-pub extern fn drand48() f64;
-pub extern fn erand48(__xsubi: [*c]c_ushort) f64;
-pub extern fn lrand48() c_long;
-pub extern fn nrand48(__xsubi: [*c]c_ushort) c_long;
-pub extern fn mrand48() c_long;
-pub extern fn jrand48(__xsubi: [*c]c_ushort) c_long;
-pub extern fn srand48(__seedval: c_long) void;
-pub extern fn seed48(__seed16v: [*c]c_ushort) [*c]c_ushort;
-pub extern fn lcong48(__param: [*c]c_ushort) void;
-pub const struct_drand48_data = extern struct {
-    __x: [3]c_ushort = @import("std").mem.zeroes([3]c_ushort),
-    __old_x: [3]c_ushort = @import("std").mem.zeroes([3]c_ushort),
-    __c: c_ushort = @import("std").mem.zeroes(c_ushort),
-    __init: c_ushort = @import("std").mem.zeroes(c_ushort),
-    __a: c_ulonglong = @import("std").mem.zeroes(c_ulonglong),
-};
-pub extern fn drand48_r(noalias __buffer: [*c]struct_drand48_data, noalias __result: [*c]f64) c_int;
-pub extern fn erand48_r(__xsubi: [*c]c_ushort, noalias __buffer: [*c]struct_drand48_data, noalias __result: [*c]f64) c_int;
-pub extern fn lrand48_r(noalias __buffer: [*c]struct_drand48_data, noalias __result: [*c]c_long) c_int;
-pub extern fn nrand48_r(__xsubi: [*c]c_ushort, noalias __buffer: [*c]struct_drand48_data, noalias __result: [*c]c_long) c_int;
-pub extern fn mrand48_r(noalias __buffer: [*c]struct_drand48_data, noalias __result: [*c]c_long) c_int;
-pub extern fn jrand48_r(__xsubi: [*c]c_ushort, noalias __buffer: [*c]struct_drand48_data, noalias __result: [*c]c_long) c_int;
-pub extern fn srand48_r(__seedval: c_long, __buffer: [*c]struct_drand48_data) c_int;
-pub extern fn seed48_r(__seed16v: [*c]c_ushort, __buffer: [*c]struct_drand48_data) c_int;
-pub extern fn lcong48_r(__param: [*c]c_ushort, __buffer: [*c]struct_drand48_data) c_int;
-pub extern fn arc4random() __uint32_t;
-pub extern fn arc4random_buf(__buf: ?*anyopaque, __size: usize) void;
-pub extern fn arc4random_uniform(__upper_bound: __uint32_t) __uint32_t;
-pub extern fn malloc(__size: c_ulong) ?*anyopaque;
-pub extern fn calloc(__nmemb: c_ulong, __size: c_ulong) ?*anyopaque;
-pub extern fn realloc(__ptr: ?*anyopaque, __size: c_ulong) ?*anyopaque;
-pub extern fn free(__ptr: ?*anyopaque) void;
-pub extern fn reallocarray(__ptr: ?*anyopaque, __nmemb: usize, __size: usize) ?*anyopaque;
-pub extern fn alloca(__size: c_ulong) ?*anyopaque;
-pub extern fn valloc(__size: usize) ?*anyopaque;
-pub extern fn posix_memalign(__memptr: [*c]?*anyopaque, __alignment: usize, __size: usize) c_int;
-pub extern fn aligned_alloc(__alignment: c_ulong, __size: c_ulong) ?*anyopaque;
-pub extern fn abort() noreturn;
-pub extern fn atexit(__func: ?*const fn () callconv(.c) void) c_int;
-pub extern fn at_quick_exit(__func: ?*const fn () callconv(.c) void) c_int;
-pub extern fn on_exit(__func: ?*const fn (c_int, ?*anyopaque) callconv(.c) void, __arg: ?*anyopaque) c_int;
-pub extern fn exit(__status: c_int) noreturn;
-pub extern fn quick_exit(__status: c_int) noreturn;
-pub extern fn _Exit(__status: c_int) noreturn;
-pub extern fn getenv(__name: [*c]const u8) [*c]u8;
-pub extern fn putenv(__string: [*c]u8) c_int;
-pub extern fn setenv(__name: [*c]const u8, __value: [*c]const u8, __replace: c_int) c_int;
-pub extern fn unsetenv(__name: [*c]const u8) c_int;
-pub extern fn clearenv() c_int;
-pub extern fn mktemp(__template: [*c]u8) [*c]u8;
-pub extern fn mkstemp(__template: [*c]u8) c_int;
-pub extern fn mkstemps(__template: [*c]u8, __suffixlen: c_int) c_int;
-pub extern fn mkdtemp(__template: [*c]u8) [*c]u8;
-pub extern fn system(__command: [*c]const u8) c_int;
-pub extern fn realpath(noalias __name: [*c]const u8, noalias __resolved: [*c]u8) [*c]u8;
-pub const __compar_fn_t = ?*const fn (?*const anyopaque, ?*const anyopaque) callconv(.c) c_int;
-pub extern fn bsearch(__key: ?*const anyopaque, __base: ?*const anyopaque, __nmemb: usize, __size: usize, __compar: __compar_fn_t) ?*anyopaque;
-pub extern fn qsort(__base: ?*anyopaque, __nmemb: usize, __size: usize, __compar: __compar_fn_t) void;
-pub extern fn abs(__x: c_int) c_int;
-pub extern fn labs(__x: c_long) c_long;
-pub extern fn llabs(__x: c_longlong) c_longlong;
-pub extern fn div(__numer: c_int, __denom: c_int) div_t;
-pub extern fn ldiv(__numer: c_long, __denom: c_long) ldiv_t;
-pub extern fn lldiv(__numer: c_longlong, __denom: c_longlong) lldiv_t;
-pub extern fn ecvt(__value: f64, __ndigit: c_int, noalias __decpt: [*c]c_int, noalias __sign: [*c]c_int) [*c]u8;
-pub extern fn fcvt(__value: f64, __ndigit: c_int, noalias __decpt: [*c]c_int, noalias __sign: [*c]c_int) [*c]u8;
-pub extern fn gcvt(__value: f64, __ndigit: c_int, __buf: [*c]u8) [*c]u8;
-pub extern fn qecvt(__value: c_longdouble, __ndigit: c_int, noalias __decpt: [*c]c_int, noalias __sign: [*c]c_int) [*c]u8;
-pub extern fn qfcvt(__value: c_longdouble, __ndigit: c_int, noalias __decpt: [*c]c_int, noalias __sign: [*c]c_int) [*c]u8;
-pub extern fn qgcvt(__value: c_longdouble, __ndigit: c_int, __buf: [*c]u8) [*c]u8;
-pub extern fn ecvt_r(__value: f64, __ndigit: c_int, noalias __decpt: [*c]c_int, noalias __sign: [*c]c_int, noalias __buf: [*c]u8, __len: usize) c_int;
-pub extern fn fcvt_r(__value: f64, __ndigit: c_int, noalias __decpt: [*c]c_int, noalias __sign: [*c]c_int, noalias __buf: [*c]u8, __len: usize) c_int;
-pub extern fn qecvt_r(__value: c_longdouble, __ndigit: c_int, noalias __decpt: [*c]c_int, noalias __sign: [*c]c_int, noalias __buf: [*c]u8, __len: usize) c_int;
-pub extern fn qfcvt_r(__value: c_longdouble, __ndigit: c_int, noalias __decpt: [*c]c_int, noalias __sign: [*c]c_int, noalias __buf: [*c]u8, __len: usize) c_int;
-pub extern fn mblen(__s: [*c]const u8, __n: usize) c_int;
-pub extern fn mbtowc(noalias __pwc: [*c]wchar_t, noalias __s: [*c]const u8, __n: usize) c_int;
-pub extern fn wctomb(__s: [*c]u8, __wchar: wchar_t) c_int;
-pub extern fn mbstowcs(noalias __pwcs: [*c]wchar_t, noalias __s: [*c]const u8, __n: usize) usize;
-pub extern fn wcstombs(noalias __s: [*c]u8, noalias __pwcs: [*c]const wchar_t, __n: usize) usize;
-pub extern fn rpmatch(__response: [*c]const u8) c_int;
-pub extern fn getsubopt(noalias __optionp: [*c][*c]u8, noalias __tokens: [*c]const [*c]u8, noalias __valuep: [*c][*c]u8) c_int;
-pub extern fn getloadavg(__loadavg: [*c]f64, __nelem: c_int) c_int;
-pub export fn cvk_Application_defaults() VkApplicationInfo {
-    return VkApplicationInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_APPLICATION_INFO)),
-        .pNext = null,
-        .pApplicationName = "cvk | Generic Application",
-        .applicationVersion = ((@as(u32, @bitCast(@as(c_int, 0))) << @intCast(22)) | (@as(u32, @bitCast(@as(c_int, 0))) << @intCast(12))) | @as(u32, @bitCast(@as(c_int, 0))),
-        .pEngineName = "cvk | Generic Engine",
-        .engineVersion = ((@as(u32, @bitCast(@as(c_int, 0))) << @intCast(22)) | (@as(u32, @bitCast(@as(c_int, 0))) << @intCast(12))) | @as(u32, @bitCast(@as(c_int, 0))),
-        .apiVersion = (((@as(u32, @bitCast(@as(c_int, 0))) << @intCast(29)) | (@as(u32, @bitCast(@as(c_int, 1))) << @intCast(22))) | (@as(u32, @bitCast(@as(c_int, 4))) << @intCast(12))) | @as(u32, @bitCast(@as(c_int, 0))),
-    };
-}
-pub export fn cvk_validation_options_defaults() cvk_validation_Options {
-    return cvk_validation_Options{
-        .layers_active = @as(c_uint, @bitCast(cvk_true)),
-        .debug_active = @as(c_uint, @bitCast(cvk_true)),
-        .debug_severity = @as(VkDebugUtilsMessageSeverityFlagsEXT, @bitCast((VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT) | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT)),
-        .debug_msgType = @as(VkDebugUtilsMessageTypeFlagsEXT, @bitCast((VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT) | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT)),
-        .debug_callback = &cvk_validation_debug_callback,
-        .debug_userdata = @as(?*anyopaque, @ptrFromInt(@as(c_int, 0))),
-    };
-}
-pub export fn cvk_validation_debug_options_defaults() VkDebugUtilsMessengerCreateInfoEXT {
-    return cvk_validation_debug_options_create(@as(VkDebugUtilsMessengerCreateFlagsEXT, @bitCast(@as(c_int, 0))), @as(VkDebugUtilsMessageSeverityFlagsEXT, @bitCast((VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT) | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT)), @as(VkDebugUtilsMessageTypeFlagsEXT, @bitCast((VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT) | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT)), &cvk_validation_debug_callback, @as(?*anyopaque, @ptrFromInt(@as(c_int, 0))));
-}
-pub export fn cvk_validation_debug_options_create(flags: VkDebugUtilsMessengerCreateFlagsEXT, severity: VkDebugUtilsMessageSeverityFlagsEXT, msgType: VkDebugUtilsMessageTypeFlagsEXT, callback: PFN_vkDebugUtilsMessengerCallbackEXT, userdata: ?*anyopaque) VkDebugUtilsMessengerCreateInfoEXT {
-    _ = &flags;
-    _ = &severity;
-    _ = &msgType;
-    _ = &callback;
-    _ = &userdata;
-    return VkDebugUtilsMessengerCreateInfoEXT{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT)),
-        .pNext = null,
-        .flags = flags,
-        .messageSeverity = severity,
-        .messageType = msgType,
-        .pfnUserCallback = callback,
-        .pUserData = userdata,
-    };
-}
-pub export fn cvk_validation_debug_callback(severity: VkDebugUtilsMessageSeverityFlagBitsEXT, types: VkDebugUtilsMessageTypeFlagsEXT, cbdata: [*c]const VkDebugUtilsMessengerCallbackDataEXT, userdata: ?*anyopaque) VkBool32 {
-    _ = &severity;
-    _ = &types;
-    _ = &cbdata;
-    _ = &userdata;
-    _ = &userdata;
-    _ = printf("[cvulkan.Validation] (%u %u) : %s\n", types, severity, cbdata.*.pMessage);
-    return 0;
-}
-pub export fn cvk_validation_debug_context_create(instance: VkInstance, cfg: [*c]VkDebugUtilsMessengerCreateInfoEXT, allocator: [*c]VkAllocationCallbacks) VkDebugUtilsMessengerEXT {
-    _ = &instance;
-    _ = &cfg;
-    _ = &allocator;
-    const create: PFN_vkCreateDebugUtilsMessengerEXT = cvk_Fn_get_createDebug(instance);
-    _ = &create;
-    var result: VkDebugUtilsMessengerEXT = null;
-    _ = &result;
-    while (true) {
-        if (create.?(instance, cfg, allocator, &result) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create the Vulkan Debug Messenger Context\n", cvk_result_toString_default(create.?(instance, cfg, allocator, &result)), "src/ffi/.././cvulkan/././validation.c", @as(c_int, 86), "cvk_validation_debug_context_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_validation_debug_context_destroy(instance: VkInstance, arg_debug_ct: VkDebugUtilsMessengerEXT, allocator: [*c]VkAllocationCallbacks) void {
-    _ = &instance;
-    var debug_ct = arg_debug_ct;
-    _ = &debug_ct;
-    _ = &allocator;
-    var destroy: PFN_vkDestroyDebugUtilsMessengerEXT = cvk_Fn_get_destroyDebug(instance);
-    _ = &destroy;
-    destroy.?(instance, debug_ct, allocator);
-    _ = &instance;
-    _ = &cvk_Fn_get_destroyDebug;
-}
-pub fn cvk_Fn_get_createDebug(instance: VkInstance) callconv(.c) PFN_vkCreateDebugUtilsMessengerEXT {
-    _ = &instance;
-    const result: PFN_vkCreateDebugUtilsMessengerEXT = @as(PFN_vkCreateDebugUtilsMessengerEXT, @ptrCast(@alignCast(vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT"))));
-    _ = &result;
-    while (true) {
-        if (!(result != @as(PFN_vkCreateDebugUtilsMessengerEXT, @ptrCast(@alignCast(@as(?*anyopaque, @ptrFromInt(@as(c_int, 0)))))))) {
-            _ = printf("[%s:%d] %s: Failed to get the Vulkan Debug Messenger create function\n", "src/ffi/.././cvulkan/././validation.c", @as(c_int, 74), "cvk_Fn_get_createDebug");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub fn cvk_Fn_get_destroyDebug(instance: VkInstance) callconv(.c) PFN_vkDestroyDebugUtilsMessengerEXT {
-    _ = &instance;
-    const result: PFN_vkDestroyDebugUtilsMessengerEXT = @as(PFN_vkDestroyDebugUtilsMessengerEXT, @ptrCast(@alignCast(vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT"))));
-    _ = &result;
-    while (true) {
-        if (!(result != @as(PFN_vkDestroyDebugUtilsMessengerEXT, @ptrCast(@alignCast(@as(?*anyopaque, @ptrFromInt(@as(c_int, 0)))))))) {
-            _ = printf("[%s:%d] %s: Failed to get the Vulkan Debug Messenger destroy function\n", "src/ffi/.././cvulkan/././validation.c", @as(c_int, 102), "cvk_Fn_get_destroyDebug");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_instance_options_create(application: [*c]const VkApplicationInfo, flags: VkInstanceCreateFlags, layers: cvk_Slice_t, extensions: cvk_Slice_t) VkInstanceCreateInfo {
-    _ = &application;
-    _ = &flags;
-    _ = &layers;
-    _ = &extensions;
-    return VkInstanceCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO)),
-        .pNext = null,
-        .flags = flags,
-        .pApplicationInfo = application,
-        .enabledLayerCount = @as(u32, @bitCast(@as(c_uint, @truncate(layers.len)))),
-        .ppEnabledLayerNames = @as([*c]const [*c]const u8, @ptrCast(@alignCast(layers.ptr))),
-        .enabledExtensionCount = @as(u32, @bitCast(@as(c_uint, @truncate(extensions.len)))),
-        .ppEnabledExtensionNames = @as([*c]const [*c]const u8, @ptrCast(@alignCast(extensions.ptr))),
-    };
-}
+pub const cvk_image_Sampler = struct_cvk_image_Sampler;
+pub extern fn cvk_allocator_alloc_stdlib(A: [*c]cvk_Allocator_CPU_t, count: usize, itemsize: usize) cvk_Slice_t;
+pub extern fn cvk_allocator_allocZ_stdlib(A: [*c]cvk_Allocator_CPU_t, count: usize, itemsize: usize) cvk_Slice_t;
+pub extern fn cvk_allocator_free_stdlib(A: [*c]cvk_Allocator_CPU_t, data: [*c]cvk_Slice_t) void;
+pub extern fn cvk_allocator_copy_stdlib(A: [*c]cvk_Allocator_CPU_t, src: [*c]const cvk_Slice_t, trg: [*c]cvk_Slice_t) void;
+pub extern fn cvk_allocator_duplicate_stdlib(A: [*c]cvk_Allocator_CPU_t, data: [*c]const cvk_Slice_t) cvk_Slice_t;
+pub extern fn cvk_allocator_cpu_stdlib(...) cvk_Allocator_CPU_t;
+pub extern fn cvk_Allocator_defaults(...) cvk_Allocator;
+pub extern fn cvk_Application_defaults(...) VkApplicationInfo;
+pub extern fn cvk_validation_options_defaults(...) cvk_validation_Options;
+pub extern fn cvk_validation_debug_options_defaults(...) VkDebugUtilsMessengerCreateInfoEXT;
+pub extern fn cvk_validation_debug_options_create(flags: VkDebugUtilsMessengerCreateFlagsEXT, severity: VkDebugUtilsMessageSeverityFlagsEXT, msgType: VkDebugUtilsMessageTypeFlagsEXT, callback: PFN_vkDebugUtilsMessengerCallbackEXT, userdata: ?*anyopaque) VkDebugUtilsMessengerCreateInfoEXT;
+pub extern fn cvk_validation_debug_callback(severity: VkDebugUtilsMessageSeverityFlagBitsEXT, types: VkDebugUtilsMessageTypeFlagsEXT, cbdata: [*c]const VkDebugUtilsMessengerCallbackDataEXT, userdata: ?*anyopaque) VkBool32;
+pub extern fn cvk_validation_debug_context_create(instance: VkInstance, cfg: [*c]VkDebugUtilsMessengerCreateInfoEXT, allocator: [*c]VkAllocationCallbacks) VkDebugUtilsMessengerEXT;
+pub extern fn cvk_validation_debug_context_destroy(instance: VkInstance, debug_ct: VkDebugUtilsMessengerEXT, allocator: [*c]VkAllocationCallbacks) void;
+pub extern fn cvk_instance_options_create(application: [*c]const VkApplicationInfo, flags: VkInstanceCreateFlags, layers: cvk_Slice_t, extensions: cvk_Slice_t) VkInstanceCreateInfo;
 pub const struct_cvk_instance_create_args = extern struct {
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
     layers: cvk_Slice_t = @import("std").mem.zeroes(cvk_Slice_t),
@@ -18043,334 +17512,15 @@ pub const struct_cvk_instance_create_args = extern struct {
     extensions_getRequired: cvk_Fn_extensions_Instance_getRequired = @import("std").mem.zeroes(cvk_Fn_extensions_Instance_getRequired),
 };
 pub const cvk_instance_create_args = struct_cvk_instance_create_args;
-pub export fn cvk_instance_create(arg: [*c]const cvk_instance_create_args) cvk_Instance {
-    _ = &arg;
-    var result: cvk_Instance = cvk_Instance{
-        .ct = null,
-        .cfg = @import("std").mem.zeroes(VkInstanceCreateInfo),
-        .allocator = @import("std").mem.zeroes(cvk_Allocator),
-        .application = @import("std").mem.zeroes(VkApplicationInfo),
-        .validation = @import("std").mem.zeroes(cvk_Validation),
-    };
-    _ = &result;
-    result.allocator = if (arg.*.allocator != null) arg.*.allocator.* else cvk_Allocator_defaults();
-    result.application = cvk_Application_defaults();
-    result.application.pApplicationName = arg.*.app_name;
-    result.application.applicationVersion = arg.*.app_version;
-    result.application.pEngineName = arg.*.engine_name;
-    result.application.engineVersion = arg.*.engine_version;
-    var validation: cvk_validation_Options = if (arg.*.validation != null) arg.*.validation.* else cvk_validation_options_defaults();
-    _ = &validation;
-    result.validation = cvk_Validation{
-        .debug_ct = null,
-        .debug_cfg = cvk_validation_debug_options_defaults(),
-        .debug_active = validation.debug_active,
-        .layers_active = validation.layers_active,
-    };
-    if (result.validation.debug_active != 0) {
-        result.validation.debug_cfg.messageSeverity = validation.debug_severity;
-        result.validation.debug_cfg.messageType = validation.debug_msgType;
-        result.validation.debug_cfg.pfnUserCallback = validation.debug_callback;
-        result.validation.debug_cfg.pUserData = validation.debug_userdata;
-    }
-    if (result.validation.layers_active != 0) {
-        cvk_instance_layers_checkValidation(&result.allocator);
-    }
-    var layer_list: [1]cvk_String = [1]cvk_String{
-        "VK_LAYER_KHRONOS_validation",
-    };
-    _ = &layer_list;
-    var layers: cvk_Slice_t = cvk_Slice_t{
-        .len = @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))),
-        .itemsize = @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))),
-        .ptr = @as(?*anyopaque, @ptrFromInt(@as(c_int, 0))),
-    };
-    _ = &layers;
-    layers.ptr = @as(cvk_pointer, @ptrCast(&layer_list));
-    layers.len = 1;
-    var extension_list: [3]cvk_String = [3]cvk_String{
-        "VK_EXT_debug_utils",
-        "VK_KHR_surface",
-        "VK_KHR_xcb_surface",
-    };
-    _ = &extension_list;
-    var extensions: cvk_Slice_t = cvk_Slice_t{
-        .len = @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))),
-        .itemsize = @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))),
-        .ptr = @as(?*anyopaque, @ptrFromInt(@as(c_int, 0))),
-    };
-    _ = &extensions;
-    extensions.ptr = @as(cvk_pointer, @ptrCast(&extension_list));
-    extensions.len = 3;
-    result.cfg = cvk_instance_options_create(&result.application, @as(VkInstanceCreateFlags, @bitCast(@as(c_int, 0))), layers, extensions);
-    if (result.validation.debug_active != 0) {
-        result.cfg.pNext = @as(?*anyopaque, @ptrCast(&result.validation.debug_cfg));
-    }
-    while (true) {
-        if (vkCreateInstance(&result.cfg, result.allocator.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create the Vulkan Instance.\n", cvk_result_toString_default(vkCreateInstance(&result.cfg, result.allocator.gpu, &result.ct)), "src/ffi/.././cvulkan/././instance.c", @as(c_int, 147), "cvk_instance_create");
-        }
-        if (!false) break;
-    }
-    if (result.validation.debug_active != 0) {
-        result.validation.debug_ct = cvk_validation_debug_context_create(result.ct, &result.validation.debug_cfg, result.allocator.gpu);
-    }
-    return result;
-}
-pub export fn cvk_instance_destroy(instance: [*c]cvk_Instance) void {
-    _ = &instance;
-    cvk_validation_debug_context_destroy(instance.*.ct, instance.*.validation.debug_ct, instance.*.allocator.gpu);
-    instance.*.cfg = VkInstanceCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkInstanceCreateFlags),
-        .pApplicationInfo = null,
-        .enabledLayerCount = @import("std").mem.zeroes(u32),
-        .ppEnabledLayerNames = null,
-        .enabledExtensionCount = @import("std").mem.zeroes(u32),
-        .ppEnabledExtensionNames = null,
-    };
-    vkDestroyInstance(instance.*.ct, instance.*.allocator.gpu);
-}
-// src/ffi/.././cvulkan/././instance.c:63:9: warning: TODO implement translation of stmt class GotoStmtClass
-
-// src/ffi/.././cvulkan/././instance.c:33:10: warning: unable to translate function, demoted to extern
+pub extern fn cvk_instance_create(arg: [*c]const cvk_instance_create_args) cvk_Instance;
+pub extern fn cvk_instance_destroy(instance: [*c]cvk_Instance) void;
 pub extern fn cvk_instance_layers_checkSupport(required: cvk_Slice_t, allocator: [*c]cvk_Allocator) cvk_bool;
-pub fn cvk_instance_layers_checkValidation(allocator: [*c]cvk_Allocator) callconv(.c) void {
-    _ = &allocator;
-    var validation_layers: [1]cvk_String = [1]cvk_String{
-        "VK_LAYER_KHRONOS_validation",
-    };
-    _ = &validation_layers;
-    const layers: cvk_Slice_t = cvk_Slice_t{
-        .len = @as(usize, @bitCast(@as(c_long, @as(c_int, 1)))),
-        .itemsize = @import("std").mem.zeroes(usize),
-        .ptr = @as(cvk_pointer, @ptrCast(&validation_layers)),
-    };
-    _ = &layers;
-    while (true) {
-        if (!(cvk_instance_layers_checkSupport(layers, allocator) != 0)) {
-            _ = printf("[%s:%d] %s: Validation layers are not available in this system.\n", "src/ffi/.././cvulkan/././instance.c", @as(c_int, 80), "cvk_instance_layers_checkValidation");
-        }
-        if (!false) break;
-    }
-}
-pub export fn cvk_device_queue_families_create(device: [*c]const cvk_device_Physical, surface: cvk_Surface, allocator: [*c]cvk_Allocator) cvk_QueueFamilies {
-    _ = &device;
-    _ = &surface;
-    _ = &allocator;
-    var result: cvk_QueueFamilies = cvk_QueueFamilies{
-        .properties = cvk_queueFamilies_properties_List{
-            .len = @import("std").mem.zeroes(usize),
-            .itemsize = @sizeOf(VkQueueFamilyProperties),
-            .ptr = null,
-        },
-        .graphics = @as(c_uint, 4294967295),
-        .present = @as(c_uint, 4294967295),
-        .compute = @import("std").mem.zeroes(cvk_QueueID),
-        .transfer = @as(c_uint, 4294967295),
-    };
-    _ = &result;
-    vkGetPhysicalDeviceQueueFamilyProperties(device.*.ct, @as([*c]u32, @ptrCast(@alignCast(&result.properties.len))), null);
-    if (result.properties.len != 0) {
-        var data: cvk_Slice_t = allocator.*.cpu.allocZ.?(&allocator.*.cpu, result.properties.len, result.properties.itemsize);
-        _ = &data;
-        vkGetPhysicalDeviceQueueFamilyProperties(device.*.ct, @as([*c]u32, @ptrCast(@alignCast(&data.len))), @as([*c]VkQueueFamilyProperties, @ptrCast(@alignCast(data.ptr))));
-        result.properties.len = data.len;
-        result.properties.ptr = @as([*c]VkQueueFamilyProperties, @ptrCast(@alignCast(data.ptr)));
-    }
-    {
-        var id: u32 = 0;
-        _ = &id;
-        while (@as(usize, @bitCast(@as(c_ulong, id))) < result.properties.len) : (id +%= 1) {
-            const prop: VkQueueFamilyProperties = result.properties.ptr[id];
-            _ = &prop;
-            if ((result.graphics == @as(c_uint, 4294967295)) and ((prop.queueFlags & @as(VkQueueFlags, @bitCast(VK_QUEUE_GRAPHICS_BIT))) != 0)) {
-                result.graphics = id;
-            }
-            if ((result.compute == @as(c_uint, 4294967295)) and ((prop.queueFlags & @as(VkQueueFlags, @bitCast(VK_QUEUE_COMPUTE_BIT))) != 0)) {
-                result.compute = id;
-            }
-            const transferOnly: cvk_bool = @as(c_uint, @intFromBool(((prop.queueFlags & @as(VkQueueFlags, @bitCast(VK_QUEUE_TRANSFER_BIT))) != 0) and !((prop.queueFlags & @as(VkQueueFlags, @bitCast(VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT))) != 0)));
-            _ = &transferOnly;
-            if ((result.transfer == @as(c_uint, 4294967295)) and (transferOnly != 0)) {
-                result.transfer = id;
-            }
-            var canPresent: VkBool32 = 0;
-            _ = &canPresent;
-            _ = vkGetPhysicalDeviceSurfaceSupportKHR(device.*.ct, id, surface, &canPresent);
-            if ((result.present == @as(c_uint, 4294967295)) and (canPresent != 0)) {
-                result.present = id;
-            }
-        }
-    }
-    return result;
-}
-pub export fn cvk_device_queue_families_destroy(queueFamilies: [*c]cvk_QueueFamilies, allocator: [*c]cvk_Allocator) void {
-    _ = &queueFamilies;
-    _ = &allocator;
-    allocator.*.cpu.free.?(&allocator.*.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(&queueFamilies.*.properties))));
-    queueFamilies.*.graphics = @as(c_uint, 4294967295);
-    queueFamilies.*.present = @as(c_uint, 4294967295);
-    queueFamilies.*.transfer = @as(c_uint, 4294967295);
-    queueFamilies.*.compute = @as(c_uint, 4294967295);
-}
-pub export fn cvk_device_swapchain_support_create(device: [*c]const cvk_device_Physical, surface: cvk_Surface, allocator: [*c]cvk_Allocator) cvk_device_swapchain_Support {
-    _ = &device;
-    _ = &surface;
-    _ = &allocator;
-    var result: cvk_device_swapchain_Support = cvk_device_swapchain_Support{
-        .capabilities = @import("std").mem.zeroes(VkSurfaceCapabilitiesKHR),
-        .priv_pad = @import("std").mem.zeroes([4]u8),
-        .formats = cvk_device_swapchain_Formats{
-            .len = @import("std").mem.zeroes(usize),
-            .itemsize = @sizeOf(VkSurfaceFormatKHR),
-            .ptr = null,
-        },
-        .modes = cvk_device_swapchain_Modes{
-            .len = @import("std").mem.zeroes(usize),
-            .itemsize = @sizeOf(VkPresentModeKHR),
-            .ptr = null,
-        },
-    };
-    _ = &result;
-    while (true) {
-        if (vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device.*.ct, surface, &result.capabilities) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to retrieve the Swapchain Surface capabilities for the selected device.\n", cvk_result_toString_default(vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device.*.ct, surface, &result.capabilities)), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 81), "cvk_device_swapchain_support_create");
-        }
-        if (!false) break;
-    }
-    while (true) {
-        if (vkGetPhysicalDeviceSurfaceFormatsKHR(device.*.ct, surface, @as([*c]u32, @ptrCast(@alignCast(&result.formats.len))), null) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to retrieve the number of Swapchain Formats for the selected device.\n", cvk_result_toString_default(vkGetPhysicalDeviceSurfaceFormatsKHR(device.*.ct, surface, @as([*c]u32, @ptrCast(@alignCast(&result.formats.len))), null)), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 86), "cvk_device_swapchain_support_create");
-        }
-        if (!false) break;
-    }
-    if (result.formats.len != 0) {
-        var data: cvk_Slice_t = allocator.*.cpu.allocZ.?(&allocator.*.cpu, result.formats.len, result.formats.itemsize);
-        _ = &data;
-        while (true) {
-            if (vkGetPhysicalDeviceSurfaceFormatsKHR(device.*.ct, surface, @as([*c]u32, @ptrCast(@alignCast(&data.len))), @as([*c]VkSurfaceFormatKHR, @ptrCast(@alignCast(data.ptr)))) != 0) {
-                _ = printf("%s (%s:%d) %s: Failed to retrieve the list of Swapchain Formats for the selected device.\n", cvk_result_toString_default(vkGetPhysicalDeviceSurfaceFormatsKHR(device.*.ct, surface, @as([*c]u32, @ptrCast(@alignCast(&data.len))), @as([*c]VkSurfaceFormatKHR, @ptrCast(@alignCast(data.ptr))))), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 90), "cvk_device_swapchain_support_create");
-            }
-            if (!false) break;
-        }
-        result.formats.len = data.len;
-        result.formats.ptr = @as([*c]VkSurfaceFormatKHR, @ptrCast(@alignCast(data.ptr)));
-    }
-    while (true) {
-        if (vkGetPhysicalDeviceSurfacePresentModesKHR(device.*.ct, surface, @as([*c]u32, @ptrCast(@alignCast(&result.modes.len))), null) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to retrieve the number of Swapchain Present Modes for the selected device.\n", cvk_result_toString_default(vkGetPhysicalDeviceSurfacePresentModesKHR(device.*.ct, surface, @as([*c]u32, @ptrCast(@alignCast(&result.modes.len))), null)), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 97), "cvk_device_swapchain_support_create");
-        }
-        if (!false) break;
-    }
-    if (result.modes.len != 0) {
-        var data: cvk_Slice_t = allocator.*.cpu.allocZ.?(&allocator.*.cpu, result.modes.len, result.modes.itemsize);
-        _ = &data;
-        while (true) {
-            if (vkGetPhysicalDeviceSurfacePresentModesKHR(device.*.ct, surface, @as([*c]u32, @ptrCast(@alignCast(&data.len))), @as([*c]VkPresentModeKHR, @ptrCast(@alignCast(data.ptr)))) != 0) {
-                _ = printf("%s (%s:%d) %s: Failed to retrieve the list of Swapchain Present Modes for the selected device.\n", cvk_result_toString_default(vkGetPhysicalDeviceSurfacePresentModesKHR(device.*.ct, surface, @as([*c]u32, @ptrCast(@alignCast(&data.len))), @as([*c]VkPresentModeKHR, @ptrCast(@alignCast(data.ptr))))), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 101), "cvk_device_swapchain_support_create");
-            }
-            if (!false) break;
-        }
-        result.modes.len = data.len;
-        result.modes.ptr = @as([*c]VkPresentModeKHR, @ptrCast(@alignCast(data.ptr)));
-    }
-    return result;
-}
-pub export fn cvk_device_swapchain_support_destroy(support: [*c]cvk_device_swapchain_Support, allocator: [*c]cvk_Allocator) void {
-    _ = &support;
-    _ = &allocator;
-    support.*.capabilities = VkSurfaceCapabilitiesKHR{
-        .minImageCount = @as(u32, @bitCast(@as(c_int, 0))),
-        .maxImageCount = @import("std").mem.zeroes(u32),
-        .currentExtent = @import("std").mem.zeroes(VkExtent2D),
-        .minImageExtent = @import("std").mem.zeroes(VkExtent2D),
-        .maxImageExtent = @import("std").mem.zeroes(VkExtent2D),
-        .maxImageArrayLayers = @import("std").mem.zeroes(u32),
-        .supportedTransforms = @import("std").mem.zeroes(VkSurfaceTransformFlagsKHR),
-        .currentTransform = @import("std").mem.zeroes(VkSurfaceTransformFlagBitsKHR),
-        .supportedCompositeAlpha = @import("std").mem.zeroes(VkCompositeAlphaFlagsKHR),
-        .supportedUsageFlags = @import("std").mem.zeroes(VkImageUsageFlags),
-    };
-    allocator.*.cpu.free.?(&allocator.*.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(&support.*.formats))));
-    allocator.*.cpu.free.?(&allocator.*.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(&support.*.modes))));
-}
-pub export fn cvk_device_physical_isSuitable_default(device: [*c]const cvk_device_Physical, surface: cvk_Surface, allocator: [*c]cvk_Allocator) cvk_bool {
-    _ = &device;
-    _ = &surface;
-    _ = &allocator;
-    var properties: VkPhysicalDeviceProperties = VkPhysicalDeviceProperties{
-        .apiVersion = @as(u32, @bitCast(@as(c_int, 0))),
-        .driverVersion = @import("std").mem.zeroes(u32),
-        .vendorID = @import("std").mem.zeroes(u32),
-        .deviceID = @import("std").mem.zeroes(u32),
-        .deviceType = @import("std").mem.zeroes(VkPhysicalDeviceType),
-        .deviceName = @import("std").mem.zeroes([256]u8),
-        .pipelineCacheUUID = @import("std").mem.zeroes([16]u8),
-        .limits = @import("std").mem.zeroes(VkPhysicalDeviceLimits),
-        .sparseProperties = @import("std").mem.zeroes(VkPhysicalDeviceSparseProperties),
-    };
-    _ = &properties;
-    vkGetPhysicalDeviceProperties(device.*.ct, &properties);
-    const is_discrete: cvk_bool = @as(c_uint, @intFromBool(properties.deviceType == @as(c_uint, @bitCast(VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU))));
-    _ = &is_discrete;
-    var queueFamilies: cvk_QueueFamilies = cvk_device_queue_families_create(device, surface, allocator);
-    _ = &queueFamilies;
-    const has_graphics: cvk_bool = @as(c_uint, @intFromBool(!(queueFamilies.graphics == @as(c_uint, 4294967295))));
-    _ = &has_graphics;
-    const has_present: cvk_bool = @as(c_uint, @intFromBool(!(queueFamilies.present == @as(c_uint, 4294967295))));
-    _ = &has_present;
-    cvk_device_queue_families_destroy(&queueFamilies, allocator);
-    var extensions: cvk_device_Extensions = cvk_device_Extensions_default(allocator);
-    _ = &extensions;
-    const supports_extensions: cvk_bool = cvk_device_extensions_supported(device, extensions, allocator);
-    _ = &supports_extensions;
-    allocator.*.cpu.free.?(&allocator.*.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(&extensions))));
-    var supports_swapchain: cvk_bool = @as(c_uint, @bitCast(cvk_false));
-    _ = &supports_swapchain;
-    if (supports_extensions != 0) {
-        var data: cvk_device_swapchain_Support = cvk_device_swapchain_support_create(device, surface, allocator);
-        _ = &data;
-        supports_swapchain = @as(c_uint, @intFromBool((data.formats.len > @as(usize, @bitCast(@as(c_long, @as(c_int, 0))))) and (data.modes.len > @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))))));
-        cvk_device_swapchain_support_destroy(&data, allocator);
-    }
-    return @as(c_uint, @intFromBool(((((is_discrete != 0) and (has_graphics != 0)) and (has_present != 0)) and (supports_extensions != 0)) and (supports_swapchain != 0)));
-}
-pub export fn cvk_device_physical_getAvailable(instance: [*c]cvk_Instance) cvk_device_physical_List {
-    _ = &instance;
-    var result: cvk_device_physical_List = cvk_device_physical_List{
-        .len = @import("std").mem.zeroes(usize),
-        .itemsize = @sizeOf(VkPhysicalDevice),
-        .ptr = null,
-    };
-    _ = &result;
-    while (true) {
-        if (vkEnumeratePhysicalDevices(instance.*.ct, @as([*c]u32, @ptrCast(@alignCast(&result.len))), null) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed when searching for GPUs with Vulkan support.\n", cvk_result_toString_default(vkEnumeratePhysicalDevices(instance.*.ct, @as([*c]u32, @ptrCast(@alignCast(&result.len))), null)), "src/ffi/.././cvulkan/././device/physical.c", @as(c_int, 47), "cvk_device_physical_getAvailable");
-        }
-        if (!false) break;
-    }
-    while (true) {
-        if (!(result.len != 0)) {
-            _ = printf("[%s:%d] %s: Failed to find any GPUs with Vulkan support.\n", "src/ffi/.././cvulkan/././device/physical.c", @as(c_int, 48), "cvk_device_physical_getAvailable");
-        }
-        if (!false) break;
-    }
-    if (result.len != 0) {
-        var data: cvk_Slice_t = instance.*.allocator.cpu.allocZ.?(&instance.*.allocator.cpu, result.len, result.itemsize);
-        _ = &data;
-        while (true) {
-            if (vkEnumeratePhysicalDevices(instance.*.ct, @as([*c]u32, @ptrCast(@alignCast(&data.len))), @as([*c]VkPhysicalDevice, @ptrCast(@alignCast(data.ptr)))) != 0) {
-                _ = printf("%s (%s:%d) %s: Failed to retrieve the list of GPUs.\n", cvk_result_toString_default(vkEnumeratePhysicalDevices(instance.*.ct, @as([*c]u32, @ptrCast(@alignCast(&data.len))), @as([*c]VkPhysicalDevice, @ptrCast(@alignCast(data.ptr))))), "src/ffi/.././cvulkan/././device/physical.c", @as(c_int, 51), "cvk_device_physical_getAvailable");
-            }
-            if (!false) break;
-        }
-        result.len = data.len;
-        result.ptr = @as([*c]VkPhysicalDevice, @ptrCast(@alignCast(data.ptr)));
-    }
-    return result;
-}
+pub extern fn cvk_device_queue_families_create(device: [*c]const cvk_device_Physical, surface: cvk_Surface, allocator: [*c]cvk_Allocator) cvk_QueueFamilies;
+pub extern fn cvk_device_queue_families_destroy(queueFamilies: [*c]cvk_QueueFamilies, allocator: [*c]cvk_Allocator) void;
+pub extern fn cvk_device_swapchain_support_create(device: [*c]const cvk_device_Physical, surface: cvk_Surface, allocator: [*c]cvk_Allocator) cvk_device_swapchain_Support;
+pub extern fn cvk_device_swapchain_support_destroy(support: [*c]cvk_device_swapchain_Support, allocator: [*c]cvk_Allocator) void;
+pub extern fn cvk_device_physical_isSuitable_default(device: [*c]const cvk_device_Physical, surface: cvk_Surface, allocator: [*c]cvk_Allocator) cvk_bool;
+pub extern fn cvk_device_physical_getAvailable(instance: [*c]cvk_Instance) cvk_device_physical_List;
 pub const struct_cvk_device_physical_create_args = extern struct {
     instance: [*c]cvk_Instance = @import("std").mem.zeroes([*c]cvk_Instance),
     surface: VkSurfaceKHR = @import("std").mem.zeroes(VkSurfaceKHR),
@@ -18379,64 +17529,8 @@ pub const struct_cvk_device_physical_create_args = extern struct {
     priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
 };
 pub const cvk_device_physical_create_args = struct_cvk_device_physical_create_args;
-pub export fn cvk_device_physical_create(arg: [*c]cvk_device_physical_create_args) cvk_device_Physical {
-    _ = &arg;
-    var available: cvk_device_physical_List = cvk_device_physical_getAvailable(arg.*.instance);
-    _ = &available;
-    const isSuitable: cvk_Fn_device_physical_isSuitable = if (!(arg.*.isSuitable != null)) arg.*.isSuitable else &cvk_device_physical_isSuitable_default;
-    _ = &isSuitable;
-    var result: cvk_device_Physical = cvk_device_Physical{
-        .ct = null,
-        .id = @as(c_uint, 4294967295),
-        .priv_pad = @import("std").mem.zeroes([4]u8),
-        .queueFamilies = @import("std").mem.zeroes(cvk_QueueFamilies),
-        .swapchainSupport = @import("std").mem.zeroes(cvk_device_swapchain_Support),
-        .memory = @import("std").mem.zeroes(VkPhysicalDeviceMemoryProperties),
-    };
-    _ = &result;
-    {
-        var id: u32 = 0;
-        _ = &id;
-        while (@as(usize, @bitCast(@as(c_ulong, id))) < available.len) : (id +%= 1) {
-            result = cvk_device_Physical{
-                .ct = available.ptr[id],
-                .id = id,
-                .priv_pad = @import("std").mem.zeroes([4]u8),
-                .queueFamilies = @import("std").mem.zeroes(cvk_QueueFamilies),
-                .swapchainSupport = @import("std").mem.zeroes(cvk_device_swapchain_Support),
-                .memory = @import("std").mem.zeroes(VkPhysicalDeviceMemoryProperties),
-            };
-            if ((arg.*.forceFirst != 0) or (isSuitable.?(&result, arg.*.surface, &arg.*.instance.*.allocator) != 0)) {
-                result.queueFamilies = cvk_device_queue_families_create(&result, arg.*.surface, &arg.*.instance.*.allocator);
-                result.swapchainSupport = cvk_device_swapchain_support_create(&result, arg.*.surface, &arg.*.instance.*.allocator);
-                break;
-            }
-        }
-    }
-    arg.*.instance.*.allocator.cpu.free.?(&arg.*.instance.*.allocator.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(&available))));
-    while (true) {
-        if (!!(result.id == @as(c_uint, 4294967295))) {
-            _ = printf("[%s:%d] %s: Failed to find a Physical Device (GPU) suitable for Vulkan.\n", "src/ffi/.././cvulkan/././device/physical.c", @as(c_int, 85), "cvk_device_physical_create");
-        }
-        if (!false) break;
-    }
-    while (true) {
-        if (!(result.ct != @as(VkPhysicalDevice, @ptrCast(@as(?*anyopaque, @ptrFromInt(@as(c_int, 0))))))) {
-            _ = printf("[%s:%d] %s: Failed to find a Physical Device (GPU) suitable for Vulkan.\n", "src/ffi/.././cvulkan/././device/physical.c", @as(c_int, 86), "cvk_device_physical_create");
-        }
-        if (!false) break;
-    }
-    vkGetPhysicalDeviceMemoryProperties(result.ct, &result.memory);
-    return result;
-}
-pub export fn cvk_device_physical_destroy(device: [*c]cvk_device_Physical, allocator: [*c]cvk_Allocator) void {
-    _ = &device;
-    _ = &allocator;
-    cvk_device_swapchain_support_destroy(&device.*.swapchainSupport, allocator);
-    cvk_device_queue_families_destroy(&device.*.queueFamilies, allocator);
-    device.*.id = @as(c_uint, 4294967295);
-    device.*.ct = null;
-}
+pub extern fn cvk_device_physical_create(arg: [*c]cvk_device_physical_create_args) cvk_device_Physical;
+pub extern fn cvk_device_physical_destroy(device: [*c]cvk_device_Physical, allocator: [*c]cvk_Allocator) void;
 pub const struct_cvk_device_queue_create_args = extern struct {
     instance: [*c]const cvk_Instance = @import("std").mem.zeroes([*c]const cvk_Instance),
     device: [*c]const cvk_device_Physical = @import("std").mem.zeroes([*c]const cvk_device_Physical),
@@ -18446,41 +17540,9 @@ pub const struct_cvk_device_queue_create_args = extern struct {
     priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
 };
 pub const cvk_device_queue_create_args = struct_cvk_device_queue_create_args;
-pub export fn cvk_device_queue_options_create(arg_family: cvk_QueueID, arg_count: u32, arg_priorities: [*c]const f32, arg_Protected: cvk_bool) VkDeviceQueueCreateInfo {
-    var family = arg_family;
-    _ = &family;
-    var count = arg_count;
-    _ = &count;
-    var priorities = arg_priorities;
-    _ = &priorities;
-    var Protected = arg_Protected;
-    _ = &Protected;
-    return VkDeviceQueueCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO)),
-        .pNext = null,
-        .flags = if (Protected != 0) @as(VkDeviceQueueCreateFlags, @bitCast(VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT)) else @as(VkDeviceQueueCreateFlags, @bitCast(@as(c_int, 0))),
-        .queueFamilyIndex = family,
-        .queueCount = count,
-        .pQueuePriorities = priorities,
-    };
-}
-pub export fn cvk_device_queue_create_noContext(arg: [*c]cvk_device_queue_create_args) cvk_device_Queue {
-    _ = &arg;
-    var result: cvk_device_Queue = cvk_device_Queue{
-        .ct = null,
-        .cfg = @import("std").mem.zeroes(VkDeviceQueueCreateInfo),
-        .priority = cvk_QueuePriority_clamp(arg.*.priority),
-        .priv_pad = @import("std").mem.zeroes([4]u8),
-    };
-    _ = &result;
-    result.cfg = cvk_device_queue_options_create(arg.*.id, @as(u32, @bitCast(@as(c_int, 1))), &result.priority, arg.*.Protected);
-    return result;
-}
-pub export fn cvk_device_queue_create_context(queue: [*c]cvk_device_Queue, device: [*c]const cvk_device_Logical) void {
-    _ = &queue;
-    _ = &device;
-    vkGetDeviceQueue(device.*.ct, queue.*.cfg.queueFamilyIndex, @as(u32, @bitCast(@as(c_int, 0))), &queue.*.ct);
-}
+pub extern fn cvk_device_queue_options_create(family: cvk_QueueID, count: u32, priorities: [*c]const f32, Protected: cvk_bool) VkDeviceQueueCreateInfo;
+pub extern fn cvk_device_queue_create_noContext(arg: [*c]cvk_device_queue_create_args) cvk_device_Queue;
+pub extern fn cvk_device_queue_create_context(queue: [*c]cvk_device_Queue, device: [*c]const cvk_device_Logical) void;
 pub const struct_cvk_device_queue_submit_args = extern struct {
     command_buffer: [*c]const cvk_command_Buffer = @import("std").mem.zeroes([*c]const cvk_command_Buffer),
     semaphore_wait: [*c]const cvk_Semaphore = @import("std").mem.zeroes([*c]const cvk_Semaphore),
@@ -18488,354 +17550,27 @@ pub const struct_cvk_device_queue_submit_args = extern struct {
     fence: [*c]const cvk_Fence = @import("std").mem.zeroes([*c]const cvk_Fence),
 };
 pub const cvk_device_queue_submit_args = struct_cvk_device_queue_submit_args;
-// src/ffi/.././cvulkan/././device/queue.c:132:52: warning: unsupported initlist type: 'Elaborated'
-
-// src/ffi/.././cvulkan/././device/queue.c:122:6: warning: unable to translate function, demoted to extern
 pub extern fn cvk_device_queue_submit(queue: [*c]const cvk_device_Queue, arg: [*c]const cvk_device_queue_submit_args) void;
-pub export fn cvk_device_Extensions_default(allocator: [*c]cvk_Allocator) cvk_device_Extensions {
-    _ = &allocator;
-    var result: cvk_device_Extensions = cvk_device_Extensions{
-        .len = @as(usize, @bitCast(@as(c_long, @as(c_int, 1)))),
-        .itemsize = @sizeOf(cvk_String),
-        .ptr = null,
-    };
-    _ = &result;
-    var data: cvk_Slice_t = allocator.*.cpu.allocZ.?(&allocator.*.cpu, result.len, result.itemsize);
-    _ = &data;
-    result.ptr = @as([*c]cvk_String, @ptrCast(@alignCast(data.ptr)));
-    result.ptr[@as(c_uint, @intCast(@as(c_int, 0)))] = @as(cvk_String, @ptrCast(@alignCast(@as(?*anyopaque, @ptrCast("VK_KHR_swapchain")))));
-    return result;
-}
-pub export fn cvk_device_extensions_properties_create(device: [*c]const cvk_device_Physical, allocator: [*c]cvk_Allocator) cvk_device_extensions_Properties {
-    _ = &device;
-    _ = &allocator;
-    var result: cvk_device_extensions_Properties = cvk_device_extensions_Properties{
-        .len = @import("std").mem.zeroes(usize),
-        .itemsize = @sizeOf(VkExtensionProperties),
-        .ptr = null,
-    };
-    _ = &result;
-    while (true) {
-        if (vkEnumerateDeviceExtensionProperties(device.*.ct, null, @as([*c]u32, @ptrCast(@alignCast(&result.len))), null) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed when searching for Physical Device properties.\n", cvk_result_toString_default(vkEnumerateDeviceExtensionProperties(device.*.ct, null, @as([*c]u32, @ptrCast(@alignCast(&result.len))), null)), "src/ffi/.././cvulkan/././device/extensions.c", @as(c_int, 26), "cvk_device_extensions_properties_create");
-        }
-        if (!false) break;
-    }
-    if (result.len != 0) {
-        var data: cvk_Slice_t = allocator.*.cpu.allocZ.?(&allocator.*.cpu, result.len, result.itemsize);
-        _ = &data;
-        while (true) {
-            if (vkEnumerateDeviceExtensionProperties(device.*.ct, null, @as([*c]u32, @ptrCast(@alignCast(&data.len))), @as([*c]VkExtensionProperties, @ptrCast(@alignCast(data.ptr)))) != 0) {
-                _ = printf("%s (%s:%d) %s: Failed to retrieve the list of Physical Device properties.\n", cvk_result_toString_default(vkEnumerateDeviceExtensionProperties(device.*.ct, null, @as([*c]u32, @ptrCast(@alignCast(&data.len))), @as([*c]VkExtensionProperties, @ptrCast(@alignCast(data.ptr))))), "src/ffi/.././cvulkan/././device/extensions.c", @as(c_int, 30), "cvk_device_extensions_properties_create");
-            }
-            if (!false) break;
-        }
-        result.ptr = @as([*c]VkExtensionProperties, @ptrCast(@alignCast(data.ptr)));
-    }
-    return result;
-}
-pub export fn cvk_device_extensions_properties_destroy(arg_properties: cvk_device_extensions_Properties, allocator: [*c]cvk_Allocator) void {
-    var properties = arg_properties;
-    _ = &properties;
-    _ = &allocator;
-    allocator.*.cpu.free.?(&allocator.*.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(&properties))));
-}
-pub export fn cvk_device_extensions_supported(device: [*c]const cvk_device_Physical, extensions: cvk_device_Extensions, allocator: [*c]cvk_Allocator) cvk_bool {
-    _ = &device;
-    _ = &extensions;
-    _ = &allocator;
-    var result: cvk_bool = @as(c_uint, @bitCast(cvk_true));
-    _ = &result;
-    var properties: cvk_device_extensions_Properties = cvk_device_extensions_properties_create(device, allocator);
-    _ = &properties;
-    {
-        var ext_id: usize = 0;
-        _ = &ext_id;
-        while (ext_id < extensions.len) : (ext_id +%= 1) {
-            var found: cvk_bool = @as(c_uint, @bitCast(cvk_false));
-            _ = &found;
-            {
-                var prop_id: usize = 0;
-                _ = &prop_id;
-                while (prop_id < properties.len) : (prop_id +%= 1) {
-                    var ext_name: cvk_String = extensions.ptr[ext_id];
-                    _ = &ext_name;
-                    var prop_name: cvk_String = @as([*c]u8, @ptrCast(@alignCast(&properties.ptr[prop_id].extensionName)));
-                    _ = &prop_name;
-                    if (strcmp(ext_name, prop_name) == @as(c_int, 0)) {
-                        found = @as(c_uint, @bitCast(cvk_true));
-                        break;
-                    }
-                }
-            }
-            if (!(found != 0)) {
-                result = @as(c_uint, @bitCast(cvk_false));
-                break;
-            }
-        }
-    }
-    cvk_device_extensions_properties_destroy(properties, allocator);
-    return result;
-}
-pub export fn cvk_device_swapchain_select_format(support: [*c]const cvk_device_swapchain_Support) VkSurfaceFormatKHR {
-    _ = &support;
-    while (true) {
-        if (!(support.*.formats.len != 0)) {
-            _ = printf("[%s:%d] %s: The swapchain formats list must not be empty.\n", "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 15), "cvk_device_swapchain_select_format");
-        }
-        if (!false) break;
-    }
-    var result: VkSurfaceFormatKHR = support.*.formats.ptr[@as(c_uint, @intCast(@as(c_int, 0)))];
-    _ = &result;
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < support.*.formats.len) : (id +%= 1) {
-            result = support.*.formats.ptr[id];
-            const valid: cvk_bool = @as(c_uint, @intFromBool((result.format == @as(c_uint, @bitCast(VK_FORMAT_B8G8R8A8_SRGB))) and (result.colorSpace == @as(c_uint, @bitCast(VK_COLOR_SPACE_SRGB_NONLINEAR_KHR)))));
-            _ = &valid;
-            if (valid != 0) return result;
-        }
-    }
-    return support.*.formats.ptr[@as(c_uint, @intCast(@as(c_int, 0)))];
-}
-pub export fn cvk_device_swapchain_select_mode(support: [*c]const cvk_device_swapchain_Support) VkPresentModeKHR {
-    _ = &support;
-    while (true) {
-        if (!(support.*.modes.len != 0)) {
-            _ = printf("[%s:%d] %s: The swapchain modes list must not be empty.\n", "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 32), "cvk_device_swapchain_select_mode");
-        }
-        if (!false) break;
-    }
-    var result: VkPresentModeKHR = @as(c_uint, @bitCast(VK_PRESENT_MODE_FIFO_KHR));
-    _ = &result;
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < support.*.formats.len) : (id +%= 1) {
-            result = support.*.modes.ptr[id];
-            const valid: cvk_bool = @as(c_uint, @intFromBool(result == @as(c_uint, @bitCast(VK_PRESENT_MODE_MAILBOX_KHR))));
-            _ = &valid;
-            if (valid != 0) return result;
-        }
-    }
-    return @as(c_uint, @bitCast(VK_PRESENT_MODE_FIFO_KHR));
-}
-pub export fn cvk_device_swapchain_select_size(support: [*c]const cvk_device_swapchain_Support, size: cvk_Size2D) VkExtent2D {
-    _ = &support;
-    _ = &size;
-    if (support.*.capabilities.currentExtent.width != @as(c_uint, 4294967295)) return support.*.capabilities.currentExtent;
-    var result: VkExtent2D = VkExtent2D{
-        .width = cvk_clamp_u32(size.width, support.*.capabilities.minImageExtent.width, support.*.capabilities.maxImageExtent.width),
-        .height = cvk_clamp_u32(size.height, support.*.capabilities.minImageExtent.height, support.*.capabilities.maxImageExtent.height),
-    };
-    _ = &result;
-    return result;
-}
-pub export fn cvk_device_swapchain_select_imgMin(support: [*c]const cvk_device_swapchain_Support) usize {
-    _ = &support;
-    var result: usize = @as(usize, @bitCast(@as(c_ulong, support.*.capabilities.minImageCount +% @as(u32, @bitCast(@as(c_int, 1))))));
-    _ = &result;
-    if (support.*.capabilities.maxImageCount != 0) {
-        result = @as(usize, @bitCast(@as(c_ulong, cvk_max_u32(@as(u32, @bitCast(@as(c_uint, @truncate(result)))), support.*.capabilities.maxImageCount))));
-    }
-    return result;
-}
-pub export fn cvk_device_swapchain_options_create(device: [*c]const cvk_device_Physical, surface: cvk_Surface, img_min: usize, format: VkSurfaceFormatKHR, size: cvk_Size2D, arg_capabilities: [*c]VkSurfaceCapabilitiesKHR, mode: VkPresentModeKHR, allocator: [*c]cvk_Allocator) VkSwapchainCreateInfoKHR {
-    _ = &device;
-    _ = &surface;
-    _ = &img_min;
-    _ = &format;
-    _ = &size;
-    var capabilities = arg_capabilities;
-    _ = &capabilities;
-    _ = &mode;
-    _ = &allocator;
-    var sharingMode: VkSharingMode = 0;
-    _ = &sharingMode;
-    var families: cvk_Slice_t = cvk_Slice_t{
-        .len = @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))),
-        .itemsize = @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))),
-        .ptr = @as(?*anyopaque, @ptrFromInt(@as(c_int, 0))),
-    };
-    _ = &families;
-    if (device.*.queueFamilies.graphics == device.*.queueFamilies.present) {
-        sharingMode = @as(c_uint, @bitCast(VK_SHARING_MODE_EXCLUSIVE));
-    } else if (!(device.*.queueFamilies.graphics == @as(c_uint, 4294967295)) and !(device.*.queueFamilies.present == @as(c_uint, 4294967295))) {
-        sharingMode = @as(c_uint, @bitCast(VK_SHARING_MODE_CONCURRENT));
-        families.len = 2;
-        families = allocator.*.cpu.allocZ.?(&allocator.*.cpu, families.len, @sizeOf(u32));
-        @as([*c]u32, @ptrCast(@alignCast(families.ptr)))[@as(c_uint, @intCast(@as(c_int, 0)))] = device.*.queueFamilies.graphics;
-        @as([*c]u32, @ptrCast(@alignCast(families.ptr)))[@as(c_uint, @intCast(@as(c_int, 1)))] = device.*.queueFamilies.present;
-    } else {
-        while (true) {
-            if (!(cvk_false != 0)) {
-                _ = printf("[%s:%d] %s: Something went wrong when defining the Swapchain Sharing mode.\n", "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 145), "cvk_device_swapchain_options_create");
-            }
-            if (!false) break;
-        }
-    }
-    return VkSwapchainCreateInfoKHR{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR)),
-        .pNext = null,
-        .flags = @as(VkSwapchainCreateFlagsKHR, @bitCast(@as(c_int, 0))),
-        .surface = surface,
-        .minImageCount = @as(u32, @bitCast(@as(c_uint, @truncate(img_min)))),
-        .imageFormat = format.format,
-        .imageColorSpace = format.colorSpace,
-        .imageExtent = size,
-        .imageArrayLayers = @as(u32, @bitCast(@as(c_int, 1))),
-        .imageUsage = @as(VkImageUsageFlags, @bitCast(VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT)),
-        .imageSharingMode = sharingMode,
-        .queueFamilyIndexCount = @as(u32, @bitCast(@as(c_uint, @truncate(families.len)))),
-        .pQueueFamilyIndices = @as([*c]u32, @ptrCast(@alignCast(families.ptr))),
-        .preTransform = capabilities.*.currentTransform,
-        .compositeAlpha = @as(c_uint, @bitCast(VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR)),
-        .presentMode = mode,
-        .clipped = @as(c_uint, 1),
-        .oldSwapchain = null,
-    };
-}
+pub extern fn cvk_device_queue_wait(queue: [*c]const cvk_device_Queue) void;
+pub extern fn cvk_device_Extensions_default(allocator: [*c]cvk_Allocator) cvk_device_Extensions;
+pub extern fn cvk_device_extensions_properties_create(device: [*c]const cvk_device_Physical, allocator: [*c]cvk_Allocator) cvk_device_extensions_Properties;
+pub extern fn cvk_device_extensions_properties_destroy(properties: cvk_device_extensions_Properties, allocator: [*c]cvk_Allocator) void;
+pub extern fn cvk_device_extensions_supported(device: [*c]const cvk_device_Physical, extensions: cvk_device_Extensions, allocator: [*c]cvk_Allocator) cvk_bool;
+pub extern fn cvk_device_swapchain_select_format(support: [*c]const cvk_device_swapchain_Support) VkSurfaceFormatKHR;
+pub extern fn cvk_device_swapchain_select_mode(support: [*c]const cvk_device_swapchain_Support) VkPresentModeKHR;
+pub extern fn cvk_device_swapchain_select_size(support: [*c]const cvk_device_swapchain_Support, size: cvk_Size2D) VkExtent2D;
+pub extern fn cvk_device_swapchain_select_imgMin(support: [*c]const cvk_device_swapchain_Support) usize;
+pub extern fn cvk_device_swapchain_options_create(device: [*c]const cvk_device_Physical, surface: cvk_Surface, img_min: usize, format: VkSurfaceFormatKHR, size: cvk_Size2D, capabilities: [*c]VkSurfaceCapabilitiesKHR, mode: VkPresentModeKHR, allocator: [*c]cvk_Allocator) VkSwapchainCreateInfoKHR;
+pub extern fn cvk_device_swapchain_attachment_cfg(swapchain: [*c]const cvk_device_Swapchain) VkAttachmentDescription;
 pub const struct_cvk_device_swapchain_image_view_create_args = extern struct {
     device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
     image: VkImage = @import("std").mem.zeroes(VkImage),
     allocator: [*c]const cvk_Allocator = @import("std").mem.zeroes([*c]const cvk_Allocator),
 };
 pub const cvk_device_swapchain_image_view_create_args = struct_cvk_device_swapchain_image_view_create_args;
-pub export fn cvk_device_swapchain_image_view_create(swapchain: [*c]const cvk_device_Swapchain, arg: [*c]const cvk_device_swapchain_image_view_create_args) VkImageView {
-    _ = &swapchain;
-    _ = &arg;
-    var result: VkImageView = null;
-    _ = &result;
-    while (true) {
-        if (vkCreateImageView(arg.*.device_logical.*.ct, &(VkImageViewCreateInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO)),
-            .pNext = null,
-            .flags = @as(VkImageViewCreateFlags, @bitCast(@as(c_int, 0))),
-            .image = arg.*.image,
-            .viewType = @as(c_uint, @bitCast(VK_IMAGE_VIEW_TYPE_2D)),
-            .format = swapchain.*.cfg.imageFormat,
-            .components = VkComponentMapping{
-                .r = @as(c_uint, @bitCast(@as(c_int, 0))),
-                .g = @as(c_uint, @bitCast(@as(c_int, 0))),
-                .b = @as(c_uint, @bitCast(@as(c_int, 0))),
-                .a = @as(c_uint, @bitCast(@as(c_int, 0))),
-            },
-            .subresourceRange = VkImageSubresourceRange{
-                .aspectMask = @as(VkImageAspectFlags, @bitCast(VK_IMAGE_ASPECT_COLOR_BIT)),
-                .baseMipLevel = @as(u32, @bitCast(@as(c_int, 0))),
-                .levelCount = @as(u32, @bitCast(@as(c_int, 1))),
-                .baseArrayLayer = @as(u32, @bitCast(@as(c_int, 0))),
-                .layerCount = @as(u32, @bitCast(@as(c_int, 1))),
-            },
-        }), arg.*.allocator.*.gpu, &result) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to retrieve one of the ImageViews used by the Swapchain.\n", cvk_result_toString_default(vkCreateImageView(arg.*.device_logical.*.ct, &(VkImageViewCreateInfo{
-                .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO)),
-                .pNext = null,
-                .flags = @as(VkImageViewCreateFlags, @bitCast(@as(c_int, 0))),
-                .image = arg.*.image,
-                .viewType = @as(c_uint, @bitCast(VK_IMAGE_VIEW_TYPE_2D)),
-                .format = swapchain.*.cfg.imageFormat,
-                .components = VkComponentMapping{
-                    .r = @as(c_uint, @bitCast(@as(c_int, 0))),
-                    .g = @as(c_uint, @bitCast(@as(c_int, 0))),
-                    .b = @as(c_uint, @bitCast(@as(c_int, 0))),
-                    .a = @as(c_uint, @bitCast(@as(c_int, 0))),
-                },
-                .subresourceRange = VkImageSubresourceRange{
-                    .aspectMask = @as(VkImageAspectFlags, @bitCast(VK_IMAGE_ASPECT_COLOR_BIT)),
-                    .baseMipLevel = @as(u32, @bitCast(@as(c_int, 0))),
-                    .levelCount = @as(u32, @bitCast(@as(c_int, 1))),
-                    .baseArrayLayer = @as(u32, @bitCast(@as(c_int, 0))),
-                    .layerCount = @as(u32, @bitCast(@as(c_int, 1))),
-                },
-            }), arg.*.allocator.*.gpu, &result)), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 211), "cvk_device_swapchain_image_view_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_device_swapchain_image_list_create(swapchain: [*c]const cvk_device_Swapchain, device_logical: [*c]cvk_device_Logical, allocator: [*c]cvk_Allocator) cvk_device_swapchain_image_List {
-    _ = &swapchain;
-    _ = &device_logical;
-    _ = &allocator;
-    var result: cvk_device_swapchain_image_List = cvk_device_swapchain_image_List{
-        .len = @import("std").mem.zeroes(usize),
-        .itemsize = @sizeOf(cvk_device_swapchain_Image),
-        .ptr = null,
-    };
-    _ = &result;
-    while (true) {
-        if (vkGetSwapchainImagesKHR(device_logical.*.ct, swapchain.*.ct, @as([*c]u32, @ptrCast(@alignCast(&result.len))), null) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to retrieve the number of Images used by the device's Swapchain.\n", cvk_result_toString_default(vkGetSwapchainImagesKHR(device_logical.*.ct, swapchain.*.ct, @as([*c]u32, @ptrCast(@alignCast(&result.len))), null)), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 225), "cvk_device_swapchain_image_list_create");
-        }
-        if (!false) break;
-    }
-    var data: cvk_Slice_t = allocator.*.cpu.allocZ.?(&allocator.*.cpu, result.len, result.itemsize);
-    _ = &data;
-    var images: cvk_Slice_t = allocator.*.cpu.allocZ.?(&allocator.*.cpu, data.len, @sizeOf(VkImage));
-    _ = &images;
-    while (true) {
-        if (vkGetSwapchainImagesKHR(device_logical.*.ct, swapchain.*.ct, @as([*c]u32, @ptrCast(@alignCast(&images.len))), @as([*c]VkImage, @ptrCast(@alignCast(images.ptr)))) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to retrieve the list of Images used by the device's Swapchain.\n", cvk_result_toString_default(vkGetSwapchainImagesKHR(device_logical.*.ct, swapchain.*.ct, @as([*c]u32, @ptrCast(@alignCast(&images.len))), @as([*c]VkImage, @ptrCast(@alignCast(images.ptr))))), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 233), "cvk_device_swapchain_image_list_create");
-        }
-        if (!false) break;
-    }
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < images.len) : (id +%= 1) {
-            @as([*c]cvk_device_swapchain_Image, @ptrCast(@alignCast(data.ptr)))[id].ct = @as([*c]VkImage, @ptrCast(@alignCast(images.ptr)))[id];
-        }
-    }
-    var views: cvk_Slice_t = allocator.*.cpu.allocZ.?(&allocator.*.cpu, data.len, @sizeOf(VkImageView));
-    _ = &views;
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < data.len) : (id +%= 1) {
-            @as([*c]VkImageView, @ptrCast(@alignCast(views.ptr)))[id] = cvk_device_swapchain_image_view_create(swapchain, &(cvk_device_swapchain_image_view_create_args{
-                .device_logical = device_logical,
-                .image = @as([*c]VkImage, @ptrCast(@alignCast(images.ptr)))[id],
-                .allocator = allocator,
-            }));
-        }
-    }
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < data.len) : (id +%= 1) {
-            @as([*c]cvk_device_swapchain_Image, @ptrCast(@alignCast(data.ptr)))[id].finished = cvk_semaphore_create(device_logical, allocator);
-        }
-    }
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < views.len) : (id +%= 1) {
-            @as([*c]cvk_device_swapchain_Image, @ptrCast(@alignCast(data.ptr)))[id].view = @as([*c]VkImageView, @ptrCast(@alignCast(views.ptr)))[id];
-        }
-    }
-    allocator.*.cpu.free.?(&allocator.*.cpu, &images);
-    allocator.*.cpu.free.?(&allocator.*.cpu, &views);
-    result.len = data.len;
-    result.ptr = @as([*c]cvk_device_swapchain_Image, @ptrCast(@alignCast(data.ptr)));
-    return result;
-}
-pub export fn cvk_device_swapchain_image_list_destroy(images: [*c]cvk_device_swapchain_image_List, device_logical: [*c]cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &images;
-    _ = &device_logical;
-    _ = &allocator;
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < images.*.len) : (id +%= 1) {
-            cvk_semaphore_destroy(&images.*.ptr[id].finished, device_logical, allocator);
-            vkDestroyImageView(device_logical.*.ct, images.*.ptr[id].view, allocator.*.gpu);
-            images.*.ptr[id].ct = null;
-        }
-    }
-    allocator.*.cpu.free.?(&allocator.*.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(images))));
-}
+pub extern fn cvk_device_swapchain_image_view_create(swapchain: [*c]const cvk_device_Swapchain, arg: [*c]const cvk_device_swapchain_image_view_create_args) VkImageView;
+pub extern fn cvk_device_swapchain_image_list_create(swapchain: [*c]const cvk_device_Swapchain, device_logical: [*c]cvk_device_Logical, allocator: [*c]cvk_Allocator) cvk_device_swapchain_image_List;
+pub extern fn cvk_device_swapchain_image_list_destroy(images: [*c]cvk_device_swapchain_image_List, device_logical: [*c]cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
 pub const struct_cvk_device_swapchain_create_args = extern struct {
     device_physical: [*c]cvk_device_Physical = @import("std").mem.zeroes([*c]cvk_device_Physical),
     device_logical: [*c]cvk_device_Logical = @import("std").mem.zeroes([*c]cvk_device_Logical),
@@ -18844,97 +17579,14 @@ pub const struct_cvk_device_swapchain_create_args = extern struct {
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
 };
 pub const cvk_device_swapchain_create_args = struct_cvk_device_swapchain_create_args;
-pub export fn cvk_device_swapchain_create(arg: [*c]const cvk_device_swapchain_create_args) cvk_device_Swapchain {
-    _ = &arg;
-    var result: cvk_device_Swapchain = cvk_device_Swapchain{
-        .ct = null,
-        .cfg = cvk_device_swapchain_options_create(arg.*.device_physical, arg.*.surface, cvk_device_swapchain_select_imgMin(&arg.*.device_physical.*.swapchainSupport), cvk_device_swapchain_select_format(&arg.*.device_physical.*.swapchainSupport), cvk_device_swapchain_select_size(&arg.*.device_physical.*.swapchainSupport, arg.*.size), &arg.*.device_physical.*.swapchainSupport.capabilities, cvk_device_swapchain_select_mode(&arg.*.device_physical.*.swapchainSupport), arg.*.allocator),
-        .images = cvk_device_swapchain_image_List{
-            .len = @as(usize, @bitCast(@as(c_long, @as(c_int, 0)))),
-            .itemsize = @import("std").mem.zeroes(usize),
-            .ptr = null,
-        },
-    };
-    _ = &result;
-    while (true) {
-        if (vkCreateSwapchainKHR(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create the device's Swapchain context.\n", cvk_result_toString_default(vkCreateSwapchainKHR(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 309), "cvk_device_swapchain_create");
-        }
-        if (!false) break;
-    }
-    result.images = cvk_device_swapchain_image_list_create(&result, arg.*.device_logical, arg.*.allocator);
-    return result;
-}
-pub export fn cvk_device_swapchain_destroy(swapchain: [*c]cvk_device_Swapchain, device_logical: [*c]cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &swapchain;
-    _ = &device_logical;
-    _ = &allocator;
-    cvk_device_swapchain_image_list_destroy(&swapchain.*.images, device_logical, allocator);
-    if (swapchain.*.cfg.pQueueFamilyIndices != null) {
-        allocator.*.cpu.free.?(&allocator.*.cpu, &(cvk_Slice_t{
-            .len = @as(usize, @bitCast(@as(c_ulong, swapchain.*.cfg.queueFamilyIndexCount))),
-            .itemsize = @import("std").mem.zeroes(usize),
-            .ptr = @as(?*anyopaque, @ptrCast(@volatileCast(@constCast(swapchain.*.cfg.pQueueFamilyIndices)))),
-        }));
-    }
-    swapchain.*.cfg = VkSwapchainCreateInfoKHR{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkSwapchainCreateFlagsKHR),
-        .surface = @import("std").mem.zeroes(VkSurfaceKHR),
-        .minImageCount = @import("std").mem.zeroes(u32),
-        .imageFormat = @import("std").mem.zeroes(VkFormat),
-        .imageColorSpace = @import("std").mem.zeroes(VkColorSpaceKHR),
-        .imageExtent = @import("std").mem.zeroes(VkExtent2D),
-        .imageArrayLayers = @import("std").mem.zeroes(u32),
-        .imageUsage = @import("std").mem.zeroes(VkImageUsageFlags),
-        .imageSharingMode = @import("std").mem.zeroes(VkSharingMode),
-        .queueFamilyIndexCount = @import("std").mem.zeroes(u32),
-        .pQueueFamilyIndices = null,
-        .preTransform = @import("std").mem.zeroes(VkSurfaceTransformFlagBitsKHR),
-        .compositeAlpha = @import("std").mem.zeroes(VkCompositeAlphaFlagBitsKHR),
-        .presentMode = @import("std").mem.zeroes(VkPresentModeKHR),
-        .clipped = @import("std").mem.zeroes(VkBool32),
-        .oldSwapchain = @import("std").mem.zeroes(VkSwapchainKHR),
-    };
-    vkDestroySwapchainKHR(device_logical.*.ct, swapchain.*.ct, allocator.*.gpu);
-}
+pub extern fn cvk_device_swapchain_create(arg: [*c]const cvk_device_swapchain_create_args) cvk_device_Swapchain;
+pub extern fn cvk_device_swapchain_destroy(swapchain: [*c]cvk_device_Swapchain, device: [*c]cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
 pub const struct_cvk_device_swapchain_recreate_args = extern struct {
     device_logical: [*c]cvk_device_Logical = @import("std").mem.zeroes([*c]cvk_device_Logical),
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
 };
 pub const cvk_device_swapchain_recreate_args = struct_cvk_device_swapchain_recreate_args;
-pub export fn cvk_device_swapchain_recreate(swapchain: [*c]cvk_device_Swapchain, arg: [*c]const cvk_device_swapchain_recreate_args) void {
-    _ = &swapchain;
-    _ = &arg;
-    cvk_device_logical_wait(arg.*.device_logical);
-    swapchain.*.cfg.oldSwapchain = swapchain.*.ct;
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < swapchain.*.images.len) : (id +%= 1) {
-            vkDestroyImageView(arg.*.device_logical.*.ct, swapchain.*.images.ptr[id].view, arg.*.allocator.*.gpu);
-        }
-    }
-    while (true) {
-        if (vkCreateSwapchainKHR(arg.*.device_logical.*.ct, &swapchain.*.cfg, arg.*.allocator.*.gpu, &swapchain.*.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to re-create the device's Swapchain context.\n", cvk_result_toString_default(vkCreateSwapchainKHR(arg.*.device_logical.*.ct, &swapchain.*.cfg, arg.*.allocator.*.gpu, &swapchain.*.ct)), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 363), "cvk_device_swapchain_recreate");
-        }
-        if (!false) break;
-    }
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < swapchain.*.images.len) : (id +%= 1) {
-            swapchain.*.images.ptr[id].view = cvk_device_swapchain_image_view_create(swapchain, &(cvk_device_swapchain_image_view_create_args{
-                .device_logical = arg.*.device_logical,
-                .image = swapchain.*.images.ptr[id].ct,
-                .allocator = arg.*.allocator,
-            }));
-        }
-    }
-    vkDestroySwapchainKHR(arg.*.device_logical.*.ct, swapchain.*.cfg.oldSwapchain, arg.*.allocator.*.gpu);
-}
+pub extern fn cvk_device_swapchain_recreate(swapchain: [*c]cvk_device_Swapchain, arg: [*c]const cvk_device_swapchain_recreate_args) void;
 pub const struct_cvk_device_swapchain_nextImageID_args = extern struct {
     device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
     swapchain: [*c]const cvk_device_Swapchain = @import("std").mem.zeroes([*c]const cvk_device_Swapchain),
@@ -18945,315 +17597,19 @@ pub const struct_cvk_device_swapchain_nextImageID_args = extern struct {
     priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
 };
 pub const cvk_device_swapchain_nextImageID_args = struct_cvk_device_swapchain_nextImageID_args;
-pub export fn cvk_device_swapchain_nextImageID(arg: [*c]const cvk_device_swapchain_nextImageID_args) usize {
-    _ = &arg;
-    var result: u32 = @as(c_uint, 4294967295);
-    _ = &result;
-    var status: VkResult = VK_RESULT_MAX_ENUM;
-    _ = &status;
-    status = vkAcquireNextImageKHR(arg.*.device_logical.*.ct, arg.*.swapchain.*.ct, @as(c_ulong, 18446744073709551615), if (arg.*.semaphore != null) arg.*.semaphore.*.ct else null, if (arg.*.fence != null) arg.*.fence.*.ct else null, &result);
-    if (!(arg.*.log_disable != 0) and (status != 0)) {
-        _ = printf("Failed to request the next ID from the Device.Swapchain's list of images.\n");
-    }
-    if (arg.*.status != null) {
-        arg.*.status.* = status;
-    }
-    return @as(usize, @bitCast(@as(c_ulong, result)));
-}
-pub export fn cvk_device_swapchain_present(swapchain: [*c]const cvk_device_Swapchain, imageID: usize, queue: [*c]const cvk_device_Queue) void {
-    _ = &swapchain;
-    _ = &imageID;
-    _ = &queue;
-    while (true) {
-        if (vkQueuePresentKHR(queue.*.ct, &(VkPresentInfoKHR{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PRESENT_INFO_KHR)),
-            .pNext = null,
-            .waitSemaphoreCount = @as(u32, @bitCast(@as(c_int, 1))),
-            .pWaitSemaphores = &swapchain.*.images.ptr[imageID].finished.ct,
-            .swapchainCount = @as(u32, @bitCast(@as(c_int, 1))),
-            .pSwapchains = &swapchain.*.ct,
-            .pImageIndices = @as([*c]const u32, @ptrCast(@alignCast(&imageID))),
-            .pResults = null,
-        })) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed when presenting the Graphics Commands with the given Queue\n", cvk_result_toString_default(vkQueuePresentKHR(queue.*.ct, &(VkPresentInfoKHR{
-                .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PRESENT_INFO_KHR)),
-                .pNext = null,
-                .waitSemaphoreCount = @as(u32, @bitCast(@as(c_int, 1))),
-                .pWaitSemaphores = &swapchain.*.images.ptr[imageID].finished.ct,
-                .swapchainCount = @as(u32, @bitCast(@as(c_int, 1))),
-                .pSwapchains = &swapchain.*.ct,
-                .pImageIndices = @as([*c]const u32, @ptrCast(@alignCast(&imageID))),
-                .pResults = null,
-            }))), "src/ffi/.././cvulkan/././device/swapchain.c", @as(c_int, 418), "cvk_device_swapchain_present");
-        }
-        if (!false) break;
-    }
-}
-pub export fn cvk_device_Features_default() cvk_device_Features {
-    return cvk_device_Features{
-        .v1_0 = VkPhysicalDeviceFeatures2{
-            .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-            .pNext = null,
-            .features = @import("std").mem.zeroes(VkPhysicalDeviceFeatures),
-        },
-    };
-}
-pub export fn cvk_device_logical_options_create(queue: [*c]const cvk_device_Queue, features: [*c]const cvk_device_Features, extensions: cvk_device_Extensions) VkDeviceCreateInfo {
-    _ = &queue;
-    _ = &features;
-    _ = &extensions;
-    return VkDeviceCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkDeviceCreateFlags, @bitCast(@as(c_int, 0))),
-        .queueCreateInfoCount = @as(u32, @bitCast(@as(c_int, 1))),
-        .pQueueCreateInfos = &queue.*.cfg,
-        .enabledLayerCount = @as(u32, @bitCast(@as(c_int, 0))),
-        .ppEnabledLayerNames = null,
-        .enabledExtensionCount = @as(u32, @bitCast(@as(c_uint, @truncate(extensions.len)))),
-        .ppEnabledExtensionNames = @as([*c]const cvk_String, @ptrCast(@alignCast(extensions.ptr))),
-        .pEnabledFeatures = &features.*.v1_0.features,
-    };
-}
+pub extern fn cvk_device_swapchain_nextImageID(arg: [*c]const cvk_device_swapchain_nextImageID_args) usize;
+pub extern fn cvk_device_swapchain_present(swapchain: [*c]const cvk_device_Swapchain, imageID: usize, queue: [*c]const cvk_device_Queue) void;
+pub extern fn cvk_device_Features_default(...) cvk_device_Features;
+pub extern fn cvk_device_logical_options_create(queue: [*c]const cvk_device_Queue, features: [*c]const cvk_device_Features, extensions: cvk_device_Extensions) VkDeviceCreateInfo;
 pub const struct_cvk_device_logical_create_args = extern struct {
     physical: [*c]const cvk_device_Physical = @import("std").mem.zeroes([*c]const cvk_device_Physical),
     queue: [*c]const cvk_device_Queue = @import("std").mem.zeroes([*c]const cvk_device_Queue),
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
 };
 pub const cvk_device_logical_create_args = struct_cvk_device_logical_create_args;
-pub export fn cvk_device_logical_create(arg: [*c]cvk_device_logical_create_args) cvk_device_Logical {
-    _ = &arg;
-    var result: cvk_device_Logical = cvk_device_Logical{
-        .ct = null,
-        .cfg = @import("std").mem.zeroes(VkDeviceCreateInfo),
-        .features = cvk_device_Features_default(),
-        .extensions = cvk_device_Extensions_default(arg.*.allocator),
-    };
-    _ = &result;
-    result.cfg = cvk_device_logical_options_create(arg.*.queue, &result.features, result.extensions);
-    while (true) {
-        if (vkCreateDevice(arg.*.physical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a Vulkan Logical Device\n", cvk_result_toString_default(vkCreateDevice(arg.*.physical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././device/logical.c", @as(c_int, 42), "cvk_device_logical_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_device_logical_destroy(device: [*c]cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &device;
-    _ = &allocator;
-    allocator.*.cpu.free.?(&allocator.*.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(&device.*.extensions))));
-    device.*.cfg = VkDeviceCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkDeviceCreateFlags),
-        .queueCreateInfoCount = @import("std").mem.zeroes(u32),
-        .pQueueCreateInfos = null,
-        .enabledLayerCount = @import("std").mem.zeroes(u32),
-        .ppEnabledLayerNames = null,
-        .enabledExtensionCount = @import("std").mem.zeroes(u32),
-        .ppEnabledExtensionNames = null,
-        .pEnabledFeatures = null,
-    };
-    vkDestroyDevice(device.*.ct, allocator.*.gpu);
-}
-pub fn cvk_device_logical_wait(device_logical: [*c]const cvk_device_Logical) callconv(.c) void {
-    _ = &device_logical;
-    _ = vkDeviceWaitIdle(device_logical.*.ct);
-}
-pub fn cvk_QueuePriority_clamp(priority: cvk_QueuePriority) callconv(.c) cvk_QueuePriority {
-    _ = &priority;
-    return if (priority < 0.0) 0.0 else if (priority > 1.0) 1.0 else priority;
-}
-pub const struct_cvk_command_pool_create_args = extern struct {
-    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
-    queueID: cvk_QueueID = @import("std").mem.zeroes(cvk_QueueID),
-    flags: cvk_command_pool_Flags = @import("std").mem.zeroes(cvk_command_pool_Flags),
-    allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
-};
-pub const cvk_command_pool_create_args = struct_cvk_command_pool_create_args;
-pub export fn cvk_command_pool_create(arg: [*c]const cvk_command_pool_create_args) cvk_command_Pool {
-    _ = &arg;
-    var result: cvk_command_Pool = cvk_command_Pool{
-        .ct = null,
-        .cfg = VkCommandPoolCreateInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO)),
-            .pNext = null,
-            .flags = @as(VkCommandPoolCreateFlags, @bitCast(arg.*.flags)),
-            .queueFamilyIndex = arg.*.queueID,
-        },
-    };
-    _ = &result;
-    while (true) {
-        if (vkCreateCommandPool(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a CommandPool context\n", cvk_result_toString_default(vkCreateCommandPool(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././device/.././sync/command/pool.c", @as(c_int, 20), "cvk_command_pool_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_command_pool_destroy(pool: [*c]cvk_command_Pool, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &pool;
-    _ = &device_logical;
-    _ = &allocator;
-    pool.*.cfg = VkCommandPoolCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkCommandPoolCreateFlags),
-        .queueFamilyIndex = @import("std").mem.zeroes(u32),
-    };
-    vkDestroyCommandPool(device_logical.*.ct, pool.*.ct, allocator.*.gpu);
-}
-pub const struct_cvk_command_buffer_allocate_args = extern struct {
-    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
-    pool: [*c]const cvk_command_Pool = @import("std").mem.zeroes([*c]const cvk_command_Pool),
-    level: cvk_command_buffer_Level = @import("std").mem.zeroes(cvk_command_buffer_Level),
-    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
-    count: usize = @import("std").mem.zeroes(usize),
-};
-pub const cvk_command_buffer_allocate_args = struct_cvk_command_buffer_allocate_args;
-pub export fn cvk_command_buffer_allocate(arg: [*c]const cvk_command_buffer_allocate_args) cvk_command_Buffer {
-    _ = &arg;
-    var result: cvk_command_Buffer = cvk_command_Buffer{
-        .ct = null,
-        .cfg = VkCommandBufferAllocateInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO)),
-            .pNext = null,
-            .commandPool = arg.*.pool.*.ct,
-            .level = arg.*.level,
-            .commandBufferCount = if (arg.*.count != 0) @as(u32, @bitCast(@as(c_uint, @truncate(arg.*.count)))) else @as(u32, @bitCast(@as(c_int, 1))),
-        },
-    };
-    _ = &result;
-    while (true) {
-        if (vkAllocateCommandBuffers(arg.*.device_logical.*.ct, &result.cfg, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a CommandBuffer context\n", cvk_result_toString_default(vkAllocateCommandBuffers(arg.*.device_logical.*.ct, &result.cfg, &result.ct)), "src/ffi/.././cvulkan/././device/.././sync/command/buffer.c", @as(c_int, 22), "cvk_command_buffer_allocate");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub fn cvk_command_buffer_begin(command_buffer: [*c]const cvk_command_Buffer) callconv(.c) void {
-    _ = &command_buffer;
-    while (true) {
-        if (vkBeginCommandBuffer(command_buffer.*.ct, &(VkCommandBufferBeginInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO)),
-            .pNext = null,
-            .flags = @as(VkCommandBufferUsageFlags, @bitCast(@as(c_int, 0))),
-            .pInheritanceInfo = null,
-        })) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to begin recording a Command Buffer\n", cvk_result_toString_default(vkBeginCommandBuffer(command_buffer.*.ct, &(VkCommandBufferBeginInfo{
-                .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO)),
-                .pNext = null,
-                .flags = @as(VkCommandBufferUsageFlags, @bitCast(@as(c_int, 0))),
-                .pInheritanceInfo = null,
-            }))), "src/ffi/.././cvulkan/././device/.././sync/command/buffer.c", @as(c_int, 35), "cvk_command_buffer_begin");
-        }
-        if (!false) break;
-    }
-}
-pub fn cvk_command_buffer_end(command_buffer: [*c]const cvk_command_Buffer) callconv(.c) void {
-    _ = &command_buffer;
-    while (true) {
-        if (vkEndCommandBuffer(command_buffer.*.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to finish recording a Command Buffer\n", cvk_result_toString_default(vkEndCommandBuffer(command_buffer.*.ct)), "src/ffi/.././cvulkan/././device/.././sync/command/buffer.c", @as(c_int, 43), "cvk_command_buffer_end");
-        }
-        if (!false) break;
-    }
-}
-pub fn cvk_command_buffer_reset(command_buffer: [*c]const cvk_command_Buffer, releaseResources: cvk_bool) callconv(.c) void {
-    _ = &command_buffer;
-    _ = &releaseResources;
-    while (true) {
-        if (vkResetCommandBuffer(command_buffer.*.ct, @as(VkCommandBufferResetFlags, @bitCast(releaseResources))) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to reset a Command Buffer.\n", cvk_result_toString_default(vkResetCommandBuffer(command_buffer.*.ct, @as(VkCommandBufferResetFlags, @bitCast(releaseResources)))), "src/ffi/.././cvulkan/././device/.././sync/command/buffer.c", @as(c_int, 52), "cvk_command_buffer_reset");
-        }
-        if (!false) break;
-    }
-}
-pub export fn cvk_semaphore_create(device_logical: [*c]const cvk_device_Logical, allocator: [*c]const cvk_Allocator) cvk_Semaphore {
-    _ = &device_logical;
-    _ = &allocator;
-    var result: cvk_Semaphore = cvk_Semaphore{
-        .ct = null,
-        .cfg = VkSemaphoreCreateInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO)),
-            .pNext = null,
-            .flags = @as(VkSemaphoreCreateFlags, @bitCast(@as(c_int, 0))),
-        },
-    };
-    _ = &result;
-    while (true) {
-        if (vkCreateSemaphore(device_logical.*.ct, &result.cfg, allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a GPU Semaphore\n", cvk_result_toString_default(vkCreateSemaphore(device_logical.*.ct, &result.cfg, allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././device/.././sync/semaphore.c", @as(c_int, 21), "cvk_semaphore_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_semaphore_destroy(semaphore: [*c]cvk_Semaphore, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &semaphore;
-    _ = &device_logical;
-    _ = &allocator;
-    semaphore.*.cfg = VkSemaphoreCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkSemaphoreCreateFlags),
-    };
-    vkDestroySemaphore(device_logical.*.ct, semaphore.*.ct, allocator.*.gpu);
-}
-pub export fn cvk_fence_create(device_logical: [*c]const cvk_device_Logical, signaled: cvk_bool, allocator: [*c]const cvk_Allocator) cvk_Fence {
-    _ = &device_logical;
-    _ = &signaled;
-    _ = &allocator;
-    var result: cvk_Fence = cvk_Fence{
-        .ct = null,
-        .cfg = VkFenceCreateInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_FENCE_CREATE_INFO)),
-            .pNext = null,
-            .flags = @as(VkFenceCreateFlags, @bitCast(signaled)),
-        },
-    };
-    _ = &result;
-    while (true) {
-        if (vkCreateFence(device_logical.*.ct, &result.cfg, allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a CPU Fence\n", cvk_result_toString_default(vkCreateFence(device_logical.*.ct, &result.cfg, allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././device/.././sync/fence.c", @as(c_int, 22), "cvk_fence_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_fence_destroy(fence: [*c]cvk_Fence, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &fence;
-    _ = &device_logical;
-    _ = &allocator;
-    fence.*.cfg = VkFenceCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkFenceCreateFlags),
-    };
-    vkDestroyFence(device_logical.*.ct, fence.*.ct, allocator.*.gpu);
-}
-pub fn cvk_fence_wait(fence: [*c]const cvk_Fence, device_logical: [*c]const cvk_device_Logical) callconv(.c) void {
-    _ = &fence;
-    _ = &device_logical;
-    while (true) {
-        if (vkWaitForFences(device_logical.*.ct, @as(u32, @bitCast(@as(c_int, 1))), &fence.*.ct, @as(VkBool32, @bitCast(cvk_true)), @as(c_ulong, 18446744073709551615)) != 0) {
-            _ = printf("%s (%s:%d) %s: Something went wrong when waiting for a CPU Fence.\n", cvk_result_toString_default(vkWaitForFences(device_logical.*.ct, @as(u32, @bitCast(@as(c_int, 1))), &fence.*.ct, @as(VkBool32, @bitCast(cvk_true)), @as(c_ulong, 18446744073709551615))), "src/ffi/.././cvulkan/././device/.././sync/fence.c", @as(c_int, 42), "cvk_fence_wait");
-        }
-        if (!false) break;
-    }
-}
-pub fn cvk_fence_reset(fence: [*c]const cvk_Fence, device_logical: [*c]const cvk_device_Logical) callconv(.c) void {
-    _ = &fence;
-    _ = &device_logical;
-    while (true) {
-        if (vkResetFences(device_logical.*.ct, @as(u32, @bitCast(@as(c_int, 1))), &fence.*.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Something went wrong when resetting a CPU Fence\n", cvk_result_toString_default(vkResetFences(device_logical.*.ct, @as(u32, @bitCast(@as(c_int, 1))), &fence.*.ct)), "src/ffi/.././cvulkan/././device/.././sync/fence.c", @as(c_int, 51), "cvk_fence_reset");
-        }
-        if (!false) break;
-    }
-}
+pub extern fn cvk_device_logical_create(arg: [*c]cvk_device_logical_create_args) cvk_device_Logical;
+pub extern fn cvk_device_logical_destroy(device: [*c]cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
+pub extern fn cvk_device_logical_wait(device_logical: [*c]const cvk_device_Logical) void;
 pub const cvk_shader_stage_Vertex: c_int = 1;
 pub const cvk_shader_stage_Fragment: c_int = 16;
 pub const cvk_shader_stage_Compute: c_int = 32;
@@ -19272,68 +17628,8 @@ pub const struct_cvk_shader_create_args = extern struct {
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
 };
 pub const cvk_shader_create_args = struct_cvk_shader_create_args;
-pub export fn cvk_shader_create(arg: [*c]const cvk_shader_create_args) cvk_Shader {
-    _ = &arg;
-    var code_data: cvk_Slice_t = arg.*.allocator.*.cpu.duplicate.?(&arg.*.allocator.*.cpu, @as([*c]const cvk_Slice_t, @ptrCast(@alignCast(arg.*.code))));
-    _ = &code_data;
-    var result: cvk_Shader = cvk_Shader{
-        .ct = null,
-        .cfg = @import("std").mem.zeroes(VkShaderModuleCreateInfo),
-        .stage = @import("std").mem.zeroes(VkPipelineShaderStageCreateInfo),
-        .code = cvk_SpirV{
-            .len = code_data.len,
-            .itemsize = code_data.itemsize,
-            .ptr = @as([*c]u32, @ptrCast(@alignCast(code_data.ptr))),
-        },
-    };
-    _ = &result;
-    result.cfg = VkShaderModuleCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkShaderModuleCreateFlags, @bitCast(@as(c_int, 0))),
-        .codeSize = result.code.len *% result.code.itemsize,
-        .pCode = result.code.ptr,
-    };
-    while (true) {
-        if (vkCreateShaderModule(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a Shader Module for SpirV code.\n", cvk_result_toString_default(vkCreateShaderModule(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././shader.c", @as(c_int, 24), "cvk_shader_create");
-        }
-        if (!false) break;
-    }
-    result.stage = VkPipelineShaderStageCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkPipelineShaderStageCreateFlags, @bitCast(@as(c_int, 0))),
-        .stage = arg.*.stage,
-        .module = result.ct,
-        .pName = if (arg.*.entryFn_name != null) arg.*.entryFn_name else "main",
-        .pSpecializationInfo = null,
-    };
-    return result;
-}
-pub export fn cvk_shader_destroy(device_logical: [*c]const cvk_device_Logical, shader: [*c]cvk_Shader, allocator: [*c]cvk_Allocator) void {
-    _ = &device_logical;
-    _ = &shader;
-    _ = &allocator;
-    allocator.*.cpu.free.?(&allocator.*.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(&shader.*.code))));
-    shader.*.stage = VkPipelineShaderStageCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkPipelineShaderStageCreateFlags),
-        .stage = @import("std").mem.zeroes(VkShaderStageFlagBits),
-        .module = @import("std").mem.zeroes(VkShaderModule),
-        .pName = null,
-        .pSpecializationInfo = null,
-    };
-    shader.*.cfg = VkShaderModuleCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkShaderModuleCreateFlags),
-        .codeSize = @import("std").mem.zeroes(usize),
-        .pCode = null,
-    };
-    vkDestroyShaderModule(device_logical.*.ct, shader.*.ct, allocator.*.gpu);
-}
+pub extern fn cvk_shader_create(arg: [*c]const cvk_shader_create_args) cvk_Shader;
+pub extern fn cvk_shader_destroy(device_logical: [*c]const cvk_device_Logical, shader: [*c]cvk_Shader, allocator: [*c]cvk_Allocator) void;
 pub const cvk_memory_DeviceLocal: c_int = 1;
 pub const cvk_memory_HostVisible: c_int = 2;
 pub const cvk_memory_HostCoherent: c_int = 4;
@@ -19348,62 +17644,16 @@ pub const struct_cvk_memory_create_args = extern struct {
     device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
     data: cvk_pointer = @import("std").mem.zeroes(cvk_pointer),
     kind: u32 = @import("std").mem.zeroes(u32),
-    priv_pad1: [4]u8 = @import("std").mem.zeroes([4]u8),
+    persistent: cvk_bool = @import("std").mem.zeroes(cvk_bool),
     size_alloc: VkDeviceSize = @import("std").mem.zeroes(VkDeviceSize),
     size_data: VkDeviceSize = @import("std").mem.zeroes(VkDeviceSize),
     offset: VkDeviceSize = @import("std").mem.zeroes(VkDeviceSize),
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
 };
 pub const cvk_memory_create_args = struct_cvk_memory_create_args;
-pub export fn cvk_memory_create(arg: [*c]const cvk_memory_create_args) cvk_Memory {
-    _ = &arg;
-    var result: cvk_Memory = cvk_Memory{
-        .ct = null,
-        .cfg = VkMemoryAllocateInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO)),
-            .pNext = null,
-            .allocationSize = arg.*.size_alloc,
-            .memoryTypeIndex = arg.*.kind,
-        },
-        .data = arg.*.data,
-    };
-    _ = &result;
-    while (true) {
-        if (vkAllocateMemory(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to allocate a block of GPU memory.\n", cvk_result_toString_default(vkAllocateMemory(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././data/memory.c", @as(c_int, 22), "cvk_memory_create");
-        }
-        if (!false) break;
-    }
-    while (true) {
-        if (vkMapMemory(arg.*.device_logical.*.ct, result.ct, arg.*.offset, arg.*.size_data, @as(VkMemoryMapFlags, @bitCast(@as(c_int, 0))), &result.data) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to map a GPU Memory block.\n", cvk_result_toString_default(vkMapMemory(arg.*.device_logical.*.ct, result.ct, arg.*.offset, arg.*.size_data, @as(VkMemoryMapFlags, @bitCast(@as(c_int, 0))), &result.data)), "src/ffi/.././cvulkan/././data/memory.c", @as(c_int, 30), "cvk_memory_create");
-        }
-        if (!false) break;
-    }
-    arg.*.allocator.*.cpu.copy.?(&arg.*.allocator.*.cpu, &(cvk_Slice_t{
-        .len = arg.*.size_data,
-        .itemsize = @as(usize, @bitCast(@as(c_long, @as(c_int, 1)))),
-        .ptr = arg.*.data,
-    }), &(cvk_Slice_t{
-        .len = arg.*.size_data,
-        .itemsize = @as(usize, @bitCast(@as(c_long, @as(c_int, 1)))),
-        .ptr = result.data,
-    }));
-    vkUnmapMemory(arg.*.device_logical.*.ct, result.ct);
-    return result;
-}
-pub export fn cvk_memory_destroy(memory: [*c]cvk_Memory, device_logical: [*c]const cvk_device_Logical, allocator: [*c]const cvk_Allocator) void {
-    _ = &memory;
-    _ = &device_logical;
-    _ = &allocator;
-    memory.*.cfg = VkMemoryAllocateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .allocationSize = @import("std").mem.zeroes(VkDeviceSize),
-        .memoryTypeIndex = @import("std").mem.zeroes(u32),
-    };
-    vkFreeMemory(device_logical.*.ct, memory.*.ct, allocator.*.gpu);
-}
+pub extern fn cvk_memory_create(arg: [*c]const cvk_memory_create_args) cvk_Memory;
+pub extern fn cvk_memory_destroy(memory: [*c]cvk_Memory, device_logical: [*c]const cvk_device_Logical, allocator: [*c]const cvk_Allocator) void;
+pub extern fn cvk_memory_properties_type(memory: [*c]const cvk_memory_Properties, device_physical: [*c]const cvk_device_Physical, flags: VkMemoryPropertyFlags) u32;
 pub const struct_cvk_buffer_create_args = extern struct {
     device_physical: [*c]const cvk_device_Physical = @import("std").mem.zeroes([*c]const cvk_device_Physical),
     device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
@@ -19417,186 +17667,116 @@ pub const struct_cvk_buffer_create_args = extern struct {
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
 };
 pub const cvk_buffer_create_args = struct_cvk_buffer_create_args;
-pub export fn cvk_buffer_create(arg: [*c]const cvk_buffer_create_args) cvk_Buffer {
-    _ = &arg;
-    var result: cvk_Buffer = cvk_Buffer{
-        .ct = null,
-        .cfg = VkBufferCreateInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO)),
-            .pNext = null,
-            .flags = arg.*.flags,
-            .size = arg.*.size,
-            .usage = arg.*.usage,
-            .sharingMode = arg.*.sharing,
-            .queueFamilyIndexCount = @as(u32, @bitCast(@as(c_int, 0))),
-            .pQueueFamilyIndices = null,
-        },
-        .memory = @import("std").mem.zeroes(cvk_buffer_Memory),
-    };
-    _ = &result;
-    while (true) {
-        if (vkCreateBuffer(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a GPU data Buffer.\n", cvk_result_toString_default(vkCreateBuffer(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././data/buffer.c", @as(c_int, 25), "cvk_buffer_create");
-        }
-        if (!false) break;
-    }
-    vkGetBufferMemoryRequirements(arg.*.device_logical.*.ct, result.ct, &result.memory.requirements);
-    result.memory.kind = cvk_buffer_memoryType(&result, arg.*.device_physical, arg.*.memory_flags);
-    return result;
-}
-pub export fn cvk_buffer_destroy(buffer: [*c]cvk_Buffer, device_logical: [*c]const cvk_device_Logical, allocator: [*c]const cvk_Allocator) void {
-    _ = &buffer;
-    _ = &device_logical;
-    _ = &allocator;
-    buffer.*.cfg = VkBufferCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkBufferCreateFlags),
-        .size = @import("std").mem.zeroes(VkDeviceSize),
-        .usage = @import("std").mem.zeroes(VkBufferUsageFlags),
-        .sharingMode = @import("std").mem.zeroes(VkSharingMode),
-        .queueFamilyIndexCount = @import("std").mem.zeroes(u32),
-        .pQueueFamilyIndices = null,
-    };
-    buffer.*.memory.requirements = VkMemoryRequirements{
-        .size = @as(VkDeviceSize, @bitCast(@as(c_long, @as(c_int, 0)))),
-        .alignment = @import("std").mem.zeroes(VkDeviceSize),
-        .memoryTypeBits = @import("std").mem.zeroes(u32),
-    };
-    buffer.*.memory.kind = @as(c_uint, 4294967295);
-    vkDestroyBuffer(device_logical.*.ct, buffer.*.ct, allocator.*.gpu);
-}
-pub export fn cvk_buffer_memoryType(buffer: [*c]const cvk_Buffer, device_physical: [*c]const cvk_device_Physical, flags: VkMemoryPropertyFlags) u32 {
-    _ = &buffer;
-    _ = &device_physical;
-    _ = &flags;
-    var result: u32 = @as(c_uint, 4294967295);
-    _ = &result;
-    {
-        var id: u32 = 0;
-        _ = &id;
-        while (id < device_physical.*.memory.memoryTypeCount) : (id +%= 1) {
-            const sameType: cvk_bool = @as(c_uint, @bitCast(buffer.*.memory.requirements.memoryTypeBits & @as(u32, @bitCast(@as(c_int, 1) << @intCast(id)))));
-            _ = &sameType;
-            const sameFlags: cvk_bool = @as(c_uint, @intFromBool((device_physical.*.memory.memoryTypes[id].propertyFlags & @as(VkMemoryPropertyFlags, @bitCast(flags))) == @as(VkMemoryPropertyFlags, @bitCast(flags))));
-            _ = &sameFlags;
-            if ((sameType != 0) and (sameFlags != 0)) return id;
-        }
-    }
-    while (true) {
-        if (!(cvk_false != 0)) {
-            _ = printf("[%s:%d] %s: Failed to find a suitable memory type for a Buffer.\n", "src/ffi/.././cvulkan/././data/buffer.c", @as(c_int, 60), "cvk_buffer_memoryType");
-        }
-        if (!false) break;
-    }
-    return result;
-}
+pub extern fn cvk_buffer_create(arg: [*c]const cvk_buffer_create_args) cvk_Buffer;
+pub extern fn cvk_buffer_destroy(buffer: [*c]cvk_Buffer, device_logical: [*c]const cvk_device_Logical, allocator: [*c]const cvk_Allocator) void;
 pub const struct_cvk_buffer_bind_args = extern struct {
     device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
     memory: [*c]const cvk_Memory = @import("std").mem.zeroes([*c]const cvk_Memory),
     offset: VkDeviceSize = @import("std").mem.zeroes(VkDeviceSize),
 };
 pub const cvk_buffer_bind_args = struct_cvk_buffer_bind_args;
-pub export fn cvk_buffer_bind(buffer: [*c]const cvk_Buffer, arg: [*c]const cvk_buffer_bind_args) void {
-    _ = &buffer;
-    _ = &arg;
-    while (true) {
-        if (vkBindBufferMemory(arg.*.device_logical.*.ct, buffer.*.ct, arg.*.memory.*.ct, arg.*.offset) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to bind a block of Device.Memory to a Buffer.Memory context.\n", cvk_result_toString_default(vkBindBufferMemory(arg.*.device_logical.*.ct, buffer.*.ct, arg.*.memory.*.ct, arg.*.offset)), "src/ffi/.././cvulkan/././data/buffer.c", @as(c_int, 70), "cvk_buffer_bind");
-        }
-        if (!false) break;
-    }
-}
-pub export fn cvk_buffer_vertex_command_bind(buffer: [*c]const cvk_Buffer, command_buffer: [*c]const cvk_command_Buffer) void {
-    _ = &buffer;
-    _ = &command_buffer;
-    const offsets: [1]VkDeviceSize = [1]VkDeviceSize{
-        0,
-    };
-    _ = &offsets;
-    vkCmdBindVertexBuffers(command_buffer.*.ct, @as(u32, @bitCast(@as(c_int, 0))), @as(u32, @bitCast(@as(c_int, 1))), &buffer.*.ct, @as([*c]const VkDeviceSize, @ptrCast(@alignCast(&offsets))));
-}
+pub extern fn cvk_buffer_bind(buffer: [*c]const cvk_Buffer, arg: [*c]const cvk_buffer_bind_args) void;
+pub extern fn cvk_buffer_vertex_command_bind(buffer: [*c]const cvk_Buffer, command_buffer: [*c]const cvk_command_Buffer) void;
+pub extern fn cvk_buffer_index_command_bind(buffer: [*c]const cvk_Buffer, command_buffer: [*c]const cvk_command_Buffer) void;
+pub const struct_cvk_buffer_copy_args = extern struct {
+    command_buffer: [*c]const cvk_command_Buffer = @import("std").mem.zeroes([*c]const cvk_command_Buffer),
+};
+pub const cvk_buffer_copy_args = struct_cvk_buffer_copy_args;
+pub extern fn cvk_buffer_command_copy(A: [*c]const cvk_Buffer, B: [*c]const cvk_Buffer, arg: [*c]const cvk_buffer_copy_args) void;
+pub const struct_cvk_image_data_bind_args = extern struct {
+    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
+    memory: [*c]const cvk_Memory = @import("std").mem.zeroes([*c]const cvk_Memory),
+    offset: VkDeviceSize = @import("std").mem.zeroes(VkDeviceSize),
+};
+pub const cvk_image_data_bind_args = struct_cvk_image_data_bind_args;
+pub extern fn cvk_image_data_bind(image: [*c]const cvk_image_Data, arg: [*c]const cvk_image_data_bind_args) void;
+pub const struct_cvk_image_data_create_args = extern struct {
+    device_physical: [*c]const cvk_device_Physical = @import("std").mem.zeroes([*c]const cvk_device_Physical),
+    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
+    allocator: [*c]const cvk_Allocator = @import("std").mem.zeroes([*c]const cvk_Allocator),
+    format: VkFormat = @import("std").mem.zeroes(VkFormat),
+    usage: VkImageUsageFlags = @import("std").mem.zeroes(VkImageUsageFlags),
+    memory_flags: cvk_memory_Flags = @import("std").mem.zeroes(cvk_memory_Flags),
+    flags: VkImageCreateFlags = @import("std").mem.zeroes(VkImageCreateFlags),
+    dimensions: VkImageType = @import("std").mem.zeroes(VkImageType),
+    width: u32 = @import("std").mem.zeroes(u32),
+    height: u32 = @import("std").mem.zeroes(u32),
+    depth: u32 = @import("std").mem.zeroes(u32),
+    samples: VkSampleCountFlags = @import("std").mem.zeroes(VkSampleCountFlags),
+    tiling: VkImageTiling = @import("std").mem.zeroes(VkImageTiling),
+    sharing: VkSharingMode = @import("std").mem.zeroes(VkSharingMode),
+    layout: VkImageLayout = @import("std").mem.zeroes(VkImageLayout),
+    mip_len: u32 = @import("std").mem.zeroes(u32),
+    layers_len: u32 = @import("std").mem.zeroes(u32),
+};
+pub const cvk_image_data_create_args = struct_cvk_image_data_create_args;
+pub extern fn cvk_image_data_create(arg: [*c]const cvk_image_data_create_args) cvk_image_Data;
+pub extern fn cvk_image_data_destroy(image_data: [*c]cvk_image_Data, device_logical: [*c]const cvk_device_Logical, allocator: [*c]const cvk_Allocator) void;
+pub const struct_cvk_image_data_transition_args = extern struct {
+    command_buffer: [*c]const cvk_command_Buffer = @import("std").mem.zeroes([*c]const cvk_command_Buffer),
+    access_src: VkAccessFlags = @import("std").mem.zeroes(VkAccessFlags),
+    access_trg: VkAccessFlags = @import("std").mem.zeroes(VkAccessFlags),
+    stage_src: VkPipelineStageFlags = @import("std").mem.zeroes(VkPipelineStageFlags),
+    stage_trg: VkPipelineStageFlags = @import("std").mem.zeroes(VkPipelineStageFlags),
+    layout_old: VkImageLayout = @import("std").mem.zeroes(VkImageLayout),
+    layout_new: VkImageLayout = @import("std").mem.zeroes(VkImageLayout),
+    aspect: VkImageAspectFlags = @import("std").mem.zeroes(VkImageAspectFlags),
+    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
+};
+pub const cvk_image_data_transition_args = struct_cvk_image_data_transition_args;
+pub extern fn cvk_image_data_command_transition(image_data: [*c]cvk_image_Data, arg: [*c]const cvk_image_data_transition_args) void;
+pub const struct_cvk_image_data_copy_args = extern struct {
+    command_buffer: [*c]const cvk_command_Buffer = @import("std").mem.zeroes([*c]const cvk_command_Buffer),
+    offset_buffer: VkDeviceSize = @import("std").mem.zeroes(VkDeviceSize),
+    offset_image: VkOffset3D = @import("std").mem.zeroes(VkOffset3D),
+    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
+};
+pub const cvk_image_data_copy_args = struct_cvk_image_data_copy_args;
+pub extern fn cvk_image_data_command_copy_fromBuffer(image_data: [*c]const cvk_image_Data, buffer: [*c]const cvk_Buffer, arg: [*c]const cvk_image_data_copy_args) void;
+pub const struct_cvk_image_view_create_args = extern struct {
+    image_data: [*c]const cvk_image_Data = @import("std").mem.zeroes([*c]const cvk_image_Data),
+    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
+    allocator: [*c]const cvk_Allocator = @import("std").mem.zeroes([*c]const cvk_Allocator),
+    aspect: VkImageAspectFlags = @import("std").mem.zeroes(VkImageAspectFlags),
+    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
+};
+pub const cvk_image_view_create_args = struct_cvk_image_view_create_args;
+pub extern fn cvk_image_view_create(arg: [*c]const cvk_image_view_create_args) cvk_image_View;
+pub extern fn cvk_image_view_destroy(image_view: [*c]cvk_image_View, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
+pub const struct_cvk_image_sampler_create_args = extern struct {
+    device_physical: [*c]const cvk_device_Physical = @import("std").mem.zeroes([*c]const cvk_device_Physical),
+    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
+    allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
+    flags: VkSamplerCreateFlags = @import("std").mem.zeroes(VkSamplerCreateFlags),
+    filter_min: VkFilter = @import("std").mem.zeroes(VkFilter),
+    filter_mag: VkFilter = @import("std").mem.zeroes(VkFilter),
+    mip_mode: VkSamplerMipmapMode = @import("std").mem.zeroes(VkSamplerMipmapMode),
+    mip_lodBias: f32 = @import("std").mem.zeroes(f32),
+    address_U: VkSamplerAddressMode = @import("std").mem.zeroes(VkSamplerAddressMode),
+    address_V: VkSamplerAddressMode = @import("std").mem.zeroes(VkSamplerAddressMode),
+    address_W: VkSamplerAddressMode = @import("std").mem.zeroes(VkSamplerAddressMode),
+    anisotropy_enabled: cvk_bool = @import("std").mem.zeroes(cvk_bool),
+    anisotropy_max: f32 = @import("std").mem.zeroes(f32),
+    compare_enabled: cvk_bool = @import("std").mem.zeroes(cvk_bool),
+    compare_op: VkCompareOp = @import("std").mem.zeroes(VkCompareOp),
+    lod_min: f32 = @import("std").mem.zeroes(f32),
+    lod_max: f32 = @import("std").mem.zeroes(f32),
+    border_color: VkBorderColor = @import("std").mem.zeroes(VkBorderColor),
+    unnormalized: cvk_bool = @import("std").mem.zeroes(cvk_bool),
+};
+pub const cvk_image_sampler_create_args = struct_cvk_image_sampler_create_args;
+pub extern fn cvk_image_sampler_create(arg: [*c]const cvk_image_sampler_create_args) cvk_image_Sampler;
+pub extern fn cvk_image_sampler_destroy(image_sampler: [*c]cvk_image_Sampler, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
 pub const struct_cvk_renderpass_create_args = extern struct {
     device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
-    swapchain: [*c]const cvk_device_Swapchain = @import("std").mem.zeroes([*c]const cvk_device_Swapchain),
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
+    attachment_cfg_len: usize = @import("std").mem.zeroes(usize),
+    attachment_cfg_ptr: [*c]const VkAttachmentDescription = @import("std").mem.zeroes([*c]const VkAttachmentDescription),
+    depthStencil: [*c]const VkAttachmentReference = @import("std").mem.zeroes([*c]const VkAttachmentReference),
 };
 pub const cvk_renderpass_create_args = struct_cvk_renderpass_create_args;
-pub export fn cvk_renderpass_create(arg: [*c]const cvk_renderpass_create_args) cvk_Renderpass {
-    _ = &arg;
-    var result: cvk_Renderpass = cvk_Renderpass{
-        .ct = null,
-        .cfg = @import("std").mem.zeroes(VkRenderPassCreateInfo),
-    };
-    _ = &result;
-    result.cfg = VkRenderPassCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkRenderPassCreateFlags, @bitCast(@as(c_int, 0))),
-        .attachmentCount = @as(u32, @bitCast(@as(c_int, 1))),
-        .pAttachments = &(VkAttachmentDescription{
-            .flags = @as(VkAttachmentDescriptionFlags, @bitCast(@as(c_int, 0))),
-            .format = arg.*.swapchain.*.cfg.imageFormat,
-            .samples = @as(c_uint, @bitCast(VK_SAMPLE_COUNT_1_BIT)),
-            .loadOp = @as(c_uint, @bitCast(VK_ATTACHMENT_LOAD_OP_CLEAR)),
-            .storeOp = @as(c_uint, @bitCast(VK_ATTACHMENT_STORE_OP_STORE)),
-            .stencilLoadOp = @as(c_uint, @bitCast(VK_ATTACHMENT_LOAD_OP_DONT_CARE)),
-            .stencilStoreOp = @as(c_uint, @bitCast(VK_ATTACHMENT_STORE_OP_DONT_CARE)),
-            .initialLayout = @as(c_uint, @bitCast(VK_IMAGE_LAYOUT_UNDEFINED)),
-            .finalLayout = @as(c_uint, @bitCast(VK_IMAGE_LAYOUT_PRESENT_SRC_KHR)),
-        }),
-        .subpassCount = @as(u32, @bitCast(@as(c_int, 1))),
-        .pSubpasses = &(VkSubpassDescription{
-            .flags = @as(VkSubpassDescriptionFlags, @bitCast(@as(c_int, 0))),
-            .pipelineBindPoint = @as(c_uint, @bitCast(VK_PIPELINE_BIND_POINT_GRAPHICS)),
-            .inputAttachmentCount = @as(u32, @bitCast(@as(c_int, 0))),
-            .pInputAttachments = null,
-            .colorAttachmentCount = @as(u32, @bitCast(@as(c_int, 1))),
-            .pColorAttachments = &(VkAttachmentReference{
-                .attachment = @as(u32, @bitCast(@as(c_int, 0))),
-                .layout = @as(c_uint, @bitCast(VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL)),
-            }),
-            .pResolveAttachments = null,
-            .pDepthStencilAttachment = null,
-            .preserveAttachmentCount = @as(u32, @bitCast(@as(c_int, 0))),
-            .pPreserveAttachments = null,
-        }),
-        .dependencyCount = @as(u32, @bitCast(@as(c_int, 1))),
-        .pDependencies = &(VkSubpassDependency{
-            .srcSubpass = ~@as(c_uint, 0),
-            .dstSubpass = @as(u32, @bitCast(@as(c_int, 0))),
-            .srcStageMask = @as(VkPipelineStageFlags, @bitCast(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT)),
-            .dstStageMask = @as(VkPipelineStageFlags, @bitCast(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT)),
-            .srcAccessMask = @as(VkAccessFlags, @bitCast(@as(c_int, 0))),
-            .dstAccessMask = @as(VkAccessFlags, @bitCast(VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT)),
-            .dependencyFlags = @as(VkDependencyFlags, @bitCast(@as(c_int, 0))),
-        }),
-    };
-    while (true) {
-        if (vkCreateRenderPass(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a Renderpass\n", cvk_result_toString_default(vkCreateRenderPass(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././renderpass.c", @as(c_int, 66), "cvk_renderpass_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_renderpass_destroy(renderpass: [*c]cvk_Renderpass, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &renderpass;
-    _ = &device_logical;
-    _ = &allocator;
-    renderpass.*.cfg = VkRenderPassCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkRenderPassCreateFlags),
-        .attachmentCount = @import("std").mem.zeroes(u32),
-        .pAttachments = null,
-        .subpassCount = @import("std").mem.zeroes(u32),
-        .pSubpasses = null,
-        .dependencyCount = @import("std").mem.zeroes(u32),
-        .pDependencies = null,
-    };
-    vkDestroyRenderPass(device_logical.*.ct, renderpass.*.ct, allocator.*.gpu);
-}
+pub extern fn cvk_renderpass_create(arg: [*c]const cvk_renderpass_create_args) cvk_Renderpass;
+pub extern fn cvk_renderpass_destroy(renderpass: [*c]cvk_Renderpass, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
 pub const struct_cvk_renderpass_command_begin_args = extern struct {
     command_buffer: [*c]const cvk_command_Buffer = @import("std").mem.zeroes([*c]const cvk_command_Buffer),
     framebuffer: [*c]const cvk_Framebuffer = @import("std").mem.zeroes([*c]const cvk_Framebuffer),
@@ -19604,50 +17784,9 @@ pub const struct_cvk_renderpass_command_begin_args = extern struct {
     extent: cvk_Size2D = @import("std").mem.zeroes(cvk_Size2D),
 };
 pub const cvk_renderpass_command_begin_args = struct_cvk_renderpass_command_begin_args;
-pub export fn cvk_renderpass_command_begin(renderpass: [*c]const cvk_Renderpass, arg: [*c]const cvk_renderpass_command_begin_args) void {
-    _ = &renderpass;
-    _ = &arg;
-    vkCmdBeginRenderPass(arg.*.command_buffer.*.ct, &(VkRenderPassBeginInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO)),
-        .pNext = null,
-        .renderPass = renderpass.*.ct,
-        .framebuffer = arg.*.framebuffer.*.ct,
-        .renderArea = VkRect2D{
-            .offset = arg.*.offset,
-            .extent = arg.*.extent,
-        },
-        .clearValueCount = @as(u32, @bitCast(@as(c_int, 1))),
-        .pClearValues = &(VkClearValue{
-            .color = VkClearColorValue{
-                .float32 = [4]f32{
-                    0.22200000286102295,
-                    0.3330000042915344,
-                    0.4440000057220459,
-                    1.0,
-                },
-            },
-        }),
-    }), @as(c_uint, @bitCast(VK_SUBPASS_CONTENTS_INLINE)));
-}
-pub export fn cvk_renderpass_command_end(renderpass: [*c]const cvk_Renderpass, command_buffer: [*c]const cvk_command_Buffer) void {
-    _ = &renderpass;
-    _ = &command_buffer;
-    _ = &renderpass;
-    vkCmdEndRenderPass(command_buffer.*.ct);
-}
-pub export fn cvk_framebuffer_list_destroy(framebuffers: [*c]cvk_framebuffer_List, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &framebuffers;
-    _ = &device_logical;
-    _ = &allocator;
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < framebuffers.*.len) : (id +%= 1) {
-            cvk_framebuffer_destroy(&framebuffers.*.ptr[id], device_logical, allocator);
-        }
-    }
-    allocator.*.cpu.free.?(&allocator.*.cpu, @as([*c]cvk_Slice_t, @ptrCast(@alignCast(framebuffers))));
-}
+pub extern fn cvk_renderpass_command_begin(renderpass: [*c]const cvk_Renderpass, arg: [*c]const cvk_renderpass_command_begin_args) void;
+pub extern fn cvk_renderpass_command_end(renderpass: [*c]const cvk_Renderpass, command_buffer: [*c]const cvk_command_Buffer) void;
+pub extern fn cvk_framebuffer_list_destroy(framebuffers: [*c]cvk_framebuffer_List, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
 pub const struct_cvk_framebuffer_create_args = extern struct {
     device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
     renderpass: [*c]const cvk_Renderpass = @import("std").mem.zeroes([*c]const cvk_Renderpass),
@@ -19659,240 +17798,33 @@ pub const struct_cvk_framebuffer_create_args = extern struct {
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
 };
 pub const cvk_framebuffer_create_args = struct_cvk_framebuffer_create_args;
-pub export fn cvk_framebuffer_create(arg: [*c]const cvk_framebuffer_create_args) cvk_Framebuffer {
-    _ = &arg;
-    var result: cvk_Framebuffer = cvk_Framebuffer{
-        .ct = null,
-        .cfg = VkFramebufferCreateInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO)),
-            .pNext = null,
-            .flags = arg.*.flags,
-            .renderPass = arg.*.renderpass.*.ct,
-            .attachmentCount = @as(u32, @bitCast(@as(c_uint, @truncate(arg.*.attachments_len)))),
-            .pAttachments = arg.*.attachments_ptr,
-            .width = arg.*.size.*.width,
-            .height = arg.*.size.*.height,
-            .layers = @as(u32, @bitCast(@as(c_int, 1))),
-        },
-    };
-    _ = &result;
-    while (true) {
-        if (vkCreateFramebuffer(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a Framebuffer context\n", cvk_result_toString_default(vkCreateFramebuffer(arg.*.device_logical.*.ct, &result.cfg, arg.*.allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././framebuffer.c", @as(c_int, 26), "cvk_framebuffer_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_framebuffer_destroy(framebuffer: [*c]cvk_Framebuffer, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &framebuffer;
-    _ = &device_logical;
-    _ = &allocator;
-    framebuffer.*.cfg = VkFramebufferCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkFramebufferCreateFlags),
-        .renderPass = @import("std").mem.zeroes(VkRenderPass),
-        .attachmentCount = @import("std").mem.zeroes(u32),
-        .pAttachments = null,
-        .width = @import("std").mem.zeroes(u32),
-        .height = @import("std").mem.zeroes(u32),
-        .layers = @import("std").mem.zeroes(u32),
-    };
-    vkDestroyFramebuffer(device_logical.*.ct, framebuffer.*.ct, allocator.*.gpu);
-}
-pub const struct_cvk_device_swapchain_framebuffers_create_args = extern struct {
-    swapchain: [*c]const cvk_device_Swapchain = @import("std").mem.zeroes([*c]const cvk_device_Swapchain),
-    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
-    renderpass: [*c]const cvk_Renderpass = @import("std").mem.zeroes([*c]const cvk_Renderpass),
-    allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
-};
-pub const cvk_device_swapchain_framebuffers_create_args = struct_cvk_device_swapchain_framebuffers_create_args;
-pub export fn cvk_device_swapchain_framebuffers_create(arg: [*c]const cvk_device_swapchain_framebuffers_create_args) cvk_framebuffer_List {
-    _ = &arg;
-    var result: cvk_framebuffer_List = cvk_framebuffer_List{
-        .len = arg.*.swapchain.*.images.len,
-        .itemsize = @sizeOf(cvk_Framebuffer),
-        .ptr = null,
-    };
-    _ = &result;
-    var data: cvk_Slice_t = arg.*.allocator.*.cpu.allocZ.?(&arg.*.allocator.*.cpu, result.len, result.itemsize);
-    _ = &data;
-    result.ptr = @as([*c]cvk_Framebuffer, @ptrCast(@alignCast(data.ptr)));
-    {
-        var id: usize = 0;
-        _ = &id;
-        while (id < data.len) : (id +%= 1) {
-            result.ptr[id] = cvk_framebuffer_create(&(cvk_framebuffer_create_args{
-                .device_logical = arg.*.device_logical,
-                .renderpass = arg.*.renderpass,
-                .size = &arg.*.swapchain.*.cfg.imageExtent,
-                .attachments_len = @as(usize, @bitCast(@as(c_long, @as(c_int, 1)))),
-                .attachments_ptr = &arg.*.swapchain.*.images.ptr[id].view,
-                .flags = @import("std").mem.zeroes(VkFramebufferCreateFlags),
-                .priv_pad = @import("std").mem.zeroes([4]u8),
-                .allocator = arg.*.allocator,
-            }));
-        }
-    }
-    return result;
-}
-pub export fn cvk_pipeline_state_dynamic_setup(states_len: usize, states_ptr: [*c]const VkDynamicState) VkPipelineDynamicStateCreateInfo {
-    _ = &states_len;
-    _ = &states_ptr;
-    return VkPipelineDynamicStateCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkPipelineDynamicStateCreateFlags, @bitCast(@as(c_int, 0))),
-        .dynamicStateCount = @as(u32, @bitCast(@as(c_uint, @truncate(states_len)))),
-        .pDynamicStates = states_ptr,
-    };
-}
-pub export fn cvk_pipeline_state_vertexInput_setup() VkPipelineVertexInputStateCreateInfo {
-    return VkPipelineVertexInputStateCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkPipelineVertexInputStateCreateFlags, @bitCast(@as(c_int, 0))),
-        .vertexBindingDescriptionCount = @as(u32, @bitCast(@as(c_int, 0))),
-        .pVertexBindingDescriptions = null,
-        .vertexAttributeDescriptionCount = @as(u32, @bitCast(@as(c_int, 0))),
-        .pVertexAttributeDescriptions = null,
-    };
-}
-pub export fn cvk_pipeline_state_inputAssembly_setup() VkPipelineInputAssemblyStateCreateInfo {
-    return VkPipelineInputAssemblyStateCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkPipelineInputAssemblyStateCreateFlags, @bitCast(@as(c_int, 0))),
-        .topology = @as(c_uint, @bitCast(VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST)),
-        .primitiveRestartEnable = @as(c_uint, 0),
-    };
-}
-pub export fn cvk_pipeline_state_viewport_setup() VkPipelineViewportStateCreateInfo {
-    return VkPipelineViewportStateCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkPipelineViewportStateCreateFlags, @bitCast(@as(c_int, 0))),
-        .viewportCount = @as(u32, @bitCast(@as(c_int, 1))),
-        .pViewports = null,
-        .scissorCount = @as(u32, @bitCast(@as(c_int, 1))),
-        .pScissors = null,
-    };
-}
-pub export fn cvk_pipeline_state_rasterization_setup() VkPipelineRasterizationStateCreateInfo {
-    return VkPipelineRasterizationStateCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkPipelineRasterizationStateCreateFlags, @bitCast(@as(c_int, 0))),
-        .depthClampEnable = @as(c_uint, 0),
-        .rasterizerDiscardEnable = @as(c_uint, 0),
-        .polygonMode = @as(c_uint, @bitCast(VK_POLYGON_MODE_FILL)),
-        .cullMode = @as(VkCullModeFlags, @bitCast(VK_CULL_MODE_BACK_BIT)),
-        .frontFace = @as(c_uint, @bitCast(VK_FRONT_FACE_CLOCKWISE)),
-        .depthBiasEnable = @as(c_uint, 0),
-        .depthBiasConstantFactor = 0.0,
-        .depthBiasClamp = 0.0,
-        .depthBiasSlopeFactor = 0.0,
-        .lineWidth = 1.0,
-    };
-}
-pub export fn cvk_pipeline_state_multisample_setup() VkPipelineMultisampleStateCreateInfo {
-    return VkPipelineMultisampleStateCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkPipelineMultisampleStateCreateFlags, @bitCast(@as(c_int, 0))),
-        .rasterizationSamples = @as(c_uint, @bitCast(VK_SAMPLE_COUNT_1_BIT)),
-        .sampleShadingEnable = @as(c_uint, 0),
-        .minSampleShading = 1.0,
-        .pSampleMask = null,
-        .alphaToCoverageEnable = @as(c_uint, 0),
-        .alphaToOneEnable = @as(c_uint, 0),
-    };
-}
-pub export fn cvk_pipeline_state_colorBlend_attachment_setup() VkPipelineColorBlendAttachmentState {
-    return VkPipelineColorBlendAttachmentState{
-        .blendEnable = @as(c_uint, 1),
-        .srcColorBlendFactor = @as(c_uint, @bitCast(VK_BLEND_FACTOR_SRC_ALPHA)),
-        .dstColorBlendFactor = @as(c_uint, @bitCast(VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)),
-        .colorBlendOp = @as(c_uint, @bitCast(VK_BLEND_OP_ADD)),
-        .srcAlphaBlendFactor = @as(c_uint, @bitCast(VK_BLEND_FACTOR_ONE)),
-        .dstAlphaBlendFactor = @as(c_uint, @bitCast(VK_BLEND_FACTOR_ZERO)),
-        .alphaBlendOp = @as(c_uint, @bitCast(VK_BLEND_OP_ADD)),
-        .colorWriteMask = @as(VkColorComponentFlags, @bitCast(((VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT) | VK_COLOR_COMPONENT_B_BIT) | VK_COLOR_COMPONENT_A_BIT)),
-    };
-}
+pub extern fn cvk_framebuffer_create(arg: [*c]const cvk_framebuffer_create_args) cvk_Framebuffer;
+pub extern fn cvk_framebuffer_destroy(framebuffer: [*c]cvk_Framebuffer, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
+pub extern fn cvk_pipeline_state_dynamic_setup(states_len: usize, states_ptr: [*c]const VkDynamicState) VkPipelineDynamicStateCreateInfo;
+pub extern fn cvk_pipeline_state_vertexInput_setup(...) VkPipelineVertexInputStateCreateInfo;
+pub extern fn cvk_pipeline_state_inputAssembly_setup(...) VkPipelineInputAssemblyStateCreateInfo;
+pub extern fn cvk_pipeline_state_viewport_setup(...) VkPipelineViewportStateCreateInfo;
+pub extern fn cvk_pipeline_state_rasterization_setup(...) VkPipelineRasterizationStateCreateInfo;
+pub extern fn cvk_pipeline_state_multisample_setup(...) VkPipelineMultisampleStateCreateInfo;
+pub extern fn cvk_pipeline_state_colorBlend_attachment_setup(...) VkPipelineColorBlendAttachmentState;
 pub const struct_cvk_pipeline_state_colorBlend_setup_args = extern struct {
     attachments_len: usize = @import("std").mem.zeroes(usize),
     attachments_ptr: [*c]const VkPipelineColorBlendAttachmentState = @import("std").mem.zeroes([*c]const VkPipelineColorBlendAttachmentState),
 };
 pub const cvk_pipeline_state_colorBlend_setup_args = struct_cvk_pipeline_state_colorBlend_setup_args;
-pub export fn cvk_pipeline_state_colorBlend_setup(arg: [*c]const cvk_pipeline_state_colorBlend_setup_args) VkPipelineColorBlendStateCreateInfo {
-    _ = &arg;
-    return VkPipelineColorBlendStateCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO)),
-        .pNext = null,
-        .flags = @as(VkPipelineColorBlendStateCreateFlags, @bitCast(@as(c_int, 0))),
-        .logicOpEnable = @as(c_uint, 0),
-        .logicOp = @as(c_uint, @bitCast(VK_LOGIC_OP_COPY)),
-        .attachmentCount = if ((arg.*.attachments_ptr != null) and !(arg.*.attachments_len != 0)) @as(u32, @bitCast(@as(c_int, 1))) else @as(u32, @bitCast(@as(c_uint, @truncate(arg.*.attachments_len)))),
-        .pAttachments = arg.*.attachments_ptr,
-        .blendConstants = [4]f32{
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-        },
-    };
-}
-pub export fn cvk_viewport_command_set(viewport: [*c]const VkViewport, command_buffer: [*c]const cvk_command_Buffer) void {
-    _ = &viewport;
-    _ = &command_buffer;
-    vkCmdSetViewport(command_buffer.*.ct, @as(u32, @bitCast(@as(c_int, 0))), @as(u32, @bitCast(@as(c_int, 1))), viewport);
-}
-pub export fn cvk_scissor_command_set(scissor: [*c]const VkRect2D, command_buffer: [*c]const cvk_command_Buffer) void {
-    _ = &scissor;
-    _ = &command_buffer;
-    vkCmdSetScissor(command_buffer.*.ct, @as(u32, @bitCast(@as(c_int, 0))), @as(u32, @bitCast(@as(c_int, 1))), scissor);
-}
-pub export fn cvk_pipeline_layout_create(device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) cvk_pipeline_Layout {
-    _ = &device_logical;
-    _ = &allocator;
-    var result: cvk_pipeline_Layout = cvk_pipeline_Layout{
-        .ct = null,
-        .cfg = VkPipelineLayoutCreateInfo{
-            .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO)),
-            .pNext = null,
-            .flags = @as(VkPipelineLayoutCreateFlags, @bitCast(@as(c_int, 0))),
-            .setLayoutCount = @as(u32, @bitCast(@as(c_int, 0))),
-            .pSetLayouts = null,
-            .pushConstantRangeCount = @as(u32, @bitCast(@as(c_int, 0))),
-            .pPushConstantRanges = null,
-        },
-    };
-    _ = &result;
-    while (true) {
-        if (vkCreatePipelineLayout(device_logical.*.ct, &result.cfg, allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create the Pipeline's Layout.\n", cvk_result_toString_default(vkCreatePipelineLayout(device_logical.*.ct, &result.cfg, allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././pipeline/layout.c", @as(c_int, 24), "cvk_pipeline_layout_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_pipeline_layout_destroy(layout: [*c]cvk_pipeline_Layout, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &layout;
-    _ = &device_logical;
-    _ = &allocator;
-    layout.*.cfg = VkPipelineLayoutCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkPipelineLayoutCreateFlags),
-        .setLayoutCount = @import("std").mem.zeroes(u32),
-        .pSetLayouts = null,
-        .pushConstantRangeCount = @import("std").mem.zeroes(u32),
-        .pPushConstantRanges = null,
-    };
-    vkDestroyPipelineLayout(device_logical.*.ct, layout.*.ct, allocator.*.gpu);
-}
+pub extern fn cvk_pipeline_state_colorBlend_setup(arg: [*c]const cvk_pipeline_state_colorBlend_setup_args) VkPipelineColorBlendStateCreateInfo;
+pub extern fn cvk_viewport_command_set(viewport: [*c]const VkViewport, command_buffer: [*c]const cvk_command_Buffer) void;
+pub extern fn cvk_scissor_command_set(scissor: [*c]const VkRect2D, command_buffer: [*c]const cvk_command_Buffer) void;
+pub const struct_cvk_pipeline_layout_create_args = extern struct {
+    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
+    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
+    sets_len: u32 = @import("std").mem.zeroes(u32),
+    sets_ptr: [*c]const VkDescriptorSetLayout = @import("std").mem.zeroes([*c]const VkDescriptorSetLayout),
+    allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
+};
+pub const cvk_pipeline_layout_create_args = struct_cvk_pipeline_layout_create_args;
+pub extern fn cvk_pipeline_layout_create(arg: [*c]const cvk_pipeline_layout_create_args) cvk_pipeline_Layout;
+pub extern fn cvk_pipeline_layout_destroy(layout: [*c]cvk_pipeline_Layout, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
 pub const struct_cvk_pipeline_graphics_create_args = extern struct {
     device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
     flags: VkPipelineCreateFlags = @import("std").mem.zeroes(VkPipelineCreateFlags),
@@ -19908,83 +17840,13 @@ pub const struct_cvk_pipeline_graphics_create_args = extern struct {
     state_colorBlend: [*c]const VkPipelineColorBlendStateCreateInfo = @import("std").mem.zeroes([*c]const VkPipelineColorBlendStateCreateInfo),
     state_dynamic: [*c]const VkPipelineDynamicStateCreateInfo = @import("std").mem.zeroes([*c]const VkPipelineDynamicStateCreateInfo),
     renderpass: [*c]const cvk_Renderpass = @import("std").mem.zeroes([*c]const cvk_Renderpass),
+    layout: [*c]const cvk_pipeline_layout_create_args = @import("std").mem.zeroes([*c]const cvk_pipeline_layout_create_args),
     allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
 };
 pub const cvk_pipeline_graphics_create_args = struct_cvk_pipeline_graphics_create_args;
-pub export fn cvk_pipeline_graphics_create(arg: [*c]const cvk_pipeline_graphics_create_args) cvk_pipeline_Graphics {
-    _ = &arg;
-    var result: cvk_pipeline_Graphics = cvk_pipeline_Graphics{
-        .ct = null,
-        .cfg = @import("std").mem.zeroes(VkGraphicsPipelineCreateInfo),
-        .layout = cvk_pipeline_layout_create(arg.*.device_logical, arg.*.allocator),
-        .renderpass = if (arg.*.renderpass != null) arg.*.renderpass.* else cvk_Renderpass{
-            .ct = null,
-            .cfg = @import("std").mem.zeroes(VkRenderPassCreateInfo),
-        },
-    };
-    _ = &result;
-    result.cfg = VkGraphicsPipelineCreateInfo{
-        .sType = @as(c_uint, @bitCast(VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO)),
-        .pNext = null,
-        .flags = arg.*.flags,
-        .stageCount = @as(u32, @bitCast(@as(c_uint, @truncate(arg.*.stages.*.len)))),
-        .pStages = arg.*.stages.*.ptr,
-        .pVertexInputState = arg.*.state_vertexInput,
-        .pInputAssemblyState = arg.*.state_inputAssembly,
-        .pTessellationState = arg.*.state_tessellation,
-        .pViewportState = arg.*.state_viewport,
-        .pRasterizationState = arg.*.state_rasterization,
-        .pMultisampleState = arg.*.state_multisample,
-        .pDepthStencilState = arg.*.state_depthStencil,
-        .pColorBlendState = arg.*.state_colorBlend,
-        .pDynamicState = arg.*.state_dynamic,
-        .layout = result.layout.ct,
-        .renderPass = result.renderpass.ct,
-        .subpass = @as(u32, @bitCast(@as(c_int, 0))),
-        .basePipelineHandle = null,
-        .basePipelineIndex = -@as(c_int, 1),
-    };
-    while (true) {
-        if (vkCreateGraphicsPipelines(arg.*.device_logical.*.ct, null, @as(u32, @bitCast(@as(c_int, 1))), &result.cfg, arg.*.allocator.*.gpu, &result.ct) != 0) {
-            _ = printf("%s (%s:%d) %s: Failed to create a Graphics Pipeline\n", cvk_result_toString_default(vkCreateGraphicsPipelines(arg.*.device_logical.*.ct, null, @as(u32, @bitCast(@as(c_int, 1))), &result.cfg, arg.*.allocator.*.gpu, &result.ct)), "src/ffi/.././cvulkan/././pipeline/graphics.c", @as(c_int, 46), "cvk_pipeline_graphics_create");
-        }
-        if (!false) break;
-    }
-    return result;
-}
-pub export fn cvk_pipeline_graphics_destroy(pipeline: [*c]cvk_pipeline_Graphics, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void {
-    _ = &pipeline;
-    _ = &device_logical;
-    _ = &allocator;
-    cvk_pipeline_layout_destroy(&pipeline.*.layout, device_logical, allocator);
-    pipeline.*.cfg = VkGraphicsPipelineCreateInfo{
-        .sType = @as(c_uint, @bitCast(@as(c_int, 0))),
-        .pNext = null,
-        .flags = @import("std").mem.zeroes(VkPipelineCreateFlags),
-        .stageCount = @import("std").mem.zeroes(u32),
-        .pStages = null,
-        .pVertexInputState = null,
-        .pInputAssemblyState = null,
-        .pTessellationState = null,
-        .pViewportState = null,
-        .pRasterizationState = null,
-        .pMultisampleState = null,
-        .pDepthStencilState = null,
-        .pColorBlendState = null,
-        .pDynamicState = null,
-        .layout = @import("std").mem.zeroes(VkPipelineLayout),
-        .renderPass = @import("std").mem.zeroes(VkRenderPass),
-        .subpass = @import("std").mem.zeroes(u32),
-        .basePipelineHandle = @import("std").mem.zeroes(VkPipeline),
-        .basePipelineIndex = @import("std").mem.zeroes(i32),
-    };
-    vkDestroyPipeline(device_logical.*.ct, pipeline.*.ct, allocator.*.gpu);
-}
-pub export fn cvk_pipeline_graphics_command_bind(pipeline: [*c]const cvk_pipeline_Graphics, command_buffer: [*c]const cvk_command_Buffer) void {
-    _ = &pipeline;
-    _ = &command_buffer;
-    vkCmdBindPipeline(command_buffer.*.ct, @as(c_uint, @bitCast(VK_PIPELINE_BIND_POINT_GRAPHICS)), pipeline.*.ct);
-}
+pub extern fn cvk_pipeline_graphics_create(arg: [*c]const cvk_pipeline_graphics_create_args) cvk_pipeline_Graphics;
+pub extern fn cvk_pipeline_graphics_destroy(pipeline: [*c]cvk_pipeline_Graphics, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
+pub extern fn cvk_pipeline_graphics_command_bind(pipeline: [*c]const cvk_pipeline_Graphics, command_buffer: [*c]const cvk_command_Buffer) void;
 pub const struct_cvk_command_draw_args = extern struct {
     vertex_len: u32 = @import("std").mem.zeroes(u32),
     vertex_first: u32 = @import("std").mem.zeroes(u32),
@@ -19992,11 +17854,62 @@ pub const struct_cvk_command_draw_args = extern struct {
     instance_first: u32 = @import("std").mem.zeroes(u32),
 };
 pub const cvk_command_draw_args = struct_cvk_command_draw_args;
-pub export fn cvk_command_draw(command_buffer: [*c]const cvk_command_Buffer, arg: [*c]const cvk_command_draw_args) void {
-    _ = &command_buffer;
-    _ = &arg;
-    vkCmdDraw(command_buffer.*.ct, if (!(arg.*.instance_len != 0)) @as(u32, @bitCast(@as(c_int, 3))) else arg.*.vertex_len, if (!(arg.*.instance_len != 0)) @as(u32, @bitCast(@as(c_int, 1))) else arg.*.instance_len, arg.*.vertex_first, arg.*.instance_first);
-}
+pub extern fn cvk_command_draw(command_buffer: [*c]const cvk_command_Buffer, arg: [*c]const cvk_command_draw_args) void;
+pub const struct_cvk_command_draw_indexed_args = extern struct {
+    indices_len: u32 = @import("std").mem.zeroes(u32),
+    indices_first: u32 = @import("std").mem.zeroes(u32),
+    instance_len: u32 = @import("std").mem.zeroes(u32),
+    instance_first: u32 = @import("std").mem.zeroes(u32),
+    vertex_offset: i32 = @import("std").mem.zeroes(i32),
+};
+pub const cvk_command_draw_indexed_args = struct_cvk_command_draw_indexed_args;
+pub extern fn cvk_command_draw_indexed(command_buffer: [*c]const cvk_command_Buffer, arg: [*c]const cvk_command_draw_indexed_args) void;
+pub const struct_cvk_command_pool_create_args = extern struct {
+    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
+    queueID: cvk_QueueID = @import("std").mem.zeroes(cvk_QueueID),
+    flags: cvk_command_pool_Flags = @import("std").mem.zeroes(cvk_command_pool_Flags),
+    allocator: [*c]cvk_Allocator = @import("std").mem.zeroes([*c]cvk_Allocator),
+};
+pub const cvk_command_pool_create_args = struct_cvk_command_pool_create_args;
+pub extern fn cvk_command_pool_create(arg: [*c]const cvk_command_pool_create_args) cvk_command_Pool;
+pub extern fn cvk_command_pool_destroy(pool: [*c]cvk_command_Pool, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
+pub const struct_cvk_command_buffer_allocate_args = extern struct {
+    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
+    command_pool: [*c]const cvk_command_Pool = @import("std").mem.zeroes([*c]const cvk_command_Pool),
+    level: cvk_command_buffer_Level = @import("std").mem.zeroes(cvk_command_buffer_Level),
+    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
+    count: usize = @import("std").mem.zeroes(usize),
+};
+pub const cvk_command_buffer_allocate_args = struct_cvk_command_buffer_allocate_args;
+pub extern fn cvk_command_buffer_allocate(arg: [*c]const cvk_command_buffer_allocate_args) cvk_command_Buffer;
+pub const struct_cvk_command_buffer_free_args = extern struct {
+    command_pool: [*c]const cvk_command_Pool = @import("std").mem.zeroes([*c]const cvk_command_Pool),
+    device_logical: [*c]const cvk_device_Logical = @import("std").mem.zeroes([*c]const cvk_device_Logical),
+};
+pub const cvk_command_buffer_free_args = struct_cvk_command_buffer_free_args;
+pub extern fn cvk_command_buffer_free(command_buffer: [*c]cvk_command_Buffer, arg: [*c]const cvk_command_buffer_free_args) void;
+pub const cvk_command_buffer_OneTimeSubmit: c_int = 1;
+pub const cvk_command_buffer_RenderPassContinue: c_int = 2;
+pub const cvk_command_buffer_Simultaneous: c_int = 4;
+pub const cvk_command_buffer_Usage_Force32: c_int = 2147483647;
+pub const enum_cvk_command_buffer_Usage = c_uint;
+pub const cvk_command_buffer_Usage = enum_cvk_command_buffer_Usage;
+pub const struct_cvk_command_buffer_begin_args = extern struct {
+    flags: VkCommandBufferUsageFlags = @import("std").mem.zeroes(VkCommandBufferUsageFlags),
+    priv_pad: [4]u8 = @import("std").mem.zeroes([4]u8),
+    inheritance: [*c]const VkCommandBufferInheritanceInfo = @import("std").mem.zeroes([*c]const VkCommandBufferInheritanceInfo),
+};
+pub const cvk_command_buffer_begin_args = struct_cvk_command_buffer_begin_args;
+pub extern fn cvk_command_buffer_begin2(command_buffer: [*c]const cvk_command_Buffer, arg: [*c]const cvk_command_buffer_begin_args) void;
+pub extern fn cvk_command_buffer_begin(command_buffer: [*c]const cvk_command_Buffer) void;
+pub extern fn cvk_command_buffer_end(command_buffer: [*c]const cvk_command_Buffer) void;
+pub extern fn cvk_command_buffer_reset(command_buffer: [*c]const cvk_command_Buffer, releaseResources: cvk_bool) void;
+pub extern fn cvk_semaphore_create(device_logical: [*c]const cvk_device_Logical, allocator: [*c]const cvk_Allocator) cvk_Semaphore;
+pub extern fn cvk_semaphore_destroy(semaphore: [*c]cvk_Semaphore, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
+pub extern fn cvk_fence_create(device_logical: [*c]const cvk_device_Logical, signaled: cvk_bool, allocator: [*c]const cvk_Allocator) cvk_Fence;
+pub extern fn cvk_fence_destroy(fence: [*c]cvk_Fence, device_logical: [*c]const cvk_device_Logical, allocator: [*c]cvk_Allocator) void;
+pub extern fn cvk_fence_wait(fence: [*c]const cvk_Fence, device_logical: [*c]const cvk_device_Logical) void;
+pub extern fn cvk_fence_reset(fence: [*c]const cvk_Fence, device_logical: [*c]const cvk_device_Logical) void;
 pub const __llvm__ = @as(c_int, 1);
 pub const __clang__ = @as(c_int, 1);
 pub const __clang_major__ = @as(c_int, 19);
@@ -20431,7 +18344,6 @@ pub const __STDC_EMBED_FOUND__ = @as(c_int, 1);
 pub const __STDC_EMBED_EMPTY__ = @as(c_int, 2);
 pub const _DEBUG = @as(c_int, 1);
 pub const __GCC_HAVE_DWARF2_CFI_ASM = @as(c_int, 1);
-pub const cvk_Implementation = "";
 pub const H_cvulkan = "";
 pub const H_cvulkan_core = "";
 pub const H_cvulkan_base = "";
@@ -20486,7 +18398,7 @@ pub const __STDC_IEC_60559_COMPLEX__ = @as(c_long, 201404);
 pub const __STDC_ISO_10646__ = @as(c_long, 201706);
 pub const __GNU_LIBRARY__ = @as(c_int, 6);
 pub const __GLIBC__ = @as(c_int, 2);
-pub const __GLIBC_MINOR__ = @as(c_int, 41);
+pub const __GLIBC_MINOR__ = @as(c_int, 42);
 pub inline fn __GLIBC_PREREQ(maj: anytype, min: anytype) @TypeOf(((__GLIBC__ << @as(c_int, 16)) + __GLIBC_MINOR__) >= ((maj << @as(c_int, 16)) + min)) {
     _ = &maj;
     _ = &min;
@@ -22221,9 +20133,9 @@ pub const ____FILE_defined = @as(c_int, 1);
 pub const __FILE_defined = @as(c_int, 1);
 pub const __struct_FILE_defined = @as(c_int, 1);
 pub const __getc_unlocked_body = @compileError("TODO postfix inc/dec expr");
-// /usr/include/bits/types/struct_FILE.h:105:9
+// /usr/include/bits/types/struct_FILE.h:113:9
 pub const __putc_unlocked_body = @compileError("TODO postfix inc/dec expr");
-// /usr/include/bits/types/struct_FILE.h:109:9
+// /usr/include/bits/types/struct_FILE.h:117:9
 pub const _IO_EOF_SEEN = @as(c_int, 0x0010);
 pub inline fn __feof_unlocked_body(_fp: anytype) @TypeOf((_fp.*._flags & _IO_EOF_SEEN) != @as(c_int, 0)) {
     _ = &_fp;
@@ -22338,16 +20250,27 @@ pub const cvk_discard = @import("std").zig.c_translation.Macros.DISCARD;
 pub const cvk_Nullable = "";
 pub const cvk_Readonly = "";
 pub const cvk_Pure = @compileError("unable to translate C expr: unexpected token '__attribute__'");
-// src/ffi/.././cvulkan/./base.h:108:9
+// src/./cvulkan/./base.h:108:9
 pub const H_cvulkan_math = "";
-pub const cvk_Implementation_math = "";
 pub const H_cvk_result = "";
 pub const cvk_result_toString = cvk_result_toString_default;
 pub const cvk_result_check = @compileError("unable to translate macro: undefined identifier `__FILE__`");
-// src/ffi/.././cvulkan/./result.h:19:9
+// src/./cvulkan/./result.h:19:9
 pub const cvk_assert = @compileError("unable to translate macro: undefined identifier `__FILE__`");
-// src/ffi/.././cvulkan/./result.h:29:9
-pub const cvk_Implementation_result = "";
+// src/./cvulkan/./result.h:29:9
+pub const H_cvulkan_memory = "";
+pub const H_cvulkan_types = "";
+pub const cvk_Allocator_CPU = cvk_Allocator_CPU_t;
+pub const cvk_Allocator_GPU = @compileError("unable to translate C expr: unexpected token ''");
+// src/./cvulkan/././types.h:45:9
+pub const cvk_Application = VkApplicationInfo;
+pub const H_cvulkan_surface = "";
+pub inline fn cvk_allocator_cpu_defaults() @TypeOf(cvk_allocator_cpu_stdlib()) {
+    return cvk_allocator_cpu_stdlib();
+}
+pub inline fn cvk_allocator_gpu_defaults() [*c]VkAllocationCallbacks {
+    return @import("std").zig.c_translation.cast([*c]VkAllocationCallbacks, NULL);
+}
 pub const H_cvk_config = "";
 pub const cvk_config_Name = "cvulkan";
 pub const cvk_config_vulkan_version = VK_API_VERSION_1_4;
@@ -22358,333 +20281,24 @@ pub const cvk_config_debug_msgType = (VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EX
 pub const cvk_config_debug_flags = @import("std").zig.c_translation.cast(VkDebugUtilsMessengerCreateFlagsEXT, @as(c_int, 0));
 pub const cvk_config_debug_callback = cvk_validation_debug_callback;
 pub const cvk_config_debug_userdata = NULL;
-pub const H_cvulkan_memory = "";
-pub const H_cvulkan_types = "";
-pub const cvk_Allocator_CPU = cvk_Allocator_CPU_t;
-pub const cvk_Allocator_GPU = @compileError("unable to translate C expr: unexpected token ''");
-// src/ffi/.././cvulkan/././types.h:45:9
-pub const cvk_Application = VkApplicationInfo;
-pub const H_cvulkan_surface = "";
-pub inline fn cvk_allocator_cpu_defaults() @TypeOf(cvk_allocator_cpu_stdlib()) {
-    return cvk_allocator_cpu_stdlib();
-}
-pub inline fn cvk_allocator_gpu_defaults() [*c]VkAllocationCallbacks {
-    return @import("std").zig.c_translation.cast([*c]VkAllocationCallbacks, NULL);
-}
-pub const cvk_Implementation_memory = "";
-pub const _STDLIB_H = @as(c_int, 1);
-pub const WNOHANG = @as(c_int, 1);
-pub const WUNTRACED = @as(c_int, 2);
-pub const WSTOPPED = @as(c_int, 2);
-pub const WEXITED = @as(c_int, 4);
-pub const WCONTINUED = @as(c_int, 8);
-pub const WNOWAIT = @import("std").zig.c_translation.promoteIntLiteral(c_int, 0x01000000, .hex);
-pub const __WNOTHREAD = @import("std").zig.c_translation.promoteIntLiteral(c_int, 0x20000000, .hex);
-pub const __WALL = @import("std").zig.c_translation.promoteIntLiteral(c_int, 0x40000000, .hex);
-pub const __WCLONE = @import("std").zig.c_translation.promoteIntLiteral(c_int, 0x80000000, .hex);
-pub inline fn __WEXITSTATUS(status: anytype) @TypeOf((status & @import("std").zig.c_translation.promoteIntLiteral(c_int, 0xff00, .hex)) >> @as(c_int, 8)) {
-    _ = &status;
-    return (status & @import("std").zig.c_translation.promoteIntLiteral(c_int, 0xff00, .hex)) >> @as(c_int, 8);
-}
-pub inline fn __WTERMSIG(status: anytype) @TypeOf(status & @as(c_int, 0x7f)) {
-    _ = &status;
-    return status & @as(c_int, 0x7f);
-}
-pub inline fn __WSTOPSIG(status: anytype) @TypeOf(__WEXITSTATUS(status)) {
-    _ = &status;
-    return __WEXITSTATUS(status);
-}
-pub inline fn __WIFEXITED(status: anytype) @TypeOf(__WTERMSIG(status) == @as(c_int, 0)) {
-    _ = &status;
-    return __WTERMSIG(status) == @as(c_int, 0);
-}
-pub inline fn __WIFSIGNALED(status: anytype) @TypeOf((@import("std").zig.c_translation.cast(i8, (status & @as(c_int, 0x7f)) + @as(c_int, 1)) >> @as(c_int, 1)) > @as(c_int, 0)) {
-    _ = &status;
-    return (@import("std").zig.c_translation.cast(i8, (status & @as(c_int, 0x7f)) + @as(c_int, 1)) >> @as(c_int, 1)) > @as(c_int, 0);
-}
-pub inline fn __WIFSTOPPED(status: anytype) @TypeOf((status & @as(c_int, 0xff)) == @as(c_int, 0x7f)) {
-    _ = &status;
-    return (status & @as(c_int, 0xff)) == @as(c_int, 0x7f);
-}
-pub inline fn __WIFCONTINUED(status: anytype) @TypeOf(status == __W_CONTINUED) {
-    _ = &status;
-    return status == __W_CONTINUED;
-}
-pub inline fn __WCOREDUMP(status: anytype) @TypeOf(status & __WCOREFLAG) {
-    _ = &status;
-    return status & __WCOREFLAG;
-}
-pub inline fn __W_EXITCODE(ret: anytype, sig: anytype) @TypeOf((ret << @as(c_int, 8)) | sig) {
-    _ = &ret;
-    _ = &sig;
-    return (ret << @as(c_int, 8)) | sig;
-}
-pub inline fn __W_STOPCODE(sig: anytype) @TypeOf((sig << @as(c_int, 8)) | @as(c_int, 0x7f)) {
-    _ = &sig;
-    return (sig << @as(c_int, 8)) | @as(c_int, 0x7f);
-}
-pub const __W_CONTINUED = @import("std").zig.c_translation.promoteIntLiteral(c_int, 0xffff, .hex);
-pub const __WCOREFLAG = @as(c_int, 0x80);
-pub inline fn WEXITSTATUS(status: anytype) @TypeOf(__WEXITSTATUS(status)) {
-    _ = &status;
-    return __WEXITSTATUS(status);
-}
-pub inline fn WTERMSIG(status: anytype) @TypeOf(__WTERMSIG(status)) {
-    _ = &status;
-    return __WTERMSIG(status);
-}
-pub inline fn WSTOPSIG(status: anytype) @TypeOf(__WSTOPSIG(status)) {
-    _ = &status;
-    return __WSTOPSIG(status);
-}
-pub inline fn WIFEXITED(status: anytype) @TypeOf(__WIFEXITED(status)) {
-    _ = &status;
-    return __WIFEXITED(status);
-}
-pub inline fn WIFSIGNALED(status: anytype) @TypeOf(__WIFSIGNALED(status)) {
-    _ = &status;
-    return __WIFSIGNALED(status);
-}
-pub inline fn WIFSTOPPED(status: anytype) @TypeOf(__WIFSTOPPED(status)) {
-    _ = &status;
-    return __WIFSTOPPED(status);
-}
-pub inline fn WIFCONTINUED(status: anytype) @TypeOf(__WIFCONTINUED(status)) {
-    _ = &status;
-    return __WIFCONTINUED(status);
-}
-pub const __ldiv_t_defined = @as(c_int, 1);
-pub const __lldiv_t_defined = @as(c_int, 1);
-pub const RAND_MAX = @import("std").zig.c_translation.promoteIntLiteral(c_int, 2147483647, .decimal);
-pub const EXIT_FAILURE = @as(c_int, 1);
-pub const EXIT_SUCCESS = @as(c_int, 0);
-pub const MB_CUR_MAX = __ctype_get_mb_cur_max();
-pub const _SYS_TYPES_H = @as(c_int, 1);
-pub const __u_char_defined = "";
-pub const __ino_t_defined = "";
-pub const __dev_t_defined = "";
-pub const __gid_t_defined = "";
-pub const __mode_t_defined = "";
-pub const __nlink_t_defined = "";
-pub const __uid_t_defined = "";
-pub const __pid_t_defined = "";
-pub const __id_t_defined = "";
-pub const __daddr_t_defined = "";
-pub const __key_t_defined = "";
-pub const __clock_t_defined = @as(c_int, 1);
-pub const __clockid_t_defined = @as(c_int, 1);
-pub const __time_t_defined = @as(c_int, 1);
-pub const __timer_t_defined = @as(c_int, 1);
-pub const __BIT_TYPES_DEFINED__ = @as(c_int, 1);
-pub const _ENDIAN_H = @as(c_int, 1);
-pub const _BITS_ENDIAN_H = @as(c_int, 1);
-pub const __LITTLE_ENDIAN = @as(c_int, 1234);
-pub const __BIG_ENDIAN = @as(c_int, 4321);
-pub const __PDP_ENDIAN = @as(c_int, 3412);
-pub const _BITS_ENDIANNESS_H = @as(c_int, 1);
-pub const __BYTE_ORDER = __LITTLE_ENDIAN;
-pub const __FLOAT_WORD_ORDER = __BYTE_ORDER;
-pub inline fn __LONG_LONG_PAIR(HI: anytype, LO: anytype) @TypeOf(HI) {
-    _ = &HI;
-    _ = &LO;
-    return blk: {
-        _ = &LO;
-        break :blk HI;
-    };
-}
-pub const LITTLE_ENDIAN = __LITTLE_ENDIAN;
-pub const BIG_ENDIAN = __BIG_ENDIAN;
-pub const PDP_ENDIAN = __PDP_ENDIAN;
-pub const BYTE_ORDER = __BYTE_ORDER;
-pub const _BITS_BYTESWAP_H = @as(c_int, 1);
-pub inline fn __bswap_constant_16(x: anytype) __uint16_t {
-    _ = &x;
-    return @import("std").zig.c_translation.cast(__uint16_t, ((x >> @as(c_int, 8)) & @as(c_int, 0xff)) | ((x & @as(c_int, 0xff)) << @as(c_int, 8)));
-}
-pub inline fn __bswap_constant_32(x: anytype) @TypeOf(((((x & @import("std").zig.c_translation.promoteIntLiteral(c_uint, 0xff000000, .hex)) >> @as(c_int, 24)) | ((x & @import("std").zig.c_translation.promoteIntLiteral(c_uint, 0x00ff0000, .hex)) >> @as(c_int, 8))) | ((x & @as(c_uint, 0x0000ff00)) << @as(c_int, 8))) | ((x & @as(c_uint, 0x000000ff)) << @as(c_int, 24))) {
-    _ = &x;
-    return ((((x & @import("std").zig.c_translation.promoteIntLiteral(c_uint, 0xff000000, .hex)) >> @as(c_int, 24)) | ((x & @import("std").zig.c_translation.promoteIntLiteral(c_uint, 0x00ff0000, .hex)) >> @as(c_int, 8))) | ((x & @as(c_uint, 0x0000ff00)) << @as(c_int, 8))) | ((x & @as(c_uint, 0x000000ff)) << @as(c_int, 24));
-}
-pub inline fn __bswap_constant_64(x: anytype) @TypeOf(((((((((x & @as(c_ulonglong, 0xff00000000000000)) >> @as(c_int, 56)) | ((x & @as(c_ulonglong, 0x00ff000000000000)) >> @as(c_int, 40))) | ((x & @as(c_ulonglong, 0x0000ff0000000000)) >> @as(c_int, 24))) | ((x & @as(c_ulonglong, 0x000000ff00000000)) >> @as(c_int, 8))) | ((x & @as(c_ulonglong, 0x00000000ff000000)) << @as(c_int, 8))) | ((x & @as(c_ulonglong, 0x0000000000ff0000)) << @as(c_int, 24))) | ((x & @as(c_ulonglong, 0x000000000000ff00)) << @as(c_int, 40))) | ((x & @as(c_ulonglong, 0x00000000000000ff)) << @as(c_int, 56))) {
-    _ = &x;
-    return ((((((((x & @as(c_ulonglong, 0xff00000000000000)) >> @as(c_int, 56)) | ((x & @as(c_ulonglong, 0x00ff000000000000)) >> @as(c_int, 40))) | ((x & @as(c_ulonglong, 0x0000ff0000000000)) >> @as(c_int, 24))) | ((x & @as(c_ulonglong, 0x000000ff00000000)) >> @as(c_int, 8))) | ((x & @as(c_ulonglong, 0x00000000ff000000)) << @as(c_int, 8))) | ((x & @as(c_ulonglong, 0x0000000000ff0000)) << @as(c_int, 24))) | ((x & @as(c_ulonglong, 0x000000000000ff00)) << @as(c_int, 40))) | ((x & @as(c_ulonglong, 0x00000000000000ff)) << @as(c_int, 56));
-}
-pub const _BITS_UINTN_IDENTITY_H = @as(c_int, 1);
-pub inline fn htobe16(x: anytype) @TypeOf(__bswap_16(x)) {
-    _ = &x;
-    return __bswap_16(x);
-}
-pub inline fn htole16(x: anytype) @TypeOf(__uint16_identity(x)) {
-    _ = &x;
-    return __uint16_identity(x);
-}
-pub inline fn be16toh(x: anytype) @TypeOf(__bswap_16(x)) {
-    _ = &x;
-    return __bswap_16(x);
-}
-pub inline fn le16toh(x: anytype) @TypeOf(__uint16_identity(x)) {
-    _ = &x;
-    return __uint16_identity(x);
-}
-pub inline fn htobe32(x: anytype) @TypeOf(__bswap_32(x)) {
-    _ = &x;
-    return __bswap_32(x);
-}
-pub inline fn htole32(x: anytype) @TypeOf(__uint32_identity(x)) {
-    _ = &x;
-    return __uint32_identity(x);
-}
-pub inline fn be32toh(x: anytype) @TypeOf(__bswap_32(x)) {
-    _ = &x;
-    return __bswap_32(x);
-}
-pub inline fn le32toh(x: anytype) @TypeOf(__uint32_identity(x)) {
-    _ = &x;
-    return __uint32_identity(x);
-}
-pub inline fn htobe64(x: anytype) @TypeOf(__bswap_64(x)) {
-    _ = &x;
-    return __bswap_64(x);
-}
-pub inline fn htole64(x: anytype) @TypeOf(__uint64_identity(x)) {
-    _ = &x;
-    return __uint64_identity(x);
-}
-pub inline fn be64toh(x: anytype) @TypeOf(__bswap_64(x)) {
-    _ = &x;
-    return __bswap_64(x);
-}
-pub inline fn le64toh(x: anytype) @TypeOf(__uint64_identity(x)) {
-    _ = &x;
-    return __uint64_identity(x);
-}
-pub const _SYS_SELECT_H = @as(c_int, 1);
-pub const __FD_ZERO = @compileError("unable to translate macro: undefined identifier `__i`");
-// /usr/include/bits/select.h:25:9
-pub const __FD_SET = @compileError("unable to translate C expr: expected ')' instead got '|='");
-// /usr/include/bits/select.h:32:9
-pub const __FD_CLR = @compileError("unable to translate C expr: expected ')' instead got '&='");
-// /usr/include/bits/select.h:34:9
-pub inline fn __FD_ISSET(d: anytype, s: anytype) @TypeOf((__FDS_BITS(s)[@as(usize, @intCast(__FD_ELT(d)))] & __FD_MASK(d)) != @as(c_int, 0)) {
-    _ = &d;
-    _ = &s;
-    return (__FDS_BITS(s)[@as(usize, @intCast(__FD_ELT(d)))] & __FD_MASK(d)) != @as(c_int, 0);
-}
-pub const __sigset_t_defined = @as(c_int, 1);
-pub const ____sigset_t_defined = "";
-pub const _SIGSET_NWORDS = @import("std").zig.c_translation.MacroArithmetic.div(@as(c_int, 1024), @as(c_int, 8) * @import("std").zig.c_translation.sizeof(c_ulong));
-pub const __timeval_defined = @as(c_int, 1);
-pub const _STRUCT_TIMESPEC = @as(c_int, 1);
-pub const __suseconds_t_defined = "";
-pub const __NFDBITS = @as(c_int, 8) * @import("std").zig.c_translation.cast(c_int, @import("std").zig.c_translation.sizeof(__fd_mask));
-pub inline fn __FD_ELT(d: anytype) @TypeOf(@import("std").zig.c_translation.MacroArithmetic.div(d, __NFDBITS)) {
-    _ = &d;
-    return @import("std").zig.c_translation.MacroArithmetic.div(d, __NFDBITS);
-}
-pub inline fn __FD_MASK(d: anytype) __fd_mask {
-    _ = &d;
-    return @import("std").zig.c_translation.cast(__fd_mask, @as(c_ulong, 1) << @import("std").zig.c_translation.MacroArithmetic.rem(d, __NFDBITS));
-}
-pub inline fn __FDS_BITS(set: anytype) @TypeOf(set.*.__fds_bits) {
-    _ = &set;
-    return set.*.__fds_bits;
-}
-pub const FD_SETSIZE = __FD_SETSIZE;
-pub const NFDBITS = __NFDBITS;
-pub inline fn FD_SET(fd: anytype, fdsetp: anytype) @TypeOf(__FD_SET(fd, fdsetp)) {
-    _ = &fd;
-    _ = &fdsetp;
-    return __FD_SET(fd, fdsetp);
-}
-pub inline fn FD_CLR(fd: anytype, fdsetp: anytype) @TypeOf(__FD_CLR(fd, fdsetp)) {
-    _ = &fd;
-    _ = &fdsetp;
-    return __FD_CLR(fd, fdsetp);
-}
-pub inline fn FD_ISSET(fd: anytype, fdsetp: anytype) @TypeOf(__FD_ISSET(fd, fdsetp)) {
-    _ = &fd;
-    _ = &fdsetp;
-    return __FD_ISSET(fd, fdsetp);
-}
-pub inline fn FD_ZERO(fdsetp: anytype) @TypeOf(__FD_ZERO(fdsetp)) {
-    _ = &fdsetp;
-    return __FD_ZERO(fdsetp);
-}
-pub const __blksize_t_defined = "";
-pub const __blkcnt_t_defined = "";
-pub const __fsblkcnt_t_defined = "";
-pub const __fsfilcnt_t_defined = "";
-pub const _BITS_PTHREADTYPES_COMMON_H = @as(c_int, 1);
-pub const _THREAD_SHARED_TYPES_H = @as(c_int, 1);
-pub const _BITS_PTHREADTYPES_ARCH_H = @as(c_int, 1);
-pub const __SIZEOF_PTHREAD_MUTEX_T = @as(c_int, 40);
-pub const __SIZEOF_PTHREAD_ATTR_T = @as(c_int, 56);
-pub const __SIZEOF_PTHREAD_RWLOCK_T = @as(c_int, 56);
-pub const __SIZEOF_PTHREAD_BARRIER_T = @as(c_int, 32);
-pub const __SIZEOF_PTHREAD_MUTEXATTR_T = @as(c_int, 4);
-pub const __SIZEOF_PTHREAD_COND_T = @as(c_int, 48);
-pub const __SIZEOF_PTHREAD_CONDATTR_T = @as(c_int, 4);
-pub const __SIZEOF_PTHREAD_RWLOCKATTR_T = @as(c_int, 8);
-pub const __SIZEOF_PTHREAD_BARRIERATTR_T = @as(c_int, 4);
-pub const __LOCK_ALIGNMENT = "";
-pub const __ONCE_ALIGNMENT = "";
-pub const _BITS_ATOMIC_WIDE_COUNTER_H = "";
-pub const _THREAD_MUTEX_INTERNAL_H = @as(c_int, 1);
-pub const __PTHREAD_MUTEX_HAVE_PREV = @as(c_int, 1);
-pub const __PTHREAD_MUTEX_INITIALIZER = @compileError("unable to translate C expr: unexpected token '{'");
-// /usr/include/bits/struct_mutex.h:56:10
-pub const _RWLOCK_INTERNAL_H = "";
-pub const __PTHREAD_RWLOCK_ELISION_EXTRA = @compileError("unable to translate C expr: unexpected token '{'");
-// /usr/include/bits/struct_rwlock.h:40:11
-pub inline fn __PTHREAD_RWLOCK_INITIALIZER(__flags: anytype) @TypeOf(__flags) {
-    _ = &__flags;
-    return blk: {
-        _ = @as(c_int, 0);
-        _ = @as(c_int, 0);
-        _ = @as(c_int, 0);
-        _ = @as(c_int, 0);
-        _ = @as(c_int, 0);
-        _ = @as(c_int, 0);
-        _ = @as(c_int, 0);
-        _ = @as(c_int, 0);
-        _ = &__PTHREAD_RWLOCK_ELISION_EXTRA;
-        _ = @as(c_int, 0);
-        break :blk __flags;
-    };
-}
-pub const __ONCE_FLAG_INIT = @compileError("unable to translate C expr: unexpected token '{'");
-// /usr/include/bits/thread-shared-types.h:114:9
-pub const __have_pthread_attr_t = @as(c_int, 1);
-pub const _ALLOCA_H = @as(c_int, 1);
-pub const __COMPAR_FN_T = "";
 pub const H_cvulkan_application = "";
-pub const cvk_Implementation_application = "";
 pub const H_cvk_extensions = "";
 pub inline fn cvk_extensions_instance_getRequired() @TypeOf(cvk_Slice_empty) {
     return cvk_Slice_empty;
 }
 pub const H_cvulkan_validation = "";
 pub const cvk_validation_LayerName = "VK_LAYER_KHRONOS_validation";
-pub const cvk_Implementation_validation = "";
 pub const H_cvk_instance = "";
-pub const cvk_Implementation_instance = "";
 pub const H_cvk_device = "";
 pub const cvk_device_physical_isSuitable = cvk_device_physical_isSuitable_default;
 pub const cvk_device_queue_destroy = @compileError("unable to translate C expr: unexpected token ';'");
-// src/ffi/.././cvulkan/./device.h:117:9
-pub const cvk_Implementation_device = "";
-pub const H_cvulkan_sync = "";
-pub const cvk_Implementation_sync = "";
+// src/./cvulkan/./device.h:117:9
 pub const H_cvulkan_shader = "";
-pub const cvk_Implementation_shader = "";
 pub const H_cvk_data = "";
-pub const cvk_Implementation_data = "";
 pub const H_cvulkan_renderpass = "";
-pub const cvk_Implementation_renderpass = "";
 pub const H_cvulkan_framebuffer = "";
-pub const cvk_Implementation_framebuffer = "";
 pub const H_cvulkan_pipeline = "";
-pub const cvk_Implementation_pipeline = "";
+pub const H_cvulkan_sync = "";
 pub const VkBuffer_T = struct_VkBuffer_T;
 pub const VkImage_T = struct_VkImage_T;
 pub const VkInstance_T = struct_VkInstance_T;
@@ -22746,12 +20360,3 @@ pub const _IO_codecvt = struct__IO_codecvt;
 pub const _IO_wide_data = struct__IO_wide_data;
 pub const _IO_cookie_io_functions_t = struct__IO_cookie_io_functions_t;
 pub const cvk_Allocator_CPU_s = struct_cvk_Allocator_CPU_s;
-pub const timeval = struct_timeval;
-pub const timespec = struct_timespec;
-pub const __pthread_internal_list = struct___pthread_internal_list;
-pub const __pthread_internal_slist = struct___pthread_internal_slist;
-pub const __pthread_mutex_s = struct___pthread_mutex_s;
-pub const __pthread_rwlock_arch_t = struct___pthread_rwlock_arch_t;
-pub const __pthread_cond_s = struct___pthread_cond_s;
-pub const random_data = struct_random_data;
-pub const drand48_data = struct_drand48_data;
