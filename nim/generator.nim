@@ -4,6 +4,6 @@
 import std/os
 import futhark
 importc:
-  path "../"
-  outputPath currentSourcePath.parentDir/"nim"/"src"/"cvulkan"/"raw.nim"
+  path currentSourcePath.parentDir/"src"/"cvulkan"/"C"/"src"
+  outputPath currentSourcePath.parentDir/"src"/"cvulkan"/"raw.nim"
   "cvulkan.h"
