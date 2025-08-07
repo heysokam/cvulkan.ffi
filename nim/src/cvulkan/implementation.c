@@ -2,7 +2,7 @@
 //  cvulkan  |  Copyright (C) Ivan Mar (sOkam!)  |  MPL-2.0  :
 //:___________________________________________________________
 //! @fileoverview
-//!  Implementation file for the Zig/Nim binding generators.
-//___________________________________________________________|
+//!  Implementation file for the cvulkan Nim bindings.
+//______________________________________________________|
 #define cvk_Implementation
-#include "../cvulkan.h"
+#include "./C/cvulkan.h"
