@@ -5,4 +5,4 @@
 //!  Implementation file for the cvulkan Nim bindings.
 //______________________________________________________|
 #define cvk_Implementation
-#include "./C/cvulkan.h"
+#include "./C/src/cvulkan.h"
